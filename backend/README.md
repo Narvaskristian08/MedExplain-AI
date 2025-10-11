@@ -1,6 +1,6 @@
-# Backend Development Guide
+# Backend API Server
 
-This guide explains how to add new features and components to the backend API.
+A Node.js/Express.js backend API server with MongoDB integration, JWT authentication, and user management system.
 
 ## Project Structure
 
