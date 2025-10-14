@@ -12,7 +12,7 @@ const routes = {
 };
 
 
-
+// If the pathname isn't in the routes table, fall back to "login".
 const resolve = (path) => routes[path] || "login";
 
 export default function App() {

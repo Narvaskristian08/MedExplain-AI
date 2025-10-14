@@ -30,7 +30,9 @@ export default function Navbar() {
 
 
 
-        
+        {/* Mobile nav toggle (hamburger). 
+        Visible only on < md screens via `md:hidden`. 
+        Toggles the `open` state for the off-canvas menu. */}
         <button
           onClick={() => setOpen(v => !v)}
           className="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-lg border border-black/10 text-gray-700"
