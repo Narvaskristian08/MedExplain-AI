@@ -15,14 +15,19 @@ export default function Navbar() {
         </a>
 
         
-        <ul className="hidden md:flex items-center gap-8 md:gap-10 lg:gap-12 text-base font-medium pr-4">
+        <ul className="hidden md:flex items-center gap-16 text-sm pr-4">
         <li>
-         <a href="/" className="text-gray-600 hover:text-gray-800 transition-colors">Home</a>
-         </li>
-         <li>
-         <a href="/help" className="text-gray-600 hover:text-gray-800 transition-colors">Simplify text</a>
-         </li>
+        <a href="/home" className="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+          Home
+        </a>
+        </li>
+        <li>
+        <a href="/help" className="text-gray-600 hover:text-gray-800 transition-colors duration-200">
+         Simplify text
+        </a>
+        </li>
         </ul>
+
 
 
         

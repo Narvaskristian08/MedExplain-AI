@@ -10,12 +10,15 @@ export default function RegisterPage({ onLogin }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
+
     if (!email || !password || !confirm) return setError("Please fill in all fields.");
     if (password !== confirm) return setError("Passwords do not match.");
+
     if (typeof onLogin === "function") onLogin({ email });
-    // After successful registration, you can navigate:
-    // history.pushState({}, "", "/login");
-    // window.dispatchEvent(new PopStateEvent("popstate"));
+
+    
+    history.pushState({}, "", "/home");
+    window.dispatchEvent(new PopStateEvent("popstate"));
   };
 
   return (
@@ -24,7 +27,7 @@ export default function RegisterPage({ onLogin }) {
         <Navbar />
 
         <div className="mt-4 lg:mt-10 flex flex-col lg:flex-row lg:items-stretch lg:gap-14 justify-center">
-          {/* Illustration */}
+         
           <section className="hidden lg:flex justify-center">
             <div className="w-full lg:w-[720px] h-[600px] rounded-[28px] bg-white shadow-[0_24px_70px_-20px_rgba(30,64,175,.28)] overflow-hidden">
               <img
@@ -38,7 +41,7 @@ export default function RegisterPage({ onLogin }) {
             </div>
           </section>
 
-          {/* Register card */}
+          
           <section className="flex justify-center">
             <div className="w-full lg:w-[720px] min-h-[600px] rounded-[28px] bg-white shadow-[0_24px_70px_-20px_rgba(30,64,175,.28)] p-8 md:p-10 lg:p-12 flex flex-col">
               <div>
