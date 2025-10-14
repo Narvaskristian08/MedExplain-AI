@@ -1,0 +1,27 @@
+{"level":"info","message":{"endpoint":"/api/documents/glossary/export?format=pdf","method":"GET","status":200,"timestamp":"2025-10-14T16:59:15.423Z"},"timestamp":"2025-10-14T16:59:15.425Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary/export?format=json","method":"GET","status":200,"timestamp":"2025-10-14T16:59:21.746Z"},"timestamp":"2025-10-14T16:59:21.746Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T16:59:37.693Z"},"timestamp":"2025-10-14T16:59:37.693Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:00:34.424Z"},"timestamp":"2025-10-14T17:00:34.424Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T17:01:24.358Z"},"timestamp":"2025-10-14T17:01:24.358Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T17:04:52.355Z"},"timestamp":"2025-10-14T17:04:52.358Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-14T17:05:32.001Z"},"timestamp":"2025-10-14T17:05:32.001Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T17:06:00.181Z"},"timestamp":"2025-10-14T17:06:00.181Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T17:08:32.988Z"},"timestamp":"2025-10-14T17:08:32.988Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:08:43.258Z"},"timestamp":"2025-10-14T17:08:43.258Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:09:45.580Z"},"timestamp":"2025-10-14T17:09:45.580Z"}
+{"level":"info","message":"MongoDB Connected on port 5000","timestamp":"2025-10-14T17:12:17.238Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-10-14T17:12:17.253Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:12:25.060Z"},"timestamp":"2025-10-14T17:12:25.060Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:12:51.425Z"},"timestamp":"2025-10-14T17:12:51.429Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:15:15.008Z"},"timestamp":"2025-10-14T17:15:15.011Z"}
+{"endpoint":"/api/documents/invalid","level":"warn","message":"404 - Route not found","method":"GET","timestamp":"2025-10-14T17:15:15.030Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-14T18:31:51.596Z"},"timestamp":"2025-10-14T18:31:51.597Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-14T18:32:39.151Z"},"timestamp":"2025-10-14T18:32:39.151Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:35:13.245Z"},"timestamp":"2025-10-14T18:35:13.245Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:40:47.394Z"},"timestamp":"2025-10-14T18:40:47.395Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:46:12.719Z"},"timestamp":"2025-10-14T18:46:12.721Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:46:37.589Z"},"timestamp":"2025-10-14T18:46:37.590Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:46:52.599Z"},"timestamp":"2025-10-14T18:46:52.601Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T19:21:57.864Z"},"timestamp":"2025-10-14T19:21:57.865Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T19:27:13.393Z"},"timestamp":"2025-10-14T19:27:13.394Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T19:31:41.142Z"},"timestamp":"2025-10-14T19:31:41.144Z"}
