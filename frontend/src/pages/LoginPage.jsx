@@ -1,197 +1,79 @@
-import React, { useState } from 'react';
-import Header from '../components/Header';
-import { authAPI } from '../services/api';
+import React from "react";
+import Navbar from "../components/Navbar";
 
-const LoginPage = ({ onLogin }) => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = {};
-    
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-    
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-    }
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
-    
-    setLoading(true);
-    try {
-      const data = await authAPI.login(formData.email, formData.password);
-      
-      // Store token and user data
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      
-      // Call the onLogin callback if provided
-      if (onLogin) {
-        onLogin(data.user);
-      }
-      
-      // Redirect to dashboard or home
-      window.location.href = '/dashboard';
-    } catch (error) {
-      setErrors({ 
-        submit: error.response?.data?.message || 'Login failed. Please try again.' 
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
+export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      
-      <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
-            </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              Or{' '}
-              <a
-                href="/register"
-                className="font-medium text-blue-600 hover:text-blue-500"
-              >
-                create a new account
-              </a>
-            </p>
-          </div>
+    <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
+      <main className="mx-auto max-w-7xl px-4 md:px-6 pt-4 md:pt-6 pb-10 md:pb-14">
+        <Navbar />
+
+        
+        <div className="mt-4 lg:mt-8 flex flex-col lg:flex-row lg:items-stretch lg:gap-10 justify-center">
+
+        
+          <section className="hidden lg:flex justify-center">
+            <div className="w-[640px] min-h-[560px] rounded-[28px] bg-white shadow-[0_20px_60px_-20px_rgba(30,64,175,.25)] p-8 flex items-center justify-center">
+              <img
+                src="/login-illustration.png"
+                alt="AI Doctor"
+                className="w-full h-full rounded-2xl object-contain"
+              />
+            </div>
+          </section>
+
           
-          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-            <div className="rounded-md shadow-sm -space-y-px">
+          <section className="flex justify-center">
+            <div className="w-[640px] min-h-[560px] rounded-[28px] bg-white shadow-[0_20px_60px_-20px_rgba(30,64,175,.25)] p-8 flex flex-col">
               <div>
-                <label htmlFor="email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${
-                    errors.email ? 'border-red-300' : 'border-gray-300'
-                  } placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
-                  placeholder="Email address"
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                )}
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={formData.password}
-                  onChange={handleChange}
-                  className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${
-                    errors.password ? 'border-red-300' : 'border-gray-300'
-                  } placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
-                  placeholder="Password"
-                />
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password}</p>
-                )}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  Remember me
-                </label>
+                <h1 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-3">
+                  Welcome!
+                </h1>
+                <p className="text-center text-gray-500 mb-8 text-base md:text-lg">
+                  Please enter your email and password.
+                </p>
               </div>
 
-              <div className="text-sm">
-                <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
+              <form className="space-y-6 flex-1">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  />
+                </div>
 
-            {errors.submit && (
-              <div className="text-red-600 text-sm text-center">
-                {errors.submit}
-              </div>
-            )}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+                  <input
+                    type="password"
+                    placeholder="Enter your password"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  />
+                  <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
+                    <label className="inline-flex items-center gap-2">
+                      <input type="checkbox" className="rounded border-gray-300" /> Remember me
+                    </label>
+                    <a href="#" className="hover:underline">Forgot Password</a>
+                  </div>
+                </div>
 
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Signing in...' : 'Sign in'}
-              </button>
-            </div>
-
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
-                <a
-                  href="/register"
-                  className="font-medium text-blue-600 hover:text-blue-500"
+                <button
+                  type="submit"
+                  className="w-full rounded-lg bg-blue-500 py-3 text-base text-white hover:bg-blue-600 transition"
                 >
-                  Sign up here
-                </a>
-              </p>
+                  Sign In
+                </button>
+
+                <p className="text-center text-sm text-gray-600">
+                  Don’t have an account?{" "}
+                  <a href="#" className="text-blue-600 hover:underline">Sign Up</a>
+                </p>
+              </form>
             </div>
-          </form>
+          </section>
         </div>
-      </div>
+      </main>
     </div>
   );
-};
-
-export default LoginPage;
+}
