@@ -11,42 +11,47 @@ export default function RegisterPage({ onLogin }) {
     e.preventDefault();
     setError("");
 
-    if (!email || !password || !confirm) return setError("Please fill in all fields.");
-    if (password !== confirm) return setError("Passwords do not match.");
+    if (!email || !password || !confirm) {
+      return setError("Please fill in all fields.");
+    }
+    if (password !== confirm) {
+      return setError("Passwords do not match.");
+    }
 
-    if (typeof onLogin === "function") onLogin({ email });
-
-    history.pushState({}, "", "/home");
-    window.dispatchEvent(new PopStateEvent("popstate"));
+    if (typeof onLogin === "function") {
+      onLogin({ email });
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-b from-white to-[#d8ecff]">
       <main className="mx-auto max-w-[1520px] px-4 md:px-6 pt-4 md:pt-6 pb-10 md:pb-14">
         <Navbar />
 
-        {/* same row as Login; no internal scrolling */}
         <div className="mt-4 lg:mt-10 flex flex-col lg:flex-row lg:items-start lg:gap-14 justify-center">
-          {/* Illustration (same shell/size as login) */}
+          {/* Left illustration — transparent container */}
           <section className="hidden lg:flex justify-center">
-            <div className="w-full lg:w-[720px] h-[600px] rounded-[28px] bg-white ring-1 ring-black/5 shadow-[0_24px_70px_-20px_rgba(30,64,175,.28)] overflow-hidden self-start">
+            <div className="w-full lg:w-[720px] h-[600px] rounded-[28px] bg-transparent overflow-hidden self-start">
               <img
                 src="/login-illustration.png"
                 alt="Illustration"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 draggable="false"
               />
             </div>
           </section>
 
-          {/* Register card (same shell/size; no overflow) */}
+          {/* Right form card */}
           <section className="flex justify-center">
-            <div className="w-full lg:w-[720px] h-[600px] rounded-[28px] bg-white ring-1 ring-black/5 shadow-[0_24px_70px_-20px_rgba(30,64,175,.28)] self-start">
-              {/* Use flex layout; no overflow so it won't scroll */}
+            <div className="w-full lg:w-[720px] h-[600px] rounded-[28px] bg-white ring-1 ring-blue-500/10 shadow-[0_24px_70px_-20px_rgba(30,64,175,.28)] self-start">
               <div className="h-full p-8 md:p-10 lg:p-12 flex flex-col">
                 <div className="mb-4">
-                  <h1 className="text-[32px] font-bold text-slate-600 text-center">Create account</h1>
-                  <p className="text-slate-500 text-center mt-2">Please fill in your details.</p>
+                  <h1 className="text-[32px] font-bold text-slate-600 text-center">
+                    Create account
+                  </h1>
+                  <p className="text-slate-500 text-center mt-2">
+                    Please fill in your details.
+                  </p>
                 </div>
 
                 {error && (
@@ -55,10 +60,11 @@ export default function RegisterPage({ onLogin }) {
                   </div>
                 )}
 
-                {/* form grows, but does NOT scroll */}
                 <form className="flex-1 space-y-5" onSubmit={handleSubmit} noValidate>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                      Email
+                    </label>
                     <input
                       type="email"
                       value={email}
@@ -69,7 +75,9 @@ export default function RegisterPage({ onLogin }) {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                      Password
+                    </label>
                     <input
                       type="password"
                       value={password}
@@ -80,7 +88,9 @@ export default function RegisterPage({ onLogin }) {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Confirm password</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                      Confirm password
+                    </label>
                     <input
                       type="password"
                       value={confirm}
@@ -100,7 +110,9 @@ export default function RegisterPage({ onLogin }) {
 
                 <p className="pt-4 text-center text-sm text-gray-600">
                   Already have an account?{" "}
-                  <a href="/login" className="text-blue-500 hover:underline">Sign In</a>
+                  <a href="/login" className="text-blue-500 hover:underline">
+                    Sign In
+                  </a>
                 </p>
               </div>
             </div>

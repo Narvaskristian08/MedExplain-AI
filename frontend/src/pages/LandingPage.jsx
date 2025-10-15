@@ -3,22 +3,26 @@ import Navbar from "../components/Navbar";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-blue-50">
+    
+    <div className="min-h-screen bg-gradient-to-b from-white to-[#d8ecff]">
       <main className="mx-auto max-w-[1440px] px-4 md:px-6 pt-4 md:pt-6 pb-16">
-        <Navbar />
+        
+        <Navbar showAuthCtas />
 
         
-        <section className="mt-6 md:mt-10 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+        <section className="mt-2 md:mt-6 grid grid-cols-12 gap-10 lg:gap-12 items-center">
           
-          <div>
+          
+          <div className="col-span-12 lg:col-span-6 bg-transparent">
             <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight text-slate-900">
               Simplify Complex
               <span className="block">Medical Texts</span>
             </h1>
 
             <p className="mt-4 max-w-xl text-slate-600">
-              Turn clinical jargon into clear, accessible language. Paste your medical
-              text or upload a file—our AI keeps the meaning while removing the noise.
+              Turn clinical jargon into clear, accessible language. Paste your
+              medical text or upload a file—our AI keeps the meaning while
+              removing the noise.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
@@ -61,69 +65,59 @@ export default function LandingPage() {
             </div>
           </div>
 
-          
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-[28px] bg-white shadow-[0_24px_70px_-22px_rgba(30,64,175,.28)] overflow-hidden flex items-center justify-center">
-              
-              <svg
-                viewBox="0 0 600 500"
-                className="w-[90%] h-auto fill-blue-100"
-                aria-hidden="true"
-              >
-                <path d="M439,90c38,33,66,89,67,132s-24,74-51,107c-27,34-55,64-96,78s-95,9-139-10-77-51-99-86-29-73-22-111,31-73,67-97S271,69,319,67,401,57,439,90Z" />
-              </svg>
-            </div>
+         
+          <div className="relative col-span-12 lg:col-span-6 flex items-center justify-center">
+           
+            <div className="absolute inset-0 -z-10 bg-blue-500/10 blur-3xl" />
+
             
-            <div className="absolute inset-0 -z-10 rounded-[36px] bg-blue-500/5 blur-2xl"></div>
+            <div className="relative flex items-center justify-center h-[420px]">
+              <img
+                src="/vector1.png"
+                alt="blob outline"
+                className="absolute w-[85%] opacity-90 select-none pointer-events-none"
+                style={{
+                  filter: "drop-shadow(0 0 0 10px rgba(255,255,255,0.95))",
+                }}
+                draggable="false"
+              />
+              <img
+                src="/vector1.png"
+                alt="blob fill"
+                className="absolute w-[75%] select-none pointer-events-none"
+                draggable="false"
+              />
+            </div>
           </div>
         </section>
 
-      
-        <section id="guide" className="mt-16 md:mt-20">
-          <h2 className="text-center text-2xl sm:text-3xl font-bold text-slate-900">
+        <section
+          id="guide"
+          className="mt-20 md:mt-24 bg-[#F5FAFF] py-16 rounded-[32px]"
+        >
+          <h2 className="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">
             Here’s a quick guide
           </h2>
 
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-           
-            <div className="rounded-2xl bg-white p-5 shadow-[0_18px_45px_-20px_rgba(30,64,175,.18)]">
-              <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white text-sm font-semibold">
-                1
+          <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
+            {[
+              "Paste your medical text or upload a document",
+              "Our AI processes the text to remove complex jargon",
+              "Compare the original and simplified versions side by side",
+              "Download your explanation as a PDF",
+            ].map((text, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-[0_18px_45px_-20px_rgba(30,64,175,.15)] p-8 h-[200px] text-center hover:shadow-[0_22px_55px_-18px_rgba(30,64,175,.22)] transition-all duration-200"
+              >
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-blue-500 text-white font-semibold text-sm">
+                  {i + 1}
+                </div>
+                <p className="text-slate-700 text-sm max-w-[220px] leading-snug">
+                  {text}.
+                </p>
               </div>
-              <p className="text-sm text-slate-700">
-                Paste your medical text or upload a document.
-              </p>
-            </div>
-
-            
-            <div className="rounded-2xl bg-white p-5 shadow-[0_18px_45px_-20px_rgba(30,64,175,.18)]">
-              <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white text-sm font-semibold">
-                2
-              </div>
-              <p className="text-sm text-slate-700">
-                Our AI processes the text to remove complex jargon.
-              </p>
-            </div>
-
-            
-            <div className="rounded-2xl bg-white p-5 shadow-[0_18px_45px_-20px_rgba(30,64,175,.18)]">
-              <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white text-sm font-semibold">
-                3
-              </div>
-              <p className="text-sm text-slate-700">
-                Compare the original and simplified versions side by side.
-              </p>
-            </div>
-
-            
-            <div className="rounded-2xl bg-white p-5 shadow-[0_18px_45px_-20px_rgba(30,64,175,.18)]">
-              <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white text-sm font-semibold">
-                4
-              </div>
-              <p className="text-sm text-slate-700">
-                Download your explanation as a PDF.
-              </p>
-            </div>
+            ))}
           </div>
         </section>
       </main>
