@@ -1,8 +1,10 @@
 import Document from "../documents/model/document.model.js";
 import User from "../auth/model/user.model.js";
-import PDFDocument from "pdfkit";
-import multer from "multer";
-import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
+import PDFDocument from "pdfkit"; // PDF Generation
+import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs"; // PDF Text Extractor
+import mammoth from "mammoth"; // Document Text Extractor
+import ExcelJS from "exceljs";
+import logger from "../../utils/logger.js";
 
 //
 export const uploadDocument = async (req, res) => {
@@ -14,25 +16,36 @@ export const uploadDocument = async (req, res) => {
       if (!userId) {
         return res.status(400).json({ message: "userId is required" });
       }
-      // Convert Buffer to Uint8Array
-      const uint8Array = new Uint8Array(req.file.buffer);
-      const loadingTask = getDocument({ data: uint8Array });
-      const pdf = await loadingTask.promise;
       let text = '';
-      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-        const page = await pdf.getPage(pageNum);
-        const content = await page.getTextContent();
-        text += content.items.map(item => item.str).join(' ');
+      if (req.file.mimetype === 'application/pdf') {
+        const uint8Array = new Uint8Array(req.file.buffer);
+        const loadingTask = getDocument({ data: uint8Array });
+        const pdf = await loadingTask.promise;
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+          const page = await pdf.getPage(pageNum);
+          const content = await page.getTextContent();
+          text += content.items.map(item => item.str).join(' ');
+        }
+        originalText = text.trim();
+      } else if (req.file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+        const result = await mammoth.extractRawText({ buffer: req.file.buffer });
+        originalText = result.value.trim();
       }
-      originalText = text.trim();
     } else if (!originalText) {
-      return res.status(400).json({ message: "originalText or pdfFile is required" });
+      return res.status(400).json({ message: "originalText or file is required" });
     }
 
-    const document = new Document({ userId, originalText });
+    const words = originalText.split(' ').filter(word => word.length > 0);
+    const complexityScore = words.length > 0 ? words.reduce((sum, word) => sum + word.length, 0) / words.length : 0;
+
+    const document = new Document({ userId, originalText, complexityScore });
     await document.save();
     res.status(201).json({ message: "Document uploaded", document });
   } catch (err) {
+    logger.error('Upload document error:', {
+      message: err.message,
+      timestamp: new Date().toISOString()
+    });
     res.status(500).json({ message: "Error uploading document", error: err.message });
   }
 };
@@ -48,9 +61,9 @@ export const simplifyDocument = async (req, res) => {
     if (!document) {
       return res.status(404).json({ message: "Document not found" });
     }
-    document.simplifiedText = "Simplified version of " + document.originalText; // Dummy text
-    await document.save();
-    res.json({ message: "Document simplified", document });
+
+    // Placeholder for LLM integration (to be implemented later)
+    res.status(501).json({ message: "Simplification not yet implemented" });
   } catch (err) {
     res.status(500).json({ message: "Error simplifying document", error: err.message });
   }
@@ -63,13 +76,59 @@ export const getStats = async (req, res) => {
     const recentDocuments = await Document.find().sort({ createdAt: -1 }).limit(5);
     const totalUsers = await User.countDocuments();
     const documentsByUser = await Document.aggregate([
-      { $group: { _id: "$userId", count: { $sum: 1 }}}
-    ])
+      { $group: { _id: "$userId", count: { $sum: 1 } } }
+    ]);
+    const complexityStats = await Document.aggregate([
+      {
+        $project: {
+          complexityScore: {
+            $avg: {
+              $map: {
+                input: { $split: ["$originalText", " "] },
+                as: "word",
+                in: { $strLenCP: "$$word" }
+              }
+            }
+          }
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          avgComplexity: { $avg: "$complexityScore" },
+          maxComplexity: { $max: "$complexityScore" },
+          minComplexity: { $min: "$complexityScore" }
+        }
+      }
+    ]);
+    const termFrequency = await Document.aggregate([
+      { $unwind: { path: "$glossary", preserveNullAndEmptyArrays: true } },
+      {
+        $group: {
+          _id: "$glossary.term",
+          count: { $sum: 1 }
+        }
+      },
+      { $match: { _id: { $ne: null } } },
+      { $sort: { count: -1 } },
+      { $limit: 10 }
+    ]);
     res.json({
       message: "Admin stats retrieved",
-      stats: { totalDocuments, recentDocuments, totalUsers, documentsByUser }
+      stats: {
+        totalDocuments,
+        recentDocuments,
+        totalUsers,
+        documentsByUser,
+        complexityStats: complexityStats[0] || { avgComplexity: 0, maxComplexity: 0, minComplexity: 0 },
+        termFrequency
+      }
     });
   } catch (err) {
+    logger.error('Stats retrieval error:', {
+      message: err.message,
+      timestamp: new Date().toISOString()
+    });
     res.status(500).json({ message: "Error fetching stats", error: err.message });
   }
 };
@@ -262,5 +321,65 @@ export const exportReports = async (req, res) => {
     doc.end();
   } catch (err) {
     res.status(500).json({ message: "Error generating report", error: err.message });
+  }
+};
+
+// Export Document to Excel
+export const exportDocumentsToXlsx = async (req, res) => {
+  try {
+    const { userId, dateFrom, dateTo } = req.query;
+    let filter = {};
+    if (userId) filter.userId = userId;
+    if (dateFrom) filter.createdAt = { $gte: new Date(dateFrom) };
+    if (dateTo) filter.createdAt = { ...filter.createdAt, $lte: new Date(dateTo) };
+
+    const documents = await Document.find(filter).sort({ createdAt: -1 });
+    if (documents.length === 0) {
+      return res.status(404).json({ message: "No documents found for the specified filters" });
+    }
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Documents');
+    
+    worksheet.columns = [
+      { header: 'Document ID', key: 'id', width: 25 },
+      { header: 'User ID', key: 'userId', width: 25 },
+      { header: 'Original Text', key: 'originalText', width: 50 },
+      { header: 'Simplified Text', key: 'simplifiedText', width: 50 },
+      { header: 'Complexity Score', key: 'complexityScore', width: 50 },
+      { header: 'Uploaded', key: 'createdAt', width: 20 },
+      { header: 'Glossary Terms', key: 'glossary', width: 50 }
+    ];
+
+    documents.forEach(doc => {
+      worksheet.addRow({
+        id: doc._id.toString(),
+        userId: doc.userId.toString(),
+        originalText: doc.originalText,
+        simplifiedText: doc.simplifiedText || 'Not simplified',
+        complexityScore: doc.complexityScore.toFixed(2),
+        createdAt: doc.createdAt.toLocaleString(),
+        glossary: doc.glossary.length ? doc.glossary.map(g => `${g.term}: ${g.definition}`).join('; ') : 'None'
+      });
+    });
+
+    worksheet.getRow(1).font = { bold: true };
+    worksheet.getRow(1).fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: 'D3D3D3' }
+    };
+
+    res.setHeader('Content-Disposition', `attachment; filename=documents_${new Date().toISOString().split('T')[0]}.xlsx`);
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    
+    await workbook.xlsx.write(res);
+    res.end();
+  } catch (err) {
+    logger.error('Export XLSX error:', {
+      message: err.message,
+      timestamp: new Date().toISOString()
+    });
+    res.status(500).json({ message: "Error generating XLSX report", error: err.message });
   }
 };
