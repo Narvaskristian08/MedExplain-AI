@@ -12,31 +12,29 @@ import { authAPI } from './services/api';
 
 function App() {
   const [user, setUser] = useState(null);
-  
   const [currentPage, setCurrentPage] = useState('login');
 
-  
+  // Check for existing user on app load
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
 
     if (token && userData) {
       setUser(JSON.parse(userData));
-     
       setCurrentPage('home');
     } else {
       setCurrentPage('login');
     }
   }, []);
 
-  
+  // Handle login
   const handleLogin = (userData) => {
     setUser(userData);
-    
+    localStorage.setItem('user', JSON.stringify(userData));
     setCurrentPage('home');
   };
 
-  
+  // Handle logout
   const handleLogout = async () => {
     try {
       await authAPI.logout();
@@ -50,13 +48,13 @@ function App() {
     }
   };
 
-
+  // Simple router
   const renderPage = () => {
     switch (currentPage) {
       case 'login':
-        return <LoginPage onLogin={handleLogin} user={user} onLogout={handleLogout} />;
+        return <LoginPage onLogin={handleLogin} />;
       case 'register':
-        return <RegisterPage onLogin={handleLogin} user={user} onLogout={handleLogout} />;
+        return <RegisterPage onLogin={handleLogin} />;
       case 'dashboard':
         return <Dashboard user={user} onLogout={handleLogout} />;
       case 'about':
@@ -71,7 +69,7 @@ function App() {
     }
   };
 
- 
+  // Click-based navigation handling
   useEffect(() => {
     const handleNavigation = (e) => {
       const a = e.target.closest('a[href]');
@@ -80,13 +78,19 @@ function App() {
       const href = a.getAttribute('href');
       if (!href) return;
 
-      
-      if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) {
+      // Allow external links, anchors, and mail/tel
+      if (
+        href.startsWith('http') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        href.startsWith('#')
+      ) {
         return;
       }
 
       e.preventDefault();
 
+      // Simple route handling
       if (href === '/login') {
         setCurrentPage('login');
       } else if (href === '/register') {
@@ -100,14 +104,13 @@ function App() {
       } else if (href === '/help') {
         setCurrentPage('help');
       } else if (href === '/') {
-       
         setCurrentPage(user ? 'home' : 'login');
       }
     };
 
     document.addEventListener('click', handleNavigation);
     return () => document.removeEventListener('click', handleNavigation);
-  }, [user]); 
+  }, [user]);
 
   return <div className="App">{renderPage()}</div>;
 }

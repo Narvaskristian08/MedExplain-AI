@@ -1,77 +1,121 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
+import Header from "../components/Header";
+import { authAPI } from "../services/api";
 
 export default function RegisterPage({ onLogin }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [fieldErr, setFieldErr] = useState({});
+  const [submitErr, setSubmitErr] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (fieldErr[name]) setFieldErr((prev) => ({ ...prev, [name]: "" }));
+    if (submitErr) setSubmitErr("");
+  };
+
+  const validateForm = () => {
+    const errs = {};
+    const { email, password, confirmPassword } = formData;
+
+    if (!email) errs.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(email)) errs.email = "Email is invalid";
+
+    if (!password) errs.password = "Password is required";
+    else if (password.length < 6)
+      errs.password = "Password must be at least 6 characters";
+
+    if (!confirmPassword) errs.confirmPassword = "Please confirm your password";
+    else if (password !== confirmPassword)
+      errs.confirmPassword = "Passwords do not match";
+
+    setFieldErr(errs);
+    return Object.keys(errs).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setSubmitErr("");
+    if (!validateForm()) return;
 
-    if (!email || !password || !confirm) {
-      return setError("Please fill in all fields.");
-    }
-    if (password !== confirm) {
-      return setError("Passwords do not match.");
-    }
-
-    if (typeof onLogin === "function") {
-      onLogin({ email });
+    setLoading(true);
+    try {
+      const data = await authAPI.register({
+        email: formData.email,
+        password: formData.password,
+        role: "user",
+      });
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      if (typeof onLogin === "function") onLogin(data.user);
+    } catch (error) {
+      setSubmitErr(
+        error?.response?.data?.message || "Registration failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-[#d8ecff]">
-      <main className="mx-auto max-w-[1520px] px-4 md:px-6 pt-4 md:pt-6 pb-10 md:pb-14">
-        <Navbar />
+      <Header />
 
-        <div className="mt-4 lg:mt-10 flex flex-col lg:flex-row lg:items-start lg:gap-14 justify-center">
-          {/* Left illustration — transparent container */}
-          <section className="hidden lg:flex justify-center">
-            <div className="w-full lg:w-[720px] h-[600px] rounded-[28px] bg-transparent overflow-hidden self-start">
+      {/* make layout identical to Login */}
+      <main className="mx-auto max-w-[1280px] px-6 md:px-8 pt-28 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* LEFT — same wrapper + size as Login */}
+          <section className="w-full flex justify-center items-center">
+            <div className="w-full max-w-[740px] flex justify-center items-center">
               <img
-                src="/login-illustration.png"
-                alt="Illustration"
-                className="w-full h-full object-cover object-center"
+                src="/Med.svg"
+                alt="Medical illustration"
+                className="w-full h-[660px] object-contain select-none"
                 draggable="false"
               />
             </div>
           </section>
 
-          {/* Right form card */}
-          <section className="flex justify-center">
-            <div className="w-full lg:w-[720px] h-[600px] rounded-[28px] bg-white ring-1 ring-blue-500/10 shadow-[0_24px_70px_-20px_rgba(30,64,175,.28)] self-start">
-              <div className="h-full p-8 md:p-10 lg:p-12 flex flex-col">
-                <div className="mb-4">
-                  <h1 className="text-[32px] font-bold text-slate-600 text-center">
-                    Create account
-                  </h1>
-                  <p className="text-slate-500 text-center mt-2">
-                    Please fill in your details.
-                  </p>
-                </div>
+          {/* RIGHT — same card width/padding as Login */}
+          <section className="w-full flex justify-center items-center">
+            <div className="w-full max-w-[740px] rounded-[28px] bg-white ring-1 ring-black/5 shadow-[0_28px_90px_-30px_rgba(30,64,175,.25)]">
+              <div className="px-10 lg:px-12 py-10">
+                <h1 className="text-[36px] font-extrabold text-slate-700 text-center">
+                  Register!
+                </h1>
+                <p className="mt-2 text-center text-[15px] text-gray-500">
+                  Please enter your Gmail address and create a password.
+                </p>
 
-                {error && (
-                  <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700">
-                    {error}
+                {submitErr && (
+                  <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-700 text-center">
+                    {submitErr}
                   </div>
                 )}
 
-                <form className="flex-1 space-y-5" onSubmit={handleSubmit} noValidate>
+                <form className="mt-8 space-y-6" onSubmit={handleSubmit} noValidate>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
                       Email
                     </label>
                     <input
+                      name="email"
                       type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 lg:py-3.5 text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Enter your Gmail address"
+                      className={`w-full h-[54px] rounded-[12px] border px-4 text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                        fieldErr.email ? "border-red-300" : "border-gray-300"
+                      }`}
                     />
+                    {fieldErr.email && (
+                      <p className="mt-1 text-xs text-red-600">{fieldErr.email}</p>
+                    )}
                   </div>
 
                   <div>
@@ -79,41 +123,58 @@ export default function RegisterPage({ onLogin }) {
                       Password
                     </label>
                     <input
+                      name="password"
                       type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter your password"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 lg:py-3.5 text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      value={formData.password}
+                      onChange={handleChange}
+                      placeholder="Create your password"
+                      className={`w-full h-[54px] rounded-[12px] border px-4 text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                        fieldErr.password ? "border-red-300" : "border-gray-300"
+                      }`}
                     />
+                    {fieldErr.password && (
+                      <p className="mt-1 text-xs text-red-600">{fieldErr.password}</p>
+                    )}
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Confirm password
+                      Confirm Password
                     </label>
                     <input
+                      name="confirmPassword"
                       type="password"
-                      value={confirm}
-                      onChange={(e) => setConfirm(e.target.value)}
-                      placeholder="Re-enter your password"
-                      className="w-full rounded-lg border border-gray-300 px-4 py-3 lg:py-3.5 text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      placeholder="Confirm your password"
+                      className={`w-full h-[54px] rounded-[12px] border px-4 text-[15px] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 ${
+                        fieldErr.confirmPassword
+                          ? "border-red-300"
+                          : "border-gray-300"
+                      }`}
                     />
+                    {fieldErr.confirmPassword && (
+                      <p className="mt-1 text-xs text-red-600">
+                        {fieldErr.confirmPassword}
+                      </p>
+                    )}
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full rounded-lg bg-blue-500 py-3.5 lg:py-4 text-base lg:text-lg text-white hover:bg-blue-600 transition"
+                    disabled={loading}
+                    className="w-full h-[54px] rounded-[12px] bg-[#4d9dff] text-white text-[15px] font-semibold hover:bg-[#3f8ef3] transition disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Sign Up
+                    {loading ? "Creating account..." : "Sign Up"}
                   </button>
-                </form>
 
-                <p className="pt-4 text-center text-sm text-gray-600">
-                  Already have an account?{" "}
-                  <a href="/login" className="text-blue-500 hover:underline">
-                    Sign In
-                  </a>
-                </p>
+                  <p className="text-center text-[13px] text-gray-600">
+                    Already have an account?{" "}
+                    <a className="text-blue-500 hover:underline" href="/login">
+                      Sign In
+                    </a>
+                  </p>
+                </form>
               </div>
             </div>
           </section>

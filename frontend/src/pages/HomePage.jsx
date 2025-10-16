@@ -1,149 +1,137 @@
-import React from 'react';
-import Header from '../components/Header';
+import React from "react";
+import Header from "../components/Header";
 
 const HomePage = ({ user, onLogout }) => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-white to-[#d8ecff]">
       <Header user={user} onLogout={onLogout} />
-      
+
       {/* Hero Section */}
-      <div className="bg-white">
+      <div className="bg-transparent">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-              Welcome to My App
+          <div className="text-center lg:text-left relative">
+            {/* Decorative blob */}
+            <div className="hidden lg:block absolute inset-y-0 right-0 w-1/2 -z-10">
+              <div className="absolute inset-0 bg-blue-500/10 blur-3xl" />
+            </div>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-slate-900">
+              Simplify Complex
+              <span className="block">Medical Texts</span>
             </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              A modern web application built with React and Tailwind CSS. 
-              Get started by creating an account or logging in.
+
+            <p className="mt-4 md:mt-5 max-w-xl lg:max-w-2xl mx-auto lg:mx-0 text-base sm:text-lg md:text-xl text-slate-600">
+              Turn clinical jargon into clear, accessible language. Paste your
+              medical text or upload a file—our AI keeps the meaning while
+              removing the noise.
             </p>
-            <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-              <div className="rounded-md shadow">
+
+            <div className="mt-6 md:mt-8 max-w-md mx-auto lg:mx-0 sm:flex sm:justify-start">
+              <div className="rounded-full shadow sm:mr-3">
                 <a
-                  href="/login"
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10"
+                  href="/help"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base md:text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition"
                 >
-                  Get started
+                  Try it
                 </a>
               </div>
-              <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+              <div className="mt-3 sm:mt-0 rounded-full shadow">
                 <a
-                  href="/register"
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
+                  href="#guide"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-slate-300 text-base md:text-lg font-medium rounded-full text-slate-700 bg-white hover:border-slate-400 transition"
                 >
-                  Sign up
+                  Browse demo
                 </a>
+              </div>
+            </div>
+
+            {/* Hero illustration */}
+            <div className="mt-10 lg:mt-0 lg:absolute lg:top-1/2 lg:right-0 lg:-translate-y-1/2 lg:w-[520px] flex items-center justify-center">
+              <div className="relative h-[380px] w-full">
+                <img
+                  src="/vector1.png"
+                  alt="blob outline"
+                  className="absolute inset-0 m-auto w-[85%] opacity-90 select-none pointer-events-none"
+                  style={{
+                    filter:
+                      "drop-shadow(0 0 0 10px rgba(255,255,255,0.95))",
+                  }}
+                  draggable="false"
+                />
+                <img
+                  src="/vector1.png"
+                  alt="blob fill"
+                  className="absolute inset-0 m-auto w-[75%] select-none pointer-events-none"
+                  draggable="false"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="py-16 bg-white">
+      <div id="guide" className="py-16 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900">
-              Features
+            <h2 className="text-3xl font-extrabold text-slate-900">
+              Here’s a quick guide
             </h2>
-            <p className="mt-4 text-lg text-gray-500">
-              Everything you need to get started
+            <p className="mt-4 text-lg text-slate-600">
+              Four simple steps to get your results
             </p>
           </div>
 
           <div className="mt-12">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {/* Feature 1 */}
-              <div className="pt-6">
-                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                  <div className="-mt-6">
-                    <div>
-                      <span className="inline-flex items-center justify-center p-3 bg-blue-500 rounded-md shadow-lg">
-                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                      </span>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                "Paste your medical text or upload a document",
+                "Our AI processes the text to remove complex jargon",
+                "Compare the original and simplified versions side by side",
+                "Download your explanation as a PDF",
+              ].map((step, index) => (
+                <div key={index} className="pt-0">
+                  <div className="flow-root bg-white rounded-2xl px-6 pb-8 shadow-[0_18px_45px_-20px_rgba(30,64,175,.15)] hover:shadow-[0_22px_55px_-18px_rgba(30,64,175,.22)] transition-all">
+                    <div className="-mt-6">
+                      <div className="mb-4">
+                        <span className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-blue-500 text-white font-semibold text-sm">
+                          {index + 1}
+                        </span>
+                      </div>
+                      <p className="text-slate-700 text-sm leading-snug max-w-[260px]">
+                        {step}
+                      </p>
                     </div>
-                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
-                      Fast & Reliable
-                    </h3>
-                    <p className="mt-5 text-base text-gray-500">
-                      Built with modern technologies for optimal performance and reliability.
-                    </p>
                   </div>
                 </div>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="pt-6">
-                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                  <div className="-mt-6">
-                    <div>
-                      <span className="inline-flex items-center justify-center p-3 bg-blue-500 rounded-md shadow-lg">
-                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </span>
-                    </div>
-                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
-                      Secure
-                    </h3>
-                    <p className="mt-5 text-base text-gray-500">
-                      Enterprise-grade security with authentication and authorization.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Feature 3 */}
-              <div className="pt-6">
-                <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                  <div className="-mt-6">
-                    <div>
-                      <span className="inline-flex items-center justify-center p-3 bg-blue-500 rounded-md shadow-lg">
-                        <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
-                      </span>
-                    </div>
-                    <h3 className="mt-8 text-lg font-medium text-gray-900 tracking-tight">
-                      User Friendly
-                    </h3>
-                    <p className="mt-5 text-base text-gray-500">
-                      Intuitive interface designed for the best user experience.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="bg-blue-700">
+      <div className="bg-blue-700 rounded-3xl mx-4 sm:mx-6 lg:mx-8">
         <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
             <span className="block">Ready to get started?</span>
             <span className="block">Create your account today.</span>
           </h2>
           <p className="mt-4 text-lg leading-6 text-blue-200">
-            Join thousands of users who are already using our platform.
+            Join thousands of users already using our platform.
           </p>
           <a
             href="/register"
-            className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 sm:w-auto"
+            className="mt-8 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 transition"
           >
             Get started for free
           </a>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-800">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+
+      <footer className="bg-gray-900 mt-12">
+        <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-base text-gray-400">
+            <p className="text-sm text-gray-400">
               © 2024 My App. All rights reserved.
             </p>
           </div>
