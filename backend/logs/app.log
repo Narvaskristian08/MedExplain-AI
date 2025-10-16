@@ -1,0 +1,49 @@
+{"level":"info","message":{"endpoint":"/api/documents/glossary/export?format=pdf","method":"GET","status":200,"timestamp":"2025-10-14T16:59:15.423Z"},"timestamp":"2025-10-14T16:59:15.425Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary/export?format=json","method":"GET","status":200,"timestamp":"2025-10-14T16:59:21.746Z"},"timestamp":"2025-10-14T16:59:21.746Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T16:59:37.693Z"},"timestamp":"2025-10-14T16:59:37.693Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:00:34.424Z"},"timestamp":"2025-10-14T17:00:34.424Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T17:01:24.358Z"},"timestamp":"2025-10-14T17:01:24.358Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T17:04:52.355Z"},"timestamp":"2025-10-14T17:04:52.358Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-14T17:05:32.001Z"},"timestamp":"2025-10-14T17:05:32.001Z"}
+{"level":"info","message":{"endpoint":"/api/documents/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T17:06:00.181Z"},"timestamp":"2025-10-14T17:06:00.181Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export","method":"GET","status":200,"timestamp":"2025-10-14T17:08:32.988Z"},"timestamp":"2025-10-14T17:08:32.988Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:08:43.258Z"},"timestamp":"2025-10-14T17:08:43.258Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:09:45.580Z"},"timestamp":"2025-10-14T17:09:45.580Z"}
+{"level":"info","message":"MongoDB Connected on port 5000","timestamp":"2025-10-14T17:12:17.238Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-10-14T17:12:17.253Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:12:25.060Z"},"timestamp":"2025-10-14T17:12:25.060Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:12:51.425Z"},"timestamp":"2025-10-14T17:12:51.429Z"}
+{"level":"info","message":{"endpoint":"/api/documents/invalid","method":"GET","status":200,"timestamp":"2025-10-14T17:15:15.008Z"},"timestamp":"2025-10-14T17:15:15.011Z"}
+{"endpoint":"/api/documents/invalid","level":"warn","message":"404 - Route not found","method":"GET","timestamp":"2025-10-14T17:15:15.030Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-14T18:31:51.596Z"},"timestamp":"2025-10-14T18:31:51.597Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-14T18:32:39.151Z"},"timestamp":"2025-10-14T18:32:39.151Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:35:13.245Z"},"timestamp":"2025-10-14T18:35:13.245Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:40:47.394Z"},"timestamp":"2025-10-14T18:40:47.395Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:46:12.719Z"},"timestamp":"2025-10-14T18:46:12.721Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:46:37.589Z"},"timestamp":"2025-10-14T18:46:37.590Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T18:46:52.599Z"},"timestamp":"2025-10-14T18:46:52.601Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T19:21:57.864Z"},"timestamp":"2025-10-14T19:21:57.865Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T19:27:13.393Z"},"timestamp":"2025-10-14T19:27:13.394Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T19:31:41.142Z"},"timestamp":"2025-10-14T19:31:41.144Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T20:31:33.303Z"},"timestamp":"2025-10-14T20:31:33.304Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T20:31:58.503Z"},"timestamp":"2025-10-14T20:31:58.503Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T20:32:42.598Z"},"timestamp":"2025-10-14T20:32:42.600Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-14T20:51:30.361Z"},"timestamp":"2025-10-14T20:51:30.363Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-15T17:33:40.190Z"},"timestamp":"2025-10-15T17:33:40.191Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xslx","method":"GET","status":200,"timestamp":"2025-10-15T17:34:09.454Z"},"timestamp":"2025-10-15T17:34:09.454Z"}
+{"endpoint":"/api/documents/export-xslx","level":"warn","message":"404 - Route not found","method":"GET","status":200,"timestamp":"2025-10-15T17:34:09.455Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T17:35:28.278Z"},"timestamp":"2025-10-15T17:35:28.278Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T17:36:39.004Z"},"timestamp":"2025-10-15T17:36:39.004Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T17:37:42.525Z"},"timestamp":"2025-10-15T17:37:42.525Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:02:02.003Z"},"timestamp":"2025-10-15T18:02:02.004Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:02:24.195Z"},"timestamp":"2025-10-15T18:02:24.195Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:02:58.941Z"},"timestamp":"2025-10-15T18:02:58.941Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:03:02.364Z"},"timestamp":"2025-10-15T18:03:02.364Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:04:01.055Z"},"timestamp":"2025-10-15T18:04:01.055Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:08:29.285Z"},"timestamp":"2025-10-15T18:08:29.285Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:08:59.901Z"},"timestamp":"2025-10-15T18:08:59.901Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:09:05.759Z"},"timestamp":"2025-10-15T18:09:05.759Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:12:32.702Z"},"timestamp":"2025-10-15T18:12:32.705Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:22:19.653Z"},"timestamp":"2025-10-15T18:22:19.654Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:24:17.115Z"},"timestamp":"2025-10-15T18:24:17.117Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:30:33.605Z"},"timestamp":"2025-10-15T18:30:33.609Z"}
