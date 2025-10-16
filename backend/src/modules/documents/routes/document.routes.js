@@ -20,10 +20,10 @@ const upload = multer({
 });
 
 
-router.post("/upload", authenticateToken, upload.single('file'), uploadDocument); // pdf-kit
+router.post("/upload", authenticateToken, upload.single('file'), uploadDocument); // pdf-kit, multer
 router.post("/simplify", authenticateToken, simplifyDocument); // LLM
 router.get("/stats", authenticateToken, authorizeRole(['admin']), getStats);
-router.get("/export", authenticateToken, authorizeRole(['admin']), exportReports);
+router.get("/export", authenticateToken, authorizeRole(['admin']), exportReports); //Medical Report
 router.get("/glossary", authenticateToken, generateGlossary);
 router.get("/glossary/export", authenticateToken, authorizeRole(['admin']), exportGlossary);
 router.get("/export-xlsx", authenticateToken, authorizeRole(['admin']), exportDocumentsToXlsx);
