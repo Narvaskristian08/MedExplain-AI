@@ -14,6 +14,7 @@ import { authAPI } from './services/api';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true); // NEW: loading state while restoring user
 
   // Restore user on app load
   useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
     if (token && userData) {
       setUser(JSON.parse(userData));
     }
+    setLoadingUser(false); // done restoring user
   }, []);
 
   const handleLogin = (userData) => {
@@ -42,8 +44,18 @@ function App() {
 
   // Protect private routes
   const PrivateRoute = ({ children }) => {
+    if (loadingUser) return null; // don't render anything until we know if user exists
     return user ? children : <Navigate to="/login" replace />;
   };
+
+  if (loadingUser) {
+    // Optionally show a loader
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-700 text-lg">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <Router>
@@ -92,7 +104,6 @@ function App() {
             </PrivateRoute>
           } 
         />
-        {/* Catch all unmatched routes */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
