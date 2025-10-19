@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { authAPI } from "../services/api";
-import loginImage from "../assets/login-illustration.png"; // You can reuse the same illustration
+import loginImage from "../assets/login-illustration.png";
 
 const RegisterPage = ({ onLogin }) => {
   const [formData, setFormData] = useState({
@@ -13,13 +14,12 @@ const RegisterPage = ({ onLogin }) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate(); // for programmatic navigation
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validateForm = () => {
@@ -59,7 +59,7 @@ const RegisterPage = ({ onLogin }) => {
       localStorage.setItem("user", JSON.stringify(data.user));
       if (onLogin) onLogin(data.user);
 
-      window.location.href = "/dashboard";
+      navigate("/dashboard"); // navigate instead of window.location
     } catch (error) {
       setErrors({
         submit:
@@ -73,14 +73,11 @@ const RegisterPage = ({ onLogin }) => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-blue-100">
-      {/* HEADER */}
       <Header />
 
-      {/* MAIN CONTENT */}
       <div className="flex flex-1 items-center justify-center p-6">
-        {/* GRID — IMAGE LEFT, FORM RIGHT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-full max-w-6xl">
-          {/* LEFT — IMAGE (hidden on small screens) */}
+          {/* IMAGE LEFT */}
           <div className="hidden lg:flex bg-white rounded-[30px] shadow-xl overflow-hidden items-center justify-center min-h-[600px]">
             <img
               src={loginImage}
@@ -89,7 +86,7 @@ const RegisterPage = ({ onLogin }) => {
             />
           </div>
 
-          {/* RIGHT — REGISTER FORM */}
+          {/* REGISTER FORM */}
           <div className="bg-white rounded-[30px] shadow-xl flex items-center justify-center p-10 min-h-[600px]">
             <div className="w-full max-w-md space-y-8">
               <div className="text-center">
@@ -98,106 +95,94 @@ const RegisterPage = ({ onLogin }) => {
                 </h2>
                 <p className="mt-2 text-sm text-gray-600">
                   Or{" "}
-                  <a
-                    href="/login"
+                  <Link
+                    to="/login"
                     className="font-medium text-blue-600 hover:text-blue-500"
                   >
                     sign in to your existing account
-                  </a>
+                  </Link>
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                 <div className="space-y-4">
-                  {/* Name */}
-                  <div>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      autoComplete="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        errors.name ? "border-red-300" : "border-gray-300"
-                      }`}
-                      placeholder="Full Name"
-                    />
-                    {errors.name && (
-                      <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-                    )}
-                  </div>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.name ? "border-red-300" : "border-gray-300"
+                    }`}
+                    placeholder="Full Name"
+                  />
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                  )}
 
-                  {/* Email */}
-                  <div>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        errors.email ? "border-red-300" : "border-gray-300"
-                      }`}
-                      placeholder="Email address"
-                    />
-                    {errors.email && (
-                      <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                    )}
-                  </div>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.email ? "border-red-300" : "border-gray-300"
+                    }`}
+                    placeholder="Email address"
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                  )}
 
-                  {/* Password */}
-                  <div>
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      autoComplete="new-password"
-                      required
-                      value={formData.password}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        errors.password ? "border-red-300" : "border-gray-300"
-                      }`}
-                      placeholder="Password"
-                    />
-                    {errors.password && (
-                      <p className="mt-1 text-sm text-red-600">{errors.password}</p>
-                    )}
-                  </div>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                    value={formData.password}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.password ? "border-red-300" : "border-gray-300"
+                    }`}
+                    placeholder="Password"
+                  />
+                  {errors.password && (
+                    <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+                  )}
 
-                  {/* Confirm Password */}
-                  <div>
-                    <input
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      type="password"
-                      autoComplete="new-password"
-                      required
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        errors.confirmPassword ? "border-red-300" : "border-gray-300"
-                      }`}
-                      placeholder="Confirm Password"
-                    />
-                    {errors.confirmPassword && (
-                      <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>
-                    )}
-                  </div>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    autoComplete="new-password"
+                    required
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      errors.confirmPassword ? "border-red-300" : "border-gray-300"
+                    }`}
+                    placeholder="Confirm Password"
+                  />
+                  {errors.confirmPassword && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.confirmPassword}
+                    </p>
+                  )}
                 </div>
 
-                {/* Submit Error */}
                 {errors.submit && (
                   <div className="text-red-600 text-sm text-center">
                     {errors.submit}
                   </div>
                 )}
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={loading}
@@ -206,15 +191,14 @@ const RegisterPage = ({ onLogin }) => {
                   {loading ? "Creating account..." : "Create account"}
                 </button>
 
-                {/* Login Link */}
                 <p className="text-center text-sm text-gray-600">
                   Already have an account?{" "}
-                  <a
-                    href="/login"
+                  <Link
+                    to="/login"
                     className="font-medium text-blue-600 hover:text-blue-500"
                   >
                     Sign in here
-                  </a>
+                  </Link>
                 </p>
               </form>
             </div>

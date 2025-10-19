@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../assets/logo.svg';
 
 const Header = ({ user, onLogout }) => {
@@ -15,9 +16,7 @@ const Header = ({ user, onLogout }) => {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'backdrop-blur-md bg-white/70 shadow-xs'
-          : 'bg-transparent'
+        isScrolled ? 'backdrop-blur-md bg-white/70 shadow-xs' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6">
@@ -25,12 +24,12 @@ const Header = ({ user, onLogout }) => {
           
           {/* Left Side - Logo */}
           <div className="flex items-center space-x-2 flex-shrink-0">
-            <a href="/" className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <img src={Logo} alt="MedExplain Logo" className="h-8 w-8" />
               <h1 className="font-sans text-xl font-bold text-gray-900">
                 MedExplain
               </h1>
-            </a>
+            </Link>
           </div>
 
           {/* Right Side - Navigation + User Menu */}
@@ -38,36 +37,42 @@ const Header = ({ user, onLogout }) => {
             
             {/* Navigation Links */}
             <nav className="hidden md:flex space-x-6">
-              <a 
-                href="/" 
+              <Link
+                to="/"
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 Home
-              </a>
-              <a 
-                href="/about" 
+              </Link>
+              <Link
+                to="/about"
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 About
-              </a>
-              <a 
-                href="/contact" 
+              </Link>
+              <Link
+                to="/contact"
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 Contact
-              </a>
-              <a 
-                href="/help" 
+              </Link>
+              <Link
+                to="/help"
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 Help
-              </a>
+              </Link>
+              {/* NEW — Simplify Page */}
+              <Link
+                to="/simplify"
+                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              >
+                Simplify
+              </Link>
             </nav>
 
             {/* User Menu */}
             {user ? (
               <div className="flex items-center space-x-4">
-                {/* Profile bubble for logged-in user */}
                 <div className="bg-white text-gray-700 border px-4 py-2 rounded-full text-sm font-medium shadow-sm">
                   {user.name || 'Guest'}
                 </div>
@@ -80,18 +85,15 @@ const Header = ({ user, onLogout }) => {
               </div>
             ) : (
               <div className="flex items-center space-x-4">
-                {/* Guest Profile */}
                 <div className="bg-white text-gray-700 border px-4 py-2 rounded-full text-sm font-medium shadow-sm">
-                  {user?.name || 'Guest'}
+                  Guest
                 </div>
-
-                {/* Login Button */}
-                <a
-                  href="/login"
+                <Link
+                  to="/login"
                   className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                 >
                   Login
-                </a>
+                </Link>
               </div>
             )}
 
