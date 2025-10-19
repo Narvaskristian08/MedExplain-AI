@@ -32,3 +32,16 @@ export const authorizeRole = (roles) => {
   };
 };
 
+// Personnel Verification
+export const requireVerified = (req, res, next) => {
+  try {
+    if (req.user.role === "personnel" && !req.user.verified) {
+      logger.warn(`Unverified personnel access attempt: ${req.user._id}`);
+      return res.status(403).json({ message: "Personnel must be verified to access this route" });
+    }
+    next();
+  } catch (err) {
+    logger.error(`Error in requireVerified middleware: ${err.message}`);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};

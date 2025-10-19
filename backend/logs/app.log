@@ -95,3 +95,19 @@
 {"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:13:13.819Z"},"timestamp":"2025-10-16T18:13:13.820Z"}
 {"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:13:52.619Z"},"timestamp":"2025-10-16T18:13:52.619Z"}
 {"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:22:46.794Z"},"timestamp":"2025-10-16T18:22:46.796Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-19T04:52:59.457Z"},"timestamp":"2025-10-19T04:52:59.459Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T04:59:51.556Z"},"timestamp":"2025-10-19T04:59:51.556Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T05:00:25.924Z"},"timestamp":"2025-10-19T05:00:25.924Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T05:01:48.554Z"},"timestamp":"2025-10-19T05:01:48.554Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T05:07:23.126Z"},"timestamp":"2025-10-19T05:07:23.128Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T06:34:51.599Z"},"timestamp":"2025-10-19T06:34:51.602Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T06:36:37.769Z"},"timestamp":"2025-10-19T06:36:37.773Z"}
+{"level":"info","message":"User registered: ches.mondala.up@phinmaed.com, role: personnel","timestamp":"2025-10-19T06:36:38.247Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T06:38:48.580Z"},"timestamp":"2025-10-19T06:38:48.580Z"}
+{"level":"warn","message":"Missing required fields in registerUser","timestamp":"2025-10-19T06:38:48.582Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T06:39:48.055Z"},"timestamp":"2025-10-19T06:39:48.056Z"}
+{"level":"info","message":"User registered: liev.roca.up@phinmaed.com, role: user","timestamp":"2025-10-19T06:39:48.305Z"}
+{"level":"info","message":{"endpoint":"/api/users/verify","method":"PATCH","status":200,"timestamp":"2025-10-19T06:46:28.376Z"},"timestamp":"2025-10-19T06:46:28.376Z"}
+{"level":"info","message":"User verified: 68f486f6623a8b0b09449b6a, verified: true","timestamp":"2025-10-19T06:46:28.413Z"}
+{"level":"info","message":{"endpoint":"/api/users/verify","method":"PATCH","status":200,"timestamp":"2025-10-19T07:00:24.731Z"},"timestamp":"2025-10-19T07:00:24.731Z"}
+{"level":"info","message":"User verified: 68f486f6623a8b0b09449b6a, verified: true","timestamp":"2025-10-19T07:00:24.746Z"}

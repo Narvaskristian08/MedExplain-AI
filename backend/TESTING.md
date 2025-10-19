@@ -20,8 +20,8 @@ cd backend
 npm run dev
 ```
 
-#### Testing Key Routes
-- Uploading Document
+### Testing Key Routes
+#### 1. Uploading Document
 - **POST** `api/documents/upload`
 - **Headers** `Authorization: Bearer <user_token>`
 - **Body** `form-data: key - userId, file - sample file (PDF/DOCX <5mb)`
@@ -48,10 +48,10 @@ npm run dev
         "updatedAt": "2025-10-16T16:37:34.314Z",
         "__v": 0
     }
-}
+    }
     ```
 
-- Simplifier
+#### 2. Simplifier
 - **POST** `api/documents/simplify`
 - **Headers** `Authorization: Bearer <user_token>`
 - **Body** 
@@ -65,17 +65,17 @@ npm run dev
     (Conflict due to LLM Placeholder mweheh)
     ```
 
-- Export Documents to XLSX 
+#### 3. Export Documents to XLSX 
 - **GET** `api/documents/export-xlsx` (you can also do `api/documents/export-xlsx?userId=<userId>`, remove userId key on form-data)
-- **Headers** `Authorization: Bearer <admin_token>`
+- **Headers** `Authorization: Bearer <admin_token, personnel_token>`
 - **Body** `form-data: Key - file, value (file) - <sample_pdf>, Key - userId, value (text) - <userId>`
 
 - **Download the Response**
 - Look for the columns, `Document ID, User ID, Original Text, Simplified Text, Complexity Score, Uploaded, Glossary Terms`.
 
-- Get Stats 
+#### 4. Get Stats 
 - **GET** `api/documents/stats`
-- **Headers** `Authorization: Bearer <admin_token>`
+- **Headers** `Authorization: Bearer <admin_token, personnel_token>`
 - **Response**
     ```json
     {
@@ -139,10 +139,10 @@ npm run dev
         },
         "termFrequency": []
     }
-}
+    }
     ```
 
-- Generate Glossary
+#### 5. Generate Glossary
 - Admin and User
 - **GET** `api/documents/glossary`
 - **Headers** `Authorization: <admin/user_token>
@@ -159,17 +159,17 @@ npm run dev
         "Medical Reports": "Simplified explanation of medical reports",
         "Patient": "Simplified explanation of patient"
     }
-}
+    }
     ```
 
-- Export Glossary (to be removed diba)
+#### 6. Export Glossary (to be removed diba)
 - PDF Format
 - **GET** `api/documents/glossary/export`
-- **Headers** `Authorization: Bearer <admin_token>`
+- **Headers** `Authorization: Bearer <admin_token, personnel_token>`
 - **Response** `PDF File`
 
-- Export (Medical Report)
+#### 7. Export (Medical Report)
 - Admin only
 - **GET** `api/documents/export
-- **Headers** ``Authorization: Bearer <admin_token>`
+- **Headers** ``Authorization: Bearer <admin_token, personnel_token>`
 - **Response** `Generated PDF`

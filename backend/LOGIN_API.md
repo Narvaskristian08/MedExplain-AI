@@ -79,6 +79,67 @@ JWT_EXPIRES_IN=24h
   }
   ```
 
+#### 4. Register Personnel User
+- **POST** `/api/users/register`
+- **Body** (`raw`, JSON):
+  ```json
+  {
+  "name": "Christian Mondala",
+  "email": "ches.mondala.up@phinmaed.com",
+  "password": "Christian@2005",
+  "role": "personnel",
+  "firstName": "Christian",
+  "middleName": "Espillo",
+  "lastName": "Mondala",
+  "occupation": "Nurse",
+  "institutionName": "Region 1 Medical Center"
+  }
+  ```
+- **Response**
+  ```json
+  {
+    "message": "User registered successfully",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZjQ4NmY2NjIzYThiMGIwOTQ0OWI2YSIsImVtYWlsIjoiY2hlcy5tb25kYWxhLnVwQHBoaW5tYWVkLmNvbSIsInJvbGUiOiJwZXJzb25uZWwiLCJpYXQiOjE3NjA4NTU3OTgsImV4cCI6MTc2MDk0MjE5OH0.35BVvpjBl8e_471cWn9Wpwnni5JRD_G9tyDdbo8nKcU",
+    "user": {
+        "id": "68f486f6623a8b0b09449b6a",
+        "name": "Christian Mondala",
+        "email": "ches.mondala.up@phinmaed.com",
+        "role": "personnel",
+        "firstName": "Christian",
+        "middleName": "Espillo",
+        "lastName": "Mondala",
+        "occupation": "Nurse",
+        "institutionName": "Region 1 Medical Center",
+        "verified": false
+    }
+  }
+  ```
+
+#### 5. Personnel Verification
+- **PATCH** `api/users/verify`
+- **Headers** `Authorization: Bearer <admin_token>`
+- **Body** (`raw`, JSON)
+  ```json
+  {
+    "userId": "68f486f6623a8b0b09449b6a",
+    "verified": true
+  }
+  ```
+
+- **Response**
+  ```json
+  {
+    "message": "User verified successfully",
+    "user": {
+        "_id": "68f486f6623a8b0b09449b6a",
+        "email": "ches.mondala.up@phinmaed.com",
+        "role": "personnel",
+        "firstName": "Christian",
+        "lastName": "Mondala",
+        "verified": true
+    }
+  }
+  ```
 ### Protected Routes
 All protected routes require a valid JWT token in the Authorization header:
 ```
@@ -121,7 +182,8 @@ Authorization: Bearer <your-jwt-token>
 
 ### User Roles
 - **user**: Default role, can access profile
-- **admin**: Can access all users list and profile
+- **admin**: Can access all users list and profile, verifies personnel
+- **personnel**: Handles dashboard, Medical stuffs, etc.
 
 ### Error Handling
 - Proper HTTP status codes
