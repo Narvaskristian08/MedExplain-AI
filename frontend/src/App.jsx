@@ -67,41 +67,32 @@ function App() {
         <Route 
           path="/dashboard" 
           element={
-            <PrivateRoute>
               <Dashboard user={user} onLogout={handleLogout} />
-            </PrivateRoute>
           } 
         />
         <Route 
           path="/about" 
           element={
-            <PrivateRoute>
               <AboutPage user={user} onLogout={handleLogout} />
-            </PrivateRoute>
+
           } 
         />
         <Route 
           path="/contact" 
           element={
-            <PrivateRoute>
               <ContactPage user={user} onLogout={handleLogout} />
-            </PrivateRoute>
           } 
         />
         <Route 
           path="/help" 
           element={
-            <PrivateRoute>
               <HelpPage user={user} onLogout={handleLogout} />
-            </PrivateRoute>
           } 
         />
         <Route 
           path="/simplify" 
           element={
-            <PrivateRoute>
               <SimplifyPage user={user} onLogout={handleLogout} />
-            </PrivateRoute>
           } 
         />
         <Route path="*" element={<Navigate to="/" />} />

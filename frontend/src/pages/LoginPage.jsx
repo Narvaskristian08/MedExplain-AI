@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { authAPI } from "../services/api";
-import loginImage from "../assets/login-illustration.png";
+import loginImage from "../assets/login-illustration.png"; // Update path if needed
 
 const LoginPage = ({ onLogin }) => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [errors, setErrors] = useState({});
-  const [submitError, setSubmitError] = useState(""); // persistent error
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -16,8 +18,8 @@ const LoginPage = ({ onLogin }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-    setSubmitError(""); // clear submit error when typing
+
+    setErrors((prev) => ({ ...prev, [name]: "" })); // Keep other errors intact
   };
 
   const validateForm = () => {
@@ -30,14 +32,12 @@ const LoginPage = ({ onLogin }) => {
     else if (formData.password.length < 6)
       newErrors.password = "Password must be at least 6 characters";
 
-    setErrors(newErrors);
+    setErrors((prev) => ({ ...prev, ...newErrors }));
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // prevent page refresh
-    setSubmitError(""); // clear previous submit error
-
+    e.preventDefault();
     if (!validateForm()) return;
 
     setLoading(true);
@@ -50,9 +50,11 @@ const LoginPage = ({ onLogin }) => {
 
       navigate("/dashboard"); // SPA navigation
     } catch (error) {
-      setSubmitError(
-        error.response?.data?.message || "Login failed. Please try again."
-      );
+      setErrors((prev) => ({
+        ...prev,
+        submit:
+          error.response?.data?.message || "Login failed. Please try again.",
+      }));
     } finally {
       setLoading(false);
     }
@@ -70,7 +72,6 @@ const LoginPage = ({ onLogin }) => {
               src={loginImage}
               alt="Login illustration"
               className="w-full h-full object-cover"
-              autoComplete="off"
             />
           </div>
 
@@ -84,11 +85,7 @@ const LoginPage = ({ onLogin }) => {
                 <p className="mt-2 text-sm text-gray-600">Welcome back</p>
               </div>
 
-              <form
-                onSubmit={handleSubmit}
-                className="mt-8 space-y-6"
-                autoComplete="off"
-              >
+              <form onSubmit={handleSubmit} className="mt-8 space-y-6">
                 <div className="space-y-4">
                   {/* Email */}
                   <input
@@ -97,7 +94,6 @@ const LoginPage = ({ onLogin }) => {
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    autoComplete="off"
                     className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       errors.email ? "border-red-500" : "border-gray-300"
                     }`}
@@ -112,9 +108,9 @@ const LoginPage = ({ onLogin }) => {
                     id="password"
                     name="password"
                     type="password"
+                    autofill=""
                     value={formData.password}
                     onChange={handleChange}
-                    autoComplete="new-password"
                     className={`w-full px-4 py-3 border rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       errors.password ? "border-red-500" : "border-gray-300"
                     }`}
@@ -124,11 +120,6 @@ const LoginPage = ({ onLogin }) => {
                     <p className="mt-1 text-sm text-red-600">{errors.password}</p>
                   )}
                 </div>
-
-                {/* Submit Error above button */}
-                {submitError && (
-                  <div className="text-red-600 text-sm text-center">{submitError}</div>
-                )}
 
                 <div className="flex items-center justify-between">
                   <label className="flex items-center text-sm text-gray-900">
@@ -146,6 +137,11 @@ const LoginPage = ({ onLogin }) => {
                     Forgot password?
                   </Link>
                 </div>
+
+                {/* Submit Error */}
+                {errors.submit && (
+                  <div className="text-red-600 text-sm text-center">{errors.submit}</div>
+                )}
 
                 <button
                   type="submit"

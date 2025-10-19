@@ -65,7 +65,7 @@ const ContactPage = ({ user, onLogout }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-blue-100">
       <Header user={user} onLogout={onLogout} />
       
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
