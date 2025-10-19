@@ -54,3 +54,11 @@
 {"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-17T06:07:41.512Z"},"timestamp":"2025-10-17T06:07:41.513Z"}
 {"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-17T06:19:45.017Z"},"timestamp":"2025-10-17T06:19:45.018Z"}
 {"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-17T07:26:04.086Z"},"timestamp":"2025-10-17T07:26:04.089Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T04:53:16.608Z"},"timestamp":"2025-10-19T04:53:16.609Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-19T04:53:42.776Z"},"timestamp":"2025-10-19T04:53:42.777Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T04:53:55.453Z"},"timestamp":"2025-10-19T04:53:55.454Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-19T04:54:03.383Z"},"timestamp":"2025-10-19T04:54:03.383Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-19T04:54:19.439Z"},"timestamp":"2025-10-19T04:54:19.439Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-19T04:54:28.951Z"},"timestamp":"2025-10-19T04:54:28.951Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-19T04:54:55.853Z"},"timestamp":"2025-10-19T04:54:55.853Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-19T04:57:22.268Z"},"timestamp":"2025-10-19T04:57:22.268Z"}

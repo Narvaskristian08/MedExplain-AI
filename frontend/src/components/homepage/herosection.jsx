@@ -26,10 +26,6 @@ const HeroSection = () => {
           Transform complicated medical jargon into clear, patient-friendly
           language with just one click.
         </p>
-        <p className="font-sans mt-2 text-gray-500 text-sm sm:text-base max-w-md mx-auto lg:mx-0">
-          Built with React and Tailwind CSS — designed to make medical
-          communication simpler and more accessible.
-        </p>
 
         {/* Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-3">
