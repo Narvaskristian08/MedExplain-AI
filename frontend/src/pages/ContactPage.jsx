@@ -80,7 +80,7 @@ const ContactPage = ({ user, onLogout }) => {
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className="bg-white rounded-lg shadow-m p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Get in Touch
             </h2>

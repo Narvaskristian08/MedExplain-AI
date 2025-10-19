@@ -106,7 +106,7 @@ function App() {
   }, [currentPage]);
 
   return (
-    <div className="App">
+    <div className="bg-blue">
       {renderPage()}
     </div>
   );

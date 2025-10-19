@@ -47,3 +47,10 @@
 {"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:22:19.653Z"},"timestamp":"2025-10-15T18:22:19.654Z"}
 {"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:24:17.115Z"},"timestamp":"2025-10-15T18:24:17.117Z"}
 {"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:30:33.605Z"},"timestamp":"2025-10-15T18:30:33.609Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-17T06:06:21.985Z"},"timestamp":"2025-10-17T06:06:21.986Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-17T06:06:38.071Z"},"timestamp":"2025-10-17T06:06:38.071Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-17T06:06:51.141Z"},"timestamp":"2025-10-17T06:06:51.141Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-17T06:07:20.914Z"},"timestamp":"2025-10-17T06:07:20.914Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-17T06:07:41.512Z"},"timestamp":"2025-10-17T06:07:41.513Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-17T06:19:45.017Z"},"timestamp":"2025-10-17T06:19:45.018Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-17T07:26:04.086Z"},"timestamp":"2025-10-17T07:26:04.089Z"}

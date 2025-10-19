@@ -13,7 +13,7 @@ const Dashboard = ({ user, onLogout }) => {
               <h1 className="text-2xl font-bold text-gray-900 mb-4">
                 Welcome to your Dashboard!
               </h1>
-              <p className="text-gray-600 mb-4">
+              <p className=" font-lexend text-gray-600 mb-4">
                 Hello, {user?.name || 'User'}! You are successfully logged in.
               </p>
               <div className="bg-white p-6 rounded-lg shadow">

@@ -1,22 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Logo from '../assets/logo.svg';
 
 const Header = ({ user, onLogout }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="bg-white shadow-sm border-b">
-      <div className="w-full px-4">
-        <div className="flex items-center h-16">
-          {/* Logo/Brand - Left Side */}
-          <div className="flex-shrink-0">
-            <a href='/'>
-              <h1 className="text-xl font-bold text-gray-900">
-                My App
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'backdrop-blur-md bg-white/70 shadow-xs'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Left Side - Logo */}
+          <div className="flex items-center space-x-2 flex-shrink-0">
+            <a href="/" className="flex items-center space-x-2">
+              <img src={Logo} alt="MedExplain Logo" className="h-8 w-8" />
+              <h1 className="font-sans text-xl font-bold text-gray-900">
+                MedExplain
               </h1>
             </a>
           </div>
 
-          {/* Navigation - Center */}
-          <div className="flex-1 flex justify-center">
-            <nav className="hidden md:flex space-x-8">
+          {/* Right Side - Navigation + User Menu */}
+          <div className="flex items-center space-x-6">
+            
+            {/* Navigation Links */}
+            <nav className="hidden md:flex space-x-6">
               <a 
                 href="/" 
                 className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -42,40 +63,39 @@ const Header = ({ user, onLogout }) => {
                 Help
               </a>
             </nav>
-          </div>
 
-          {/* User Menu - Right Side */}
-          <div className="flex-shrink-0 flex items-center space-x-4">
+            {/* User Menu */}
             {user ? (
               <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-700 hidden sm:block">
-                  Welcome, {user.name}
-                </span>
+                {/* Profile bubble for logged-in user */}
+                <div className="bg-white text-gray-700 border px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+                  {user.name || 'Guest'}
+                </div>
                 <button
                   onClick={onLogout}
-                  className="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
+                  className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors"
                 >
                   Logout
                 </button>
               </div>
             ) : (
               <div className="flex items-center space-x-4">
+                {/* Guest Profile */}
+                <div className="bg-white text-gray-700 border px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+                  {user?.name || 'Guest'}
+                </div>
+
+                {/* Login Button */}
                 <a
                   href="/login"
-                  className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                 >
                   Login
-                </a>
-                <a
-                  href="/register"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                >
-                  Register
                 </a>
               </div>
             )}
 
-            {/* Mobile menu button */}
+            {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 type="button"
