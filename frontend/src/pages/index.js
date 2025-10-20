@@ -6,3 +6,4 @@ export { default as Dashboard } from './Dashboard';
 export { default as AboutPage } from './AboutPage';
 export { default as ContactPage } from './ContactPage';
 export { default as HelpPage } from './HelpPage';
+export { default as SimplifyPage } from './SimplifyPage';

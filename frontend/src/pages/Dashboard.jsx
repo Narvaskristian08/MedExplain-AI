@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 const Dashboard = ({ user, onLogout }) => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-blue-100">
       <Header user={user} onLogout={onLogout} />
       
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -13,7 +13,7 @@ const Dashboard = ({ user, onLogout }) => {
               <h1 className="text-2xl font-bold text-gray-900 mb-4">
                 Welcome to your Dashboard!
               </h1>
-              <p className="text-gray-600 mb-4">
+              <p className=" font-lexend text-gray-600 mb-4">
                 Hello, {user?.name || 'User'}! You are successfully logged in.
               </p>
               <div className="bg-white p-6 rounded-lg shadow">
