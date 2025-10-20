@@ -2,31 +2,46 @@
 import User from "../auth/model/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../../utils/jwt.js";
+import logger from "../../utils/logger.js";
 
 // Register new user
 export const registerUser = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, firstName, middleName, lastName, occupation, institutionName } = req.body;
 
     // Validate input
     if (!name || !email || !password) {
+      logger.warn("Missing required fields in registerUser");
       return res.status(400).json({ message: "Name, email, and password are required" });
     }
 
     // Email format validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      logger.warn(`Invalid email format: ${email}`);
       return res.status(400).json({ message: "Invalid email format" });
     }
 
     // Password strength validation
     if (password.length < 6) {
+      logger.warn("Password too short");
       return res.status(400).json({ message: "Password must be at least 6 characters long" });
+    }
+
+    // Validate personnel fields
+    if (role === "personnel") {
+      if (!firstName || !lastName || !occupation || !institutionName) {
+        logger.warn("Missing required personnel fields");
+        return res.status(400).json({
+          message: "First name, last name, occupation, and institution name are required for personnel",
+        });
+      }
     }
 
     // Check if email exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
+      logger.warn(`Email already registered: ${email}`);
       return res.status(400).json({ message: "Email already registered" });
     }
 
@@ -38,24 +53,42 @@ export const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: role || 'user',
+      role: role || "user",
+      firstName,
+      middleName,
+      lastName,
+      occupation,
+      institutionName,
     });
 
     await newUser.save();
+    logger.info(`User registered: ${email}, role: ${role}`);
 
-    // Generate JWT token for immediate login after registration
+    // Generate JWT token
     const token = generateToken({
       id: newUser._id,
       email: newUser.email,
-      role: newUser.role
+      role: newUser.role,
     });
 
     res.status(201).json({
       message: "User registered successfully",
       token,
-      user: { id: newUser._id, name: newUser.name, email: newUser.email, role: newUser.role },
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        firstName: newUser.firstName,
+        middleName: newUser.middleName,
+        lastName: newUser.lastName,
+        occupation: newUser.occupation,
+        institutionName: newUser.institutionName,
+        verified: newUser.verified,
+      },
     });
   } catch (err) {
+    logger.error(`Error registering user: ${err.message}`);
     res.status(500).json({ message: "Error registering user", error: err.message });
   }
 };
@@ -162,5 +195,50 @@ export const logoutUser = async (req, res) => {
       message: "Error logging out", 
       error: process.env.NODE_ENV === 'development' ? error.message : 'Internal server error'
     });
+  }
+};
+
+export const verifyUser = async (req, res) => {
+  try { // Checker for Personnel Verification
+    if (req.user.role !== "admin") {
+      logger.warn(`Unauthorized verification attempt by user: ${req.user._id}`);
+      return res.status(403).json({ message: "Admin access required" });
+    }
+
+    const { userId, verified } = req.body;
+    if (!userId || typeof verified !== "boolean") {
+      logger.warn("Invalid verification request: missing userId or verified");
+      return res.status(400).json({ message: "userId and verified (boolean) are required" });
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      logger.warn(`User not found for verification: ${userId}`);
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (user.role !== "personnel") {
+      logger.warn(`Verification attempted on non-personnel user: ${userId}`);
+      return res.status(400).json({ message: "Only personnel can be verified" });
+    }
+
+    user.verified = verified;
+    await user.save();
+    logger.info(`User verified: ${userId}, verified: ${verified}`);
+
+    res.status(200).json({
+      message: `User ${verified ? "verified" : "unverified"} successfully`,
+      user: {
+        _id: user._id,
+        email: user.email,
+        role: user.role,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        verified: user.verified,
+      },
+    });
+  } catch (err) {
+    logger.error(`Error verifying user: ${err.message}`);
+    res.status(500).json({ message: "Error verifying user", error: err.message });
   }
 };

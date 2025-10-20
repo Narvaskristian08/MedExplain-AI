@@ -152,6 +152,7 @@ export const generateGlossary = async (req, res) => {
       glossary
     });
   } catch (err) {
+    logger.warn("Error generating glossary, ${err.message}");
     res.status(500).json({ message: "Error generating glossary", error: err.message });
   }
 };

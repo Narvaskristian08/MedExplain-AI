@@ -47,6 +47,70 @@
 {"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:22:19.653Z"},"timestamp":"2025-10-15T18:22:19.654Z"}
 {"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:24:17.115Z"},"timestamp":"2025-10-15T18:24:17.117Z"}
 {"level":"info","message":{"endpoint":"/api/documents/export-xlsx","method":"GET","status":200,"timestamp":"2025-10-15T18:30:33.605Z"},"timestamp":"2025-10-15T18:30:33.609Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary","method":"GET","status":200,"timestamp":"2025-10-16T05:55:37.048Z"},"timestamp":"2025-10-16T05:55:37.050Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-16T05:55:47.888Z"},"timestamp":"2025-10-16T05:55:47.888Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary","method":"GET","status":200,"timestamp":"2025-10-16T05:56:07.421Z"},"timestamp":"2025-10-16T05:56:07.421Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T05:57:31.465Z"},"timestamp":"2025-10-16T05:57:31.465Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-16T05:57:49.264Z"},"timestamp":"2025-10-16T05:57:49.264Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T05:58:24.840Z"},"timestamp":"2025-10-16T05:58:24.840Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T06:00:24.357Z"},"timestamp":"2025-10-16T06:00:24.357Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-16T16:21:46.058Z"},"timestamp":"2025-10-16T16:21:46.059Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T16:26:23.812Z"},"timestamp":"2025-10-16T16:26:23.812Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T16:37:20.652Z"},"timestamp":"2025-10-16T16:37:20.652Z"}
+{"level":"error","message":"Upload document error: Cannot destructure property 'userId' of 'req.body' as it is undefined.","timestamp":"2025-10-16T16:37:20.655Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T16:37:34.313Z"},"timestamp":"2025-10-16T16:37:34.313Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export-xlsx?userId=68ed38b8268ff57e9f8aebad","method":"GET","status":200,"timestamp":"2025-10-16T17:21:44.843Z"},"timestamp":"2025-10-16T17:21:44.844Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-16T17:32:38.745Z"},"timestamp":"2025-10-16T17:32:38.745Z"}
+{"level":"info","message":{"endpoint":"/api/documents/stats","method":"GET","status":200,"timestamp":"2025-10-16T17:33:14.859Z"},"timestamp":"2025-10-16T17:33:14.859Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary","method":"GET","status":200,"timestamp":"2025-10-16T17:39:33.687Z"},"timestamp":"2025-10-16T17:39:33.687Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary","method":"GET","status":200,"timestamp":"2025-10-16T17:40:37.868Z"},"timestamp":"2025-10-16T17:40:37.868Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary?userId=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWQ0YWQ0N2Y3NzE3ZTVhNTkwOWVkZiIsImVtYWlsIjoianVjYS5tYWNhbGluZ2EudXBAcGhpbm1hZWQuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzYwNjM1OTU4LCJleHAiOjE3NjA3MjIzNTh9.0uJFpFQws1KXBHQ7wS2oOTcMBTyVeex3oQ3rxmfys44","method":"GET","status":200,"timestamp":"2025-10-16T17:41:21.575Z"},"timestamp":"2025-10-16T17:41:21.575Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary","method":"GET","status":200,"timestamp":"2025-10-16T17:41:33.214Z"},"timestamp":"2025-10-16T17:41:33.214Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary","method":"GET","status":200,"timestamp":"2025-10-16T17:42:08.893Z"},"timestamp":"2025-10-16T17:42:08.893Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export","method":"GET","status":200,"timestamp":"2025-10-16T17:45:34.560Z"},"timestamp":"2025-10-16T17:45:34.560Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-16T17:53:48.775Z"},"timestamp":"2025-10-16T17:53:48.775Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-16T17:54:13.025Z"},"timestamp":"2025-10-16T17:54:13.025Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T17:54:48.258Z"},"timestamp":"2025-10-16T17:54:48.258Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T17:55:14.643Z"},"timestamp":"2025-10-16T17:55:14.643Z"}
+{"level":"info","message":{"endpoint":"/api/documents/upload","method":"POST","status":200,"timestamp":"2025-10-16T17:56:09.021Z"},"timestamp":"2025-10-16T17:56:09.021Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export/glossary","method":"GET","status":200,"timestamp":"2025-10-16T17:58:44.278Z"},"timestamp":"2025-10-16T17:58:44.279Z"}
+{"endpoint":"/api/documents/export/glossary","level":"warn","message":"404 - Route not found","method":"GET","status":200,"timestamp":"2025-10-16T17:58:44.284Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary/export","method":"GET","status":200,"timestamp":"2025-10-16T17:58:57.370Z"},"timestamp":"2025-10-16T17:58:57.370Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary","method":"GET","status":200,"timestamp":"2025-10-16T17:59:06.339Z"},"timestamp":"2025-10-16T17:59:06.339Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export/glossary","method":"GET","status":200,"timestamp":"2025-10-16T17:59:57.085Z"},"timestamp":"2025-10-16T17:59:57.085Z"}
+{"endpoint":"/api/documents/export/glossary","level":"warn","message":"404 - Route not found","method":"GET","status":200,"timestamp":"2025-10-16T17:59:57.086Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export","method":"GET","status":200,"timestamp":"2025-10-16T18:00:06.455Z"},"timestamp":"2025-10-16T18:00:06.455Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export","method":"POST","status":200,"timestamp":"2025-10-16T18:00:15.798Z"},"timestamp":"2025-10-16T18:00:15.798Z"}
+{"endpoint":"/api/documents/export","level":"warn","message":"404 - Route not found","method":"POST","status":200,"timestamp":"2025-10-16T18:00:15.798Z"}
+{"level":"info","message":{"endpoint":"/api/documents/export","method":"GET","status":200,"timestamp":"2025-10-16T18:00:21.965Z"},"timestamp":"2025-10-16T18:00:21.965Z"}
+{"level":"info","message":{"endpoint":"/api/documents/glossary/export","method":"GET","status":200,"timestamp":"2025-10-16T18:00:49.875Z"},"timestamp":"2025-10-16T18:00:49.875Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:08:11.074Z"},"timestamp":"2025-10-16T18:08:11.076Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:08:28.680Z"},"timestamp":"2025-10-16T18:08:28.680Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:09:12.225Z"},"timestamp":"2025-10-16T18:09:12.225Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:09:21.954Z"},"timestamp":"2025-10-16T18:09:21.954Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:10:32.802Z"},"timestamp":"2025-10-16T18:10:32.802Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:11:01.151Z"},"timestamp":"2025-10-16T18:11:01.151Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:11:40.530Z"},"timestamp":"2025-10-16T18:11:40.530Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:12:08.490Z"},"timestamp":"2025-10-16T18:12:08.490Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:13:13.819Z"},"timestamp":"2025-10-16T18:13:13.820Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:13:52.619Z"},"timestamp":"2025-10-16T18:13:52.619Z"}
+{"level":"info","message":{"endpoint":"/api/documents/simplify","method":"POST","status":200,"timestamp":"2025-10-16T18:22:46.794Z"},"timestamp":"2025-10-16T18:22:46.796Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-19T04:52:59.457Z"},"timestamp":"2025-10-19T04:52:59.459Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T04:59:51.556Z"},"timestamp":"2025-10-19T04:59:51.556Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T05:00:25.924Z"},"timestamp":"2025-10-19T05:00:25.924Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T05:01:48.554Z"},"timestamp":"2025-10-19T05:01:48.554Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T05:07:23.126Z"},"timestamp":"2025-10-19T05:07:23.128Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T06:34:51.599Z"},"timestamp":"2025-10-19T06:34:51.602Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T06:36:37.769Z"},"timestamp":"2025-10-19T06:36:37.773Z"}
+{"level":"info","message":"User registered: ches.mondala.up@phinmaed.com, role: personnel","timestamp":"2025-10-19T06:36:38.247Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T06:38:48.580Z"},"timestamp":"2025-10-19T06:38:48.580Z"}
+{"level":"warn","message":"Missing required fields in registerUser","timestamp":"2025-10-19T06:38:48.582Z"}
+{"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-19T06:39:48.055Z"},"timestamp":"2025-10-19T06:39:48.056Z"}
+{"level":"info","message":"User registered: liev.roca.up@phinmaed.com, role: user","timestamp":"2025-10-19T06:39:48.305Z"}
+{"level":"info","message":{"endpoint":"/api/users/verify","method":"PATCH","status":200,"timestamp":"2025-10-19T06:46:28.376Z"},"timestamp":"2025-10-19T06:46:28.376Z"}
+{"level":"info","message":"User verified: 68f486f6623a8b0b09449b6a, verified: true","timestamp":"2025-10-19T06:46:28.413Z"}
+{"level":"info","message":{"endpoint":"/api/users/verify","method":"PATCH","status":200,"timestamp":"2025-10-19T07:00:24.731Z"},"timestamp":"2025-10-19T07:00:24.731Z"}
+{"level":"info","message":"User verified: 68f486f6623a8b0b09449b6a, verified: true","timestamp":"2025-10-19T07:00:24.746Z"}
 {"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-17T06:06:21.985Z"},"timestamp":"2025-10-17T06:06:21.986Z"}
 {"level":"info","message":{"endpoint":"/api/users/register","method":"POST","status":200,"timestamp":"2025-10-17T06:06:38.071Z"},"timestamp":"2025-10-17T06:06:38.071Z"}
 {"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-17T06:06:51.141Z"},"timestamp":"2025-10-17T06:06:51.141Z"}
