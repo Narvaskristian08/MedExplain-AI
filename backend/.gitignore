@@ -6,7 +6,7 @@ logs/
 .env
 
 # Excel file
-src/modules/analytics/medical_terms.xlsx
+backend/dataanalytics/medical_terms.xlsx
 
 # Logs
 logs

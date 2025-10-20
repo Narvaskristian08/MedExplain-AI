@@ -1,13 +1,17 @@
 import XLSX from "xlsx";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// New folder path
+const excelFolder = path.join(process.cwd(), "dataanalytics");
 
-// Excel file is in the same folder as this script
-const excelFilePath = path.join(__dirname, "medical_terms.xlsx");
+// Ensure the folder exists
+if (!fs.existsSync(excelFolder)) {
+  fs.mkdirSync(excelFolder, { recursive: true });
+}
+
+// Full path to Excel file
+const excelFilePath = path.join(excelFolder, "medical_terms.xlsx");
 
 export function saveTermToExcel(termData) {
   let workbook;
@@ -36,11 +40,5 @@ export function saveTermToExcel(termData) {
   }
 
   XLSX.writeFile(workbook, excelFilePath);
-
   console.log("[Excel] Saved term:", termData.term);
-}
-
-// ====== TEST ======
-if (process.argv[1].includes("excel.js")) {
-  saveTermToExcel({ term: "Hypertension", description: "High blood pressure", frequency: 1 });
 }
