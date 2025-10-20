@@ -153,3 +153,11 @@
 {"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-19T16:10:54.688Z"},"timestamp":"2025-10-19T16:10:54.688Z"}
 {"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-19T17:03:27.569Z"},"timestamp":"2025-10-19T17:03:27.569Z"}
 {"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-19T17:04:55.038Z"},"timestamp":"2025-10-19T17:04:55.038Z"}
+{"level":"info","message":{"endpoint":"/api/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:18:06.426Z"},"timestamp":"2025-10-20T03:18:06.427Z"}
+{"endpoint":"/api/simplify","level":"warn","message":"404 - Route not found","method":"POST","status":200,"timestamp":"2025-10-20T03:18:06.427Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:18:46.546Z"},"timestamp":"2025-10-20T03:18:46.548Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:22:52.374Z"},"timestamp":"2025-10-20T03:22:52.376Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:23:48.617Z"},"timestamp":"2025-10-20T03:23:48.620Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:25:15.134Z"},"timestamp":"2025-10-20T03:25:15.139Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:29:02.859Z"},"timestamp":"2025-10-20T03:29:02.868Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:32:24.486Z"},"timestamp":"2025-10-20T03:32:24.490Z"}

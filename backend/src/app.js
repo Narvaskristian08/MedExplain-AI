@@ -40,6 +40,8 @@ app.use("/api/users", userRoutes);
 
 import documentRoutes from "./modules/documents/routes/document.routes.js";
 app.use("/api/documents", documentRoutes);
+import llmRoutes from "./modules/llm/routes/llm.routes.js";
+app.use("/api/llm", llmRoutes);
 
 // 404 Error Handler
 app.use((req, res) => {
