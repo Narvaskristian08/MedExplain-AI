@@ -1,3 +1,4 @@
+// src/app.js
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -9,9 +10,18 @@ dotenv.config();
 
 const app = express();
 
-// Middlewares
+// === Middlewares ===
 app.use(express.json());
-app.use(cors());
+
+// CORS Middleware – allow any origin during development
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like Postman)
+    if (!origin) return callback(null, true);
+    return callback(null, true);
+  },
+  credentials: true
+}));
 
 // Custom Logging Middleware
 app.use((req, res, next) => {
@@ -22,16 +32,6 @@ app.use((req, res, next) => {
     status: res.statusCode,
   });
   next();
-});
-
-// Error Handling Middleware
-app.use((err, req, res, next) => {
-  logger.error('Server Error:', {
-    message: err.message,
-    stack: err.stack,
-    timestamp: new Date().toISOString()
-  });
-  res.status(500).json({ message: 'Internal Server Error', error: err.message });
 });
 
 // === Routes ===
@@ -56,6 +56,16 @@ app.use((req, res) => {
 // Default route
 app.get("/", (req, res) => {
   res.send("Backend running 🚀");
+});
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  logger.error('Server Error:', {
+    message: err.message,
+    stack: err.stack,
+    timestamp: new Date().toISOString()
+  });
+  res.status(500).json({ message: 'Internal Server Error', error: err.message });
 });
 
 // === Database + Server Start ===
