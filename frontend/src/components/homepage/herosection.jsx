@@ -2,7 +2,6 @@ import React from "react";
 import heroimage from "../../assets/heroimg.svg";
 
 const HeroSection = () => {
-  // Smooth scroll handler
   const handleScroll = () => {
     const nextSection = document.getElementById("browse-section");
     if (nextSection) {
@@ -11,9 +10,9 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-6 lg:min-h-screen">
+    <section className="relative max-w-7xl mx-auto flex flex-col items-center px-6 lg:flex-row lg:items-center lg:min-h-screen pt-10">
       {/* LEFT CONTENT */}
-      <div className="w-full lg:w-1/2 text-center lg:text-left z-10 mt-10 lg:mt-0 order-2 lg:order-1">
+      <div className="w-full lg:w-1/2 text-center lg:text-left mt-10 lg:mt-0 z-10">
         <h1 className="font-lexend text-3xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
           Simplify Complex
         </h1>
@@ -21,13 +20,11 @@ const HeroSection = () => {
           Medical Texts
         </h1>
 
-        {/* Description */}
         <p className="font-sans mt-5 text-gray-600 text-base sm:text-lg md:text-xl max-w-lg mx-auto lg:mx-0">
           Transform complicated medical jargon into clear, patient-friendly
           language with just one click.
         </p>
 
-        {/* Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-3">
           <a
             href="/login"
@@ -44,12 +41,12 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* RIGHT IMAGE */}
-      <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative mt-10 lg:mt-0 order-1 lg:order-2">
+      {/* RIGHT IMAGE — top part visible on mobile */}
+      <div className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-10 lg:mt-0 order-2 lg:order-2 overflow-hidden h-64 sm:h-96 lg:h-auto">
         <img
           src={heroimage}
           alt="Hero Illustration"
-          className="w-3/4 max-w-md lg:max-w-lg object-contain"
+          className="w-full h-full object-cover object-top lg:object-contain lg:max-w-lg"
         />
       </div>
     </section>
