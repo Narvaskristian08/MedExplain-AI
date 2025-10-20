@@ -1,2 +1,12 @@
+
 .env
 logs/
+
+# Environment variables
+.env
+
+# Excel file
+src/modules/analytics/medical_terms.xlsx
+
+# Logs
+logs
