@@ -16,12 +16,14 @@ const excelFilePath = path.join(excelFolder, "medical_terms.xlsx");
 export function saveTermToExcel(termData) {
   let workbook;
 
+  // Load existing workbook or create new
   if (fs.existsSync(excelFilePath)) {
     workbook = XLSX.readFile(excelFilePath);
   } else {
     workbook = XLSX.utils.book_new();
   }
 
+  // Load existing sheet or create empty array
   let sheet = workbook.Sheets["Terms"];
   let data = sheet ? XLSX.utils.sheet_to_json(sheet) : [];
 
@@ -30,15 +32,31 @@ export function saveTermToExcel(termData) {
     return;
   }
 
-  data.push(termData);
+  // Check if the term already exists
+  const existingIndex = data.findIndex(row => row.term === termData.term);
 
+  if (existingIndex >= 0) {
+    // Term exists: increment numeric fields
+    data[existingIndex].misunderstood += termData.misunderstood || 0;
+    data[existingIndex].simpScore += termData.simpScore || 0;
+    data[existingIndex].usageInstr += termData.usageInstr || 0;
+    data[existingIndex].timestamp = termData.timestamp; // update latest timestamp
+  } else {
+    // Term does not exist: add as new row
+    data.push(termData);
+  }
+
+  // Convert back to sheet
   const newSheet = XLSX.utils.json_to_sheet(data);
   workbook.Sheets["Terms"] = newSheet;
 
+  // Add sheet name if missing
   if (!workbook.SheetNames.includes("Terms")) {
     workbook.SheetNames.push("Terms");
   }
 
+  // Write workbook to file
   XLSX.writeFile(workbook, excelFilePath);
-  console.log("[Excel] Saved term:", termData.term);
+  console.log("[Excel] Saved/Updated term:", termData.term);
 }
+
