@@ -158,7 +158,7 @@ npm run dev
         "Sample": "Simplified explanation of sample",
         "Medical Reports": "Simplified explanation of medical reports",
         "Patient": "Simplified explanation of patient"
-    }
+        }
     }
     ```
 
@@ -169,7 +169,106 @@ npm run dev
 - **Response** `PDF File`
 
 #### 7. Export (Medical Report)
-- Admin only
-- **GET** `api/documents/export
-- **Headers** ``Authorization: Bearer <admin_token, personnel_token>`
+- Admin/Personnel only
+- **GET** `api/documents/export`
+- **Headers** `Authorization: Bearer <admin_token, personnel_token>`
 - **Response** `Generated PDF`
+
+
+#### 8. Get User History
+- **GET** `api/users/<user_id>/history` (You can also add page parameters `api/users/<user_id>/history?page=1&limit=10`)
+- **Headers** `Authorization: Bearer <admin_token, user_token, personnel_token>`
+- **Response**
+    ```json
+    {
+    "message": "User history retrieved successfully",
+    "documents": [
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-16T17:56:09.520Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-16T17:55:15.169Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-16T16:37:34.314Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-16T16:26:23.826Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-16T06:00:24.822Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-16T05:58:25.222Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-14T20:51:30.419Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-14T20:32:43.092Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-14T20:31:58.969Z"
+        },
+        {
+            "user": {
+                "id": "68ed38b8268ff57e9f8aebad",
+                "name": "John Doe"
+            },
+            "simplifiedText": "Not simplified",
+            "createdAt": "2025-10-14T19:31:41.677Z"
+        }
+    ],
+    "pagination": {
+        "page": 1,
+        "limit": 10,
+        "total": 12,
+        "totalPages": 2
+        }
+    }
+    ```

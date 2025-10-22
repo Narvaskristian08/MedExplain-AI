@@ -6,9 +6,10 @@ import {
   loginUser, 
   getUserProfile,
   verifyUser, 
-  logoutUser 
+  logoutUser,
+  getUserHistory
 } from "../../controller/user.controller.js";
-import { authenticateToken, authorizeRole } from "../../../middleware/auth.js";
+import { authenticateToken, authorizeRole, restrictHistoryAccess } from "../../../middleware/auth.js";
 
 const router = Router();
 
@@ -31,6 +32,10 @@ router.get("/profile", authenticateToken, getUserProfile);
 
 // GET /api/users → Get all users (admin only)
 router.get("/", authenticateToken, authorizeRole(['admin']), getUsers);
+
+// User History
+// GET /api/users/:id/history
+router.get("/:id/history", authenticateToken, restrictHistoryAccess, getUserHistory);
 
 export default router;
 

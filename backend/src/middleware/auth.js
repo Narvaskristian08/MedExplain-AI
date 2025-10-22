@@ -1,4 +1,5 @@
 import { verifyToken, extractToken } from '../utils/jwt.js';
+import logger from '../utils/logger.js';
 
 // Authentication middleware
 export const authenticateToken = (req, res, next) => {
@@ -43,5 +44,29 @@ export const requireVerified = (req, res, next) => {
   } catch (err) {
     logger.error(`Error in requireVerified middleware: ${err.message}`);
     res.status(500).json({ message: "Server error", error: err.message });
+  }
+};
+
+// Restrict History Access
+export const restrictHistoryAccess = (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = req.user;
+
+    if (!user) {
+      logger.warn('No user in request for history access');
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    // Validate accessing user's own history or if admin/personnel
+    if (user.id === id || user.role === 'admin' || (user.role === 'personnel' && user.verified)) {
+      next();
+    } else {
+      logger.warn(`Unauthorized history access attempt by user: ${user.id} for userId: ${id}`);
+      return res.status(403).json({ message: 'Not authorized to access this user’s history' });
+    }
+  } catch (err) {
+    logger.error(`Error in restrictHistoryAccess middleware: ${err.message}`);
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 };
