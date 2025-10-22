@@ -225,3 +225,59 @@
 {"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:25:15.134Z"},"timestamp":"2025-10-20T03:25:15.139Z"}
 {"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:29:02.859Z"},"timestamp":"2025-10-20T03:29:02.868Z"}
 {"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-20T03:32:24.486Z"},"timestamp":"2025-10-20T03:32:24.490Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-21T19:18:18.723Z"},"timestamp":"2025-10-21T19:18:18.724Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","method":"POST","status":200,"timestamp":"2025-10-21T19:19:37.744Z"},"timestamp":"2025-10-21T19:19:37.744Z"}
+{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","level":"warn","message":"404 - Route not found","method":"POST","status":200,"timestamp":"2025-10-21T19:19:37.745Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:19:55.725Z"},"timestamp":"2025-10-21T19:19:55.725Z"}
+{"level":"warn","message":"Unauthorized history access attempt by user: 68ed38b8268ff57e9f8aebad for userId: :68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:19:55.730Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-21T19:20:42.476Z"},"timestamp":"2025-10-21T19:20:42.476Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:21:10.792Z"},"timestamp":"2025-10-21T19:21:10.792Z"}
+{"level":"warn","message":"Invalid user ID: :68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:21:10.793Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:21:33.199Z"},"timestamp":"2025-10-21T19:21:33.199Z"}
+{"level":"warn","message":"Unauthorized history access attempt by user: 68ed38b8268ff57e9f8aebad for userId: :68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:21:33.200Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history?page=1&limit=10","method":"GET","status":200,"timestamp":"2025-10-21T19:22:09.151Z"},"timestamp":"2025-10-21T19:22:09.151Z"}
+{"level":"warn","message":"Unauthorized history access attempt by user: 68ed38b8268ff57e9f8aebad for userId: :68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:22:09.152Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:22:13.088Z"},"timestamp":"2025-10-21T19:22:13.088Z"}
+{"level":"warn","message":"Unauthorized history access attempt by user: 68ed38b8268ff57e9f8aebad for userId: :68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:22:13.089Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed4ad47f7717e5a5909edf/history","method":"GET","status":200,"timestamp":"2025-10-21T19:23:11.437Z"},"timestamp":"2025-10-21T19:23:11.437Z"}
+{"level":"warn","message":"Invalid user ID: :68ed4ad47f7717e5a5909edf","timestamp":"2025-10-21T19:23:11.438Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed4ad47f7717e5a5909edf/history","method":"GET","status":200,"timestamp":"2025-10-21T19:23:32.178Z"},"timestamp":"2025-10-21T19:23:32.178Z"}
+{"level":"warn","message":"Invalid user ID: :68ed4ad47f7717e5a5909edf","timestamp":"2025-10-21T19:23:32.179Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:25:48.816Z"},"timestamp":"2025-10-21T19:25:48.816Z"}
+{"level":"warn","message":"Invalid user ID: :68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:25:48.817Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:26:06.856Z"},"timestamp":"2025-10-21T19:26:06.856Z"}
+{"level":"warn","message":"Unauthorized history access attempt by user: 68ed38b8268ff57e9f8aebad for userId: :68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:26:06.857Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:28:36.087Z"},"timestamp":"2025-10-21T19:28:36.087Z"}
+{"level":"warn","message":"Invalid user ID: :68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:28:36.088Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed4ad47f7717e5a5909edf/history","method":"GET","status":200,"timestamp":"2025-10-21T19:29:08.373Z"},"timestamp":"2025-10-21T19:29:08.373Z"}
+{"level":"warn","message":"Invalid user ID: :68ed4ad47f7717e5a5909edf","timestamp":"2025-10-21T19:29:08.374Z"}
+{"level":"info","message":{"endpoint":"/api/users/:68ed4ad47f7717e5a5909edf/history","method":"GET","status":200,"timestamp":"2025-10-21T19:29:15.683Z"},"timestamp":"2025-10-21T19:29:15.683Z"}
+{"level":"warn","message":"Unauthorized history access attempt by user: 68ed38b8268ff57e9f8aebad for userId: :68ed4ad47f7717e5a5909edf","timestamp":"2025-10-21T19:29:15.683Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed4ad47f7717e5a5909edf/history","method":"GET","status":200,"timestamp":"2025-10-21T19:34:50.335Z"},"timestamp":"2025-10-21T19:34:50.336Z"}
+{"level":"info","message":"Checking history access: userId=68ed38b8268ff57e9f8aebad, requestedId=68ed4ad47f7717e5a5909edf","timestamp":"2025-10-21T19:34:50.346Z"}
+{"level":"warn","message":"Unauthorized history access attempt by user: 68ed38b8268ff57e9f8aebad for userId: 68ed4ad47f7717e5a5909edf","timestamp":"2025-10-21T19:34:50.346Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:35:08.784Z"},"timestamp":"2025-10-21T19:35:08.784Z"}
+{"level":"info","message":"Checking history access: userId=68ed38b8268ff57e9f8aebad, requestedId=68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:35:08.787Z"}
+{"level":"info","message":"Attempting to fetch history for userId: 68ed38b8268ff57e9f8aebad","timestamp":"2025-10-21T19:35:08.788Z"}
+{"level":"info","message":"Fetched history for user: 68ed38b8268ff57e9f8aebad, page: 1, limit: 10, found: 10","timestamp":"2025-10-21T19:35:08.838Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:36:30.032Z"},"timestamp":"2025-10-21T19:36:30.033Z"}
+{"level":"info","message":"Fetched history for user: 68ed38b8268ff57e9f8aebad, page: 1, limit: 10, found: 10","timestamp":"2025-10-21T19:36:30.080Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:36:41.503Z"},"timestamp":"2025-10-21T19:36:41.503Z"}
+{"level":"info","message":"Fetched history for user: 68ed38b8268ff57e9f8aebad, page: 1, limit: 10, found: 10","timestamp":"2025-10-21T19:36:41.519Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-21T19:38:31.031Z"},"timestamp":"2025-10-21T19:38:31.031Z"}
+{"level":"info","message":{"endpoint":"/api/users/68f487b4623a8b0b09449b6d/history","method":"GET","status":200,"timestamp":"2025-10-21T19:39:23.941Z"},"timestamp":"2025-10-21T19:39:23.941Z"}
+{"level":"info","message":"Fetched history for user: 68f487b4623a8b0b09449b6d, page: 1, limit: 10, found: 0","timestamp":"2025-10-21T19:39:23.956Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-21T19:42:47.370Z"},"timestamp":"2025-10-21T19:42:47.372Z"}
+{"level":"info","message":"Fetched history for user: 68ed38b8268ff57e9f8aebad, page: 1, limit: 10, found: 10","timestamp":"2025-10-21T19:42:47.455Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed38b8268ff57e9f8aebad/history","method":"GET","status":200,"timestamp":"2025-10-22T14:54:06.481Z"},"timestamp":"2025-10-22T14:54:06.483Z"}
+{"level":"info","message":"Attempting to fetch history for userId: 68ed38b8268ff57e9f8aebad","timestamp":"2025-10-22T14:54:06.499Z"}
+{"level":"info","message":"Fetched history for user: 68ed38b8268ff57e9f8aebad, page: 1, limit: 10, found: 10","timestamp":"2025-10-22T14:54:06.557Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed38b8268ff57e9f8aebad/history?page=1&limit=10","method":"GET","status":200,"timestamp":"2025-10-22T14:57:35.144Z"},"timestamp":"2025-10-22T14:57:35.145Z"}
+{"level":"info","message":"Attempting to fetch history for userId: 68ed38b8268ff57e9f8aebad","timestamp":"2025-10-22T14:57:35.147Z"}
+{"level":"info","message":"Fetched history for user: 68ed38b8268ff57e9f8aebad, page: 1, limit: 10, found: 10","timestamp":"2025-10-22T14:57:35.168Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed38b8268ff57e9f8aebad/history?limit=10&page=2","method":"GET","status":200,"timestamp":"2025-10-22T14:57:59.152Z"},"timestamp":"2025-10-22T14:57:59.152Z"}
+{"level":"info","message":"Attempting to fetch history for userId: 68ed38b8268ff57e9f8aebad","timestamp":"2025-10-22T14:57:59.153Z"}
+{"level":"info","message":"Fetched history for user: 68ed38b8268ff57e9f8aebad, page: 2, limit: 10, found: 2","timestamp":"2025-10-22T14:57:59.171Z"}
+{"level":"info","message":{"endpoint":"/api/users/68ed38b8268ff57e9f8aebad/history?limit=10&page=1","method":"GET","status":200,"timestamp":"2025-10-22T14:58:05.171Z"},"timestamp":"2025-10-22T14:58:05.171Z"}
+{"level":"info","message":"Attempting to fetch history for userId: 68ed38b8268ff57e9f8aebad","timestamp":"2025-10-22T14:58:05.173Z"}
+{"level":"info","message":"Fetched history for user: 68ed38b8268ff57e9f8aebad, page: 1, limit: 10, found: 10","timestamp":"2025-10-22T14:58:05.186Z"}

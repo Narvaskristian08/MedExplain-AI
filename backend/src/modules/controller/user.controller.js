@@ -1,8 +1,10 @@
 // src/modules/controller/user.controller.js
 import User from "../auth/model/user.model.js";
+import Document from "../documents/model/document.model.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../../utils/jwt.js";
 import logger from "../../utils/logger.js";
+import mongoose from "mongoose";
 
 // Register new user
 export const registerUser = async (req, res) => {
@@ -240,5 +242,77 @@ export const verifyUser = async (req, res) => {
   } catch (err) {
     logger.error(`Error verifying user: ${err.message}`);
     res.status(500).json({ message: "Error verifying user", error: err.message });
+  }
+};
+
+// Get User Document History
+export const getUserHistory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { page = 1, limit = 10, dateFrom, dateTo } = req.query;
+
+    // Log incoming ID for debugging
+    logger.info(`Attempting to fetch history for userId: ${id}`);
+
+    // Validate ObjectId
+    if (!mongoose.isValidObjectId(id)) {
+      logger.warn(`Invalid user ID format: ${id}`);
+      return res.status(400).json({ message: "Invalid user ID" });
+    }
+
+    // Build query
+    const query = { userId: id };
+    if (dateFrom) {
+      query.createdAt = { $gte: new Date(dateFrom) };
+    }
+    if (dateTo) {
+      query.createdAt = { ...query.createdAt, $lte: new Date(dateTo) };
+    }
+
+    // Parse pagination params
+    const pageNum = parseInt(page, 10);
+    const limitNum = parseInt(limit, 10);
+    if (isNaN(pageNum) || pageNum < 1 || isNaN(limitNum) || limitNum < 1) {
+      logger.warn(`Invalid pagination params: page=${page}, limit=${limit}`);
+      return res.status(400).json({ message: "Invalid page or limit" });
+    }
+
+    // Query documents with user population
+    const documents = await Document.find(query)
+      .select("simplifiedText createdAt")
+      .populate("userId", "name")
+      .sort({ createdAt: -1 })
+      .skip((pageNum - 1) * limitNum)
+      .limit(limitNum)
+      .lean();
+
+    // Format response to include user id and name
+    const formattedDocuments = documents.map(doc => ({
+      user: {
+        id: doc.userId._id,
+        name: doc.userId.name
+      },
+      simplifiedText: doc.simplifiedText || "Not simplified",
+      createdAt: doc.createdAt
+    }));
+
+    // Get total count for pagination
+    const total = await Document.countDocuments(query);
+
+    logger.info(`Fetched history for user: ${id}, page: ${pageNum}, limit: ${limitNum}, found: ${documents.length}`);
+
+    res.status(200).json({
+      message: "User history retrieved successfully",
+      documents: formattedDocuments,
+      pagination: {
+        page: pageNum,
+        limit: limitNum,
+        total,
+        totalPages: Math.ceil(total / limitNum),
+      },
+    });
+  } catch (err) {
+    logger.error(`Error fetching user history: ${err.message}`);
+    res.status(500).json({ message: "Error fetching user history", error: err.message });
   }
 };
