@@ -10,11 +10,12 @@ import {
   HelpPage,
   SimplifyPage
 } from './pages';
+import AdminLogin from './pages/AdminLogin';  
 import { authAPI } from './services/api';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loadingUser, setLoadingUser] = useState(true); // NEW: loading state while restoring user
+  const [loadingUser, setLoadingUser] = useState(true); // loading state while restoring user
 
   // Restore user on app load
   useEffect(() => {
@@ -44,12 +45,11 @@ function App() {
 
   // Protect private routes
   const PrivateRoute = ({ children }) => {
-    if (loadingUser) return null; // don't render anything until we know if user exists
+    if (loadingUser) return null; // don't render until we know if user exists
     return user ? children : <Navigate to="/login" replace />;
   };
 
   if (loadingUser) {
-    // Optionally show a loader
     return (
       <div className="min-h-screen flex items-center justify-center">
         <p className="text-gray-700 text-lg">Loading...</p>
@@ -60,10 +60,15 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<HomePage user={user} onLogout={handleLogout} />} />
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route path="/register" element={<RegisterPage onLogin={handleLogin} />} />
-        
+
+        {/* ✅ Admin Login route (unprotected) */}
+        <Route path="/admin/login" element={<AdminLogin onLogin={handleLogin} />} />
+
+        {/* Private routes */}
         <Route 
           path="/dashboard" 
           element={
@@ -95,6 +100,8 @@ function App() {
               <SimplifyPage user={user} onLogout={handleLogout} />
           } 
         />
+
+        {/* Default redirect */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
