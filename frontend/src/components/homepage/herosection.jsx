@@ -20,7 +20,7 @@ const HeroSection = () => {
           Medical Texts
         </h1>
 
-        <p className="font-sans mt-5 text-gray-600 text-base sm:text-lg md:text-xl max-w-lg mx-auto lg:mx-0">
+        <p className="font-sans mt-5 text-gray-800/45 text-base sm:text-lg md:text-xl max-w-lg mx-auto lg:mx-0">
           Transform complicated medical jargon into clear, patient-friendly
           language with just one click.
         </p>

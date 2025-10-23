@@ -36,11 +36,10 @@ const Header = ({ user, onLogout }) => {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-6">
             <nav className="flex space-x-6">
-              <Link to="/" className="text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors">Home</Link>
-              <Link to="/about" className="text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors">About</Link>
-              <Link to="/contact" className="text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors">Contact</Link>
-              <Link to="/help" className="text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors">Help</Link>
-              <Link to="/simplify" className="text-gray-700 hover:text-blue-600 text-sm font-medium transition-colors">Simplify</Link>
+              <Link to="/" className="text-gray-800/45 hover:text-blue-600 text-sm font-small transition-colors">Home</Link>
+              <Link to="/about" className="text-gray-800/45 hover:text-blue-600 text-sm font-small transition-colors">About</Link>
+              <Link to="/help" className="text-gray-800/45 hover:text-blue-600 text-sm font-small transition-colors">Help</Link>
+              <Link to="/simplify" className="text-gray-800/45 hover:text-blue-600 text-sm font-small transition-colors">Simplify</Link>
             </nav>
 
             {user ? (
@@ -114,7 +113,6 @@ const Header = ({ user, onLogout }) => {
           <nav className="flex flex-col px-6 py-4 space-y-3">
             <Link to="/" className="text-gray-800 hover:text-blue-600 text-base font-medium transition-colors">Home</Link>
             <Link to="/about" className="text-gray-800 hover:text-blue-600 text-base font-medium transition-colors">About</Link>
-            <Link to="/contact" className="text-gray-800 hover:text-blue-600 text-base font-medium transition-colors">Contact</Link>
             <Link to="/help" className="text-gray-800 hover:text-blue-600 text-base font-medium transition-colors">Help</Link>
             <Link to="/simplify" className="text-gray-800 hover:text-blue-600 text-base font-medium transition-colors">Simplify</Link>
 

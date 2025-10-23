@@ -39,7 +39,7 @@ const HelpPage = ({ user, onLogout }) => {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-blue-100 pt-8">
       <Header user={user} onLogout={onLogout} />
       
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-12 px-4 pt-20 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
             Help & Support

@@ -26,5 +26,8 @@
   "homepage": "https://github.com/Narvaskristian08/MedExplain-AI#readme",
   "devDependencies": {
     "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
   }
 }
