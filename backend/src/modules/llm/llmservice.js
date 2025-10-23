@@ -1,6 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-//  simplifyMedicalText.js  (FULL FILE – REPLACE YOUR OLD ONE)
-// ─────────────────────────────────────────────────────────────────────────────
 import fetch from "node-fetch";
 import path from "path";
 import fs from "fs";
@@ -62,7 +59,7 @@ export async function simplifyMedicalText(text) {
     console.log("\n=== FULL INPUT DOCUMENT ===");
     console.log(text);
 
-    // ---- 1. LOG EVERY TERM IMMEDIATELY (placeholder score = 0) ----
+    // ---- 1. LOG ALL TERMS IMMEDIATELY (placeholder score = 0) ----
     await logAllMedicalTermsToExcel(text, 0, excelFolderPath);
     console.log("[Step 1] Logged all medical terms with placeholder score");
 
@@ -130,21 +127,21 @@ Document:
     await logAllMedicalTermsToExcel(text, finalScore, excelFolderPath);
     console.log(`[Step 5] Updated all terms with final simpScore: ${finalScore}`);
 
-    // Optional: Save only the bracketed terms (for extra analytics)
+    // ---- 6. Save only the bracketed terms (for extra analytics) ----
     if (bracketed.size > 0) {
       const entries = [...bracketed].map(term => ({
         term,
         usagecount: 1,
         simpScore: finalScore,
         misunderstood: isLikelyMisunderstood(term),
-        usageInstr: hasUsageInstructions(combined) ? 1 : 0,
+        usageInstr: hasUsageInstructions(term) ? 1 : 0,
         timestamp: new Date().toISOString(),
       }));
       await saveTermToExcel(entries, excelFolderPath);
       console.log(`[Excel] Saved ${entries.length} bracketed term(s)`);
     }
 
-    // ---- 6. Return clean patient version ----
+    // ---- 7. Return clean patient version ----
     const clean = combined.replace(/\[\[|\]\]/g, "").trim();
     console.log("\n=== FINAL PATIENT VERSION ===");
     console.log(clean);

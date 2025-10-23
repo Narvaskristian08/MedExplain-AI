@@ -117,7 +117,7 @@ export function saveTermToNewExcel(termDataList, customFolderPath = null) {
   try {
     const excelFolder = customFolderPath
       ? path.resolve(customFolderPath)
-      : path.join(path.resolve(process.cwd(), "backend"), "dataanalytics");
+      : path.join(path.resolve(process.cwd(), "kpi"), "dataanalytics");
 
     if (!fs.existsSync(excelFolder)) {
       fs.mkdirSync(excelFolder, { recursive: true });
