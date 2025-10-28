@@ -4,16 +4,15 @@ import { verifyToken, extractToken } from '../utils/jwt.js';
 export const authenticateToken = (req, res, next) => {
   try {
     const token = extractToken(req);
-    
     if (!token) {
-      return res.status(401).json({ message: 'Access token required' });
+      return res.status(401).json({ error: 'Authentication required' });
     }
-
     const decoded = verifyToken(token);
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(403).json({ message: 'Invalid or expired token' });
+    console.error('Authentication error:', error.message);
+    return res.status(401).json({ error: 'Authentication required' });
   }
 };
 

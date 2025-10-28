@@ -42,6 +42,8 @@ import documentRoutes from "./modules/documents/routes/document.routes.js";
 app.use("/api/documents", documentRoutes);
 import llmRoutes from "./modules/llm/routes/llm.routes.js";
 app.use("/api/llm", llmRoutes);
+import analyticsRoutes from "./modules/llm/routes/analytics.routes.js";
+app.use("/api/analytics", analyticsRoutes);
 
 // 404 Error Handler
 app.use((req, res) => {

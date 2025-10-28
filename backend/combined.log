@@ -1,0 +1,322 @@
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T15:34:39.787Z"},"timestamp":"2025-10-27T15:34:39.794Z"}
+{"error":"pdfParse is not a function","file":"Diiagnosis test.pdf","identifier":"guest_a388f753-569f-42cc-9771-025db053a652_::1","isGuest":true,"level":"error","message":"File processing error","timestamp":"2025-10-27T15:34:39.821Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:28:26.343Z"},"timestamp":"2025-10-27T16:28:26.345Z"}
+{"identifier":"guest_646ea39c-c27b-4263-b4f0-f0441abf475e_::1","inputType":"text","isGuest":true,"length":53,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T16:28:47.051Z"}
+{"_id":"68ff9dbfe7443dcd24e8dbae","identifier":"guest_646ea39c-c27b-4263-b4f0-f0441abf475e_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T16:28:47.069Z"}
+{"level":"error","message":"Server Error: simplified is not defined","stack":"ReferenceError: simplified is not defined\n    at simplifyText (file:///Users/deb/Desktop/Project%20Folder/backend/src/modules/llm/controller/Simplify.controller.js:143:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-10-27T16:28:47.071Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:32:34.500Z"},"timestamp":"2025-10-27T16:32:34.502Z"}
+{"identifier":"guest_1267f466-00fb-4ea3-82f6-3fa13142e3db_::1","inputType":"text","isGuest":true,"length":53,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T16:32:52.430Z"}
+{"_id":"68ff9eb4aa25c3d704286474","identifier":"guest_1267f466-00fb-4ea3-82f6-3fa13142e3db_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T16:32:52.435Z"}
+{"level":"error","message":"Server Error: simplified is not defined","stack":"ReferenceError: simplified is not defined\n    at simplifyText (file:///Users/deb/Desktop/Project%20Folder/backend/src/modules/llm/controller/Simplify.controller.js:146:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-10-27T16:32:52.436Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:35:01.591Z"},"timestamp":"2025-10-27T16:35:01.595Z"}
+{"identifier":"guest_63d93118-fbda-4e4d-95bb-29a2ff2567bc_::1","inputType":"text","isGuest":true,"length":53,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T16:35:11.023Z"}
+{"_id":"68ff9f3f2b31617a4d84e0b2","identifier":"guest_63d93118-fbda-4e4d-95bb-29a2ff2567bc_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T16:35:11.067Z"}
+{"level":"error","message":"Server Error: simplified is not defined","stack":"ReferenceError: simplified is not defined\n    at simplifyText (file:///Users/deb/Desktop/Project%20Folder/backend/src/modules/llm/controller/Simplify.controller.js:146:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-10-27T16:35:11.068Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:37:59.051Z"},"timestamp":"2025-10-27T16:37:59.051Z"}
+{"identifier":"guest_d72eded9-7475-4565-93b4-69eddb4043d0_::1","inputType":"text","isGuest":true,"length":53,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T16:38:09.271Z"}
+{"_id":"68ff9ff1df927655bb812d78","identifier":"guest_d72eded9-7475-4565-93b4-69eddb4043d0_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T16:38:09.299Z"}
+{"level":"error","message":"Server Error: simplified is not defined","stack":"ReferenceError: simplified is not defined\n    at simplifyText (file:///Users/deb/Desktop/Project%20Folder/backend/src/modules/llm/controller/Simplify.controller.js:146:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-10-27T16:38:09.300Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:38:50.814Z"},"timestamp":"2025-10-27T16:38:50.815Z"}
+{"identifier":"guest_49f83433-f06d-441f-a76e-f65939e353a1_::1","inputType":"text","isGuest":true,"length":53,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T16:38:57.519Z"}
+{"_id":"68ffa021df927655bb812d7a","identifier":"guest_49f83433-f06d-441f-a76e-f65939e353a1_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T16:38:57.555Z"}
+{"level":"error","message":"Server Error: simplified is not defined","stack":"ReferenceError: simplified is not defined\n    at simplifyText (file:///Users/deb/Desktop/Project%20Folder/backend/src/modules/llm/controller/Simplify.controller.js:146:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-10-27T16:38:57.556Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:42:16.118Z"},"timestamp":"2025-10-27T16:42:16.122Z"}
+{"identifier":"guest_b9fd0971-ffc8-4401-ac65-b4ff2a82a655_::1","inputType":"text","isGuest":true,"length":53,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T16:42:27.585Z"}
+{"_id":"68ffa0f3680bd014dd06fa49","identifier":"guest_b9fd0971-ffc8-4401-ac65-b4ff2a82a655_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T16:42:27.614Z"}
+{"level":"error","message":"Server Error: simplified is not defined","stack":"ReferenceError: simplified is not defined\n    at simplifyText (file:///Users/deb/Desktop/Project%20Folder/backend/src/modules/llm/controller/Simplify.controller.js:146:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)","timestamp":"2025-10-27T16:42:27.617Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:45:04.693Z"},"timestamp":"2025-10-27T16:45:04.698Z"}
+{"identifier":"guest_62e6acd2-ccdd-458a-b8e3-830e3a5e29ae_::1","inputType":"text","isGuest":true,"length":53,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T16:45:16.330Z"}
+{"_id":"68ffa19cd2b1a03dec21512e","identifier":"guest_62e6acd2-ccdd-458a-b8e3-830e3a5e29ae_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T16:45:16.650Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:45:48.504Z"},"timestamp":"2025-10-27T16:45:48.505Z"}
+{"identifier":"guest_6dd38d79-bd09-4622-82d9-1448a5db4eda_::1","inputType":"text","isGuest":true,"length":5,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T16:46:10.044Z"}
+{"_id":"68ffa1d2d2b1a03dec215130","identifier":"guest_6dd38d79-bd09-4622-82d9-1448a5db4eda_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T16:46:10.271Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:46:28.451Z"},"timestamp":"2025-10-27T16:46:28.452Z"}
+{"error":"pdfParse function not found","file":"Diiagnosis test.pdf","identifier":"guest_32bfbd0a-beda-4e7b-8fad-8c77055a5813_::1","isGuest":true,"level":"error","message":"File processing error","timestamp":"2025-10-27T16:46:28.482Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:52:24.868Z"},"timestamp":"2025-10-27T16:52:24.868Z"}
+{"error":"Class constructor PDFParse cannot be invoked without 'new'","file":"Diiagnosis test.pdf","identifier":"guest_b9538d20-c91e-455c-b3c0-5a33b0f257a3_::1","isGuest":true,"level":"error","message":"File processing error","timestamp":"2025-10-27T16:52:24.884Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:52:38.490Z"},"timestamp":"2025-10-27T16:52:38.491Z"}
+{"error":"Class constructor PDFParse cannot be invoked without 'new'","file":"Diiagnosis test.pdf","identifier":"guest_694cedd0-933a-49f1-a306-2c33a24e399e_::1","isGuest":true,"level":"error","message":"File processing error","timestamp":"2025-10-27T16:52:38.506Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:56:17.167Z"},"timestamp":"2025-10-27T16:56:17.167Z"}
+{"error":"Cannot read properties of undefined (reading 'trim')","file":"Diiagnosis test.pdf","identifier":"guest_6e6c6ade-8a39-4dcf-9a72-a8973e51e1e0_::1","isGuest":true,"level":"error","message":"File processing error","timestamp":"2025-10-27T16:56:17.191Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T16:59:06.863Z"},"timestamp":"2025-10-27T16:59:06.864Z"}
+{"error":"Class constructor PDFParse cannot be invoked without 'new'","file":"Diiagnosis test.pdf","identifier":"guest_4a18161a-f6f9-47ad-9a1b-eefb7027045a_::1","isGuest":true,"level":"error","message":"File processing error","timestamp":"2025-10-27T16:59:06.877Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T17:02:22.083Z"},"timestamp":"2025-10-27T17:02:22.084Z"}
+{"error":"Cannot read properties of undefined (reading 'verbosity')","file":"Diiagnosis test.pdf","identifier":"guest_bbbc51de-a9d6-42c4-84c0-fda7bd4f186e_::1","isGuest":true,"level":"error","message":"File processing error","timestamp":"2025-10-27T17:02:22.106Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T17:13:11.489Z"},"timestamp":"2025-10-27T17:13:11.492Z"}
+{"error":"pdfParse is not a function","file":"Diiagnosis test.pdf","identifier":"guest_f1735b9c-0846-4d1a-913b-61bf20b32014_::1","isGuest":true,"level":"error","message":"File processing error","timestamp":"2025-10-27T17:13:11.535Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T17:17:51.632Z"},"timestamp":"2025-10-27T17:17:51.633Z"}
+{"identifier":"guest_32a5a981-860c-4231-9832-1c1a5db5e6c8_::1","inputType":"pdf","isGuest":true,"length":2259,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T17:18:18.297Z"}
+{"error":"Simplification validation failed: inputType: `pdf` is not a valid enum value for path `inputType`.","identifier":"guest_32a5a981-860c-4231-9832-1c1a5db5e6c8_::1","isGuest":true,"level":"warn","message":"MongoDB save failed, using JSON fallback","timestamp":"2025-10-27T17:18:18.313Z"}
+{"identifier":"guest_32a5a981-860c-4231-9832-1c1a5db5e6c8_::1","isGuest":true,"level":"info","message":"Simplification saved to JSON","timestamp":"2025-10-27T17:18:18.315Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T17:18:54.417Z"},"timestamp":"2025-10-27T17:18:54.417Z"}
+{"count":0,"level":"info","message":"History fetched from MongoDB","timestamp":"2025-10-27T17:18:54.655Z","userId":"68ff7bcba66e5d0e28f659c8"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T17:22:10.535Z"},"timestamp":"2025-10-27T17:22:10.535Z"}
+{"count":0,"level":"info","message":"History fetched from MongoDB","timestamp":"2025-10-27T17:22:11.481Z","userId":"68ff7bcba66e5d0e28f659c8"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T17:23:18.034Z"},"timestamp":"2025-10-27T17:23:18.035Z"}
+{"count":0,"level":"info","message":"History fetched from MongoDB","timestamp":"2025-10-27T17:23:19.042Z","userId":"68ff7bcba66e5d0e28f659c8"}
+{"level":"info","message":{"endpoint":"/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T17:29:44.524Z"},"timestamp":"2025-10-27T17:29:44.528Z"}
+{"endpoint":"/llm/history","level":"warn","message":"404 - Route not found","method":"GET","status":200,"timestamp":"2025-10-27T17:29:44.545Z"}
+{"level":"info","message":{"endpoint":"/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T17:32:11.409Z"},"timestamp":"2025-10-27T17:32:11.412Z"}
+{"endpoint":"/llm/history","level":"warn","message":"404 - Route not found","method":"GET","status":200,"timestamp":"2025-10-27T17:32:11.421Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T17:35:38.554Z"},"timestamp":"2025-10-27T17:35:38.559Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-27T17:35:54.481Z"},"timestamp":"2025-10-27T17:35:54.481Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-27T17:35:56.875Z"},"timestamp":"2025-10-27T17:35:56.875Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-27T17:36:02.261Z"},"timestamp":"2025-10-27T17:36:02.262Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T17:36:10.967Z"},"timestamp":"2025-10-27T17:36:10.968Z"}
+{"count":0,"level":"info","message":"History fetched from MongoDB","timestamp":"2025-10-27T17:36:11.020Z","userId":"68ff7bcba66e5d0e28f659c8"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T17:39:16.439Z"},"timestamp":"2025-10-27T17:39:16.440Z"}
+{"identifier":"guest_e3bc0ebc-91e1-4845-b80f-ae53a78d5740_::1","inputType":"text","isGuest":true,"length":6,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T17:39:33.082Z"}
+{"_id":"68ffae55f10cf6ea67c96c5d","identifier":"guest_e3bc0ebc-91e1-4845-b80f-ae53a78d5740_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T17:39:33.150Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T17:39:46.190Z"},"timestamp":"2025-10-27T17:39:46.190Z"}
+{"count":0,"level":"info","message":"History fetched from MongoDB","timestamp":"2025-10-27T17:39:46.551Z","userId":"68ff7bcba66e5d0e28f659c8"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T17:52:11.262Z"},"timestamp":"2025-10-27T17:52:11.264Z"}
+{"identifier":"guest_99216570-99bd-49e0-a0d6-e77eaad10489_::1","inputType":"text","isGuest":true,"length":6,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T17:52:25.350Z"}
+{"identifier":"guest_99216570-99bd-49e0-a0d6-e77eaad10489_::1","inputType":"text","isGuest":true,"level":"info","message":"Non-medical content detected","timestamp":"2025-10-27T17:52:25.374Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T17:52:57.913Z"},"timestamp":"2025-10-27T17:52:57.914Z"}
+{"identifier":"guest_72f130db-210c-4ab3-b1d7-9a15b6388f9c_::1","inputType":"text","isGuest":true,"length":34,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T17:53:07.279Z"}
+{"_id":"68ffb183f10cf6ea67c96c60","identifier":"guest_72f130db-210c-4ab3-b1d7-9a15b6388f9c_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T17:53:08.154Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T18:02:08.551Z"},"timestamp":"2025-10-27T18:02:08.552Z"}
+{"identifier":"guest_82f9a24c-ee89-4ae8-8208-441b6339f356_::1","inputType":"text","isGuest":true,"length":15,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T18:02:21.343Z"}
+{"_id":"68ffb3adc61d2192dde78527","identifier":"guest_82f9a24c-ee89-4ae8-8208-441b6339f356_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T18:02:22.332Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T18:06:03.624Z"},"timestamp":"2025-10-27T18:06:03.625Z"}
+{"identifier":"guest_2c2a42fa-17ce-4e25-913e-ca3cbc2846dd_::1","inputType":"pdf","isGuest":true,"length":2259,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T18:06:22.475Z"}
+{"error":"Simplification validation failed: inputType: `pdf` is not a valid enum value for path `inputType`.","identifier":"guest_2c2a42fa-17ce-4e25-913e-ca3cbc2846dd_::1","isGuest":true,"level":"warn","message":"MongoDB save failed, using JSON fallback","timestamp":"2025-10-27T18:06:22.492Z"}
+{"identifier":"guest_2c2a42fa-17ce-4e25-913e-ca3cbc2846dd_::1","isGuest":true,"level":"info","message":"Simplification saved to JSON","timestamp":"2025-10-27T18:06:22.508Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T18:08:49.385Z"},"timestamp":"2025-10-27T18:08:49.386Z"}
+{"identifier":"guest_ebfa6252-ad63-49b5-9b30-1f2a3e3226fd_::1","inputType":"text","isGuest":true,"length":5,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T18:09:01.364Z"}
+{"_id":"68ffb53dd276a2d917f8d757","identifier":"guest_ebfa6252-ad63-49b5-9b30-1f2a3e3226fd_::1","isGuest":true,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T18:09:01.921Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-27T18:10:27.260Z"},"timestamp":"2025-10-27T18:10:27.260Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-27T18:10:36.824Z"},"timestamp":"2025-10-27T18:10:36.825Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T18:10:46.803Z"},"timestamp":"2025-10-27T18:10:46.803Z"}
+{"identifier":"68ff7bcba66e5d0e28f659c8","inputType":"text","isGuest":false,"length":18,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T18:10:57.330Z"}
+{"_id":"68ffb5b1cabb704c7e6e3ba7","identifier":"68ff7bcba66e5d0e28f659c8","isGuest":false,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T18:10:57.370Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T18:11:27.348Z"},"timestamp":"2025-10-27T18:11:27.348Z"}
+{"count":1,"level":"info","message":"History fetched from MongoDB","timestamp":"2025-10-27T18:11:27.383Z","userId":"68ff7bcba66e5d0e28f659c8"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T18:12:09.680Z"},"timestamp":"2025-10-27T18:12:09.680Z"}
+{"level":"error","message":"Server Error: identifier is not defined","stack":"ReferenceError: identifier is not defined\n    at simplifyText (file:///Users/deb/Desktop/Project%20Folder/backend/src/modules/llm/controller/Simplify.controller.js:23:5)\n    at Layer.handleRequest (/Users/deb/Desktop/Project Folder/backend/node_modules/router/lib/layer.js:152:17)\n    at next (/Users/deb/Desktop/Project Folder/backend/node_modules/router/lib/route.js:157:13)\n    at authenticateToken (file:///Users/deb/Desktop/Project%20Folder/backend/src/middleware/auth.js:12:5)\n    at Layer.handleRequest (/Users/deb/Desktop/Project Folder/backend/node_modules/router/lib/layer.js:152:17)\n    at next (/Users/deb/Desktop/Project Folder/backend/node_modules/router/lib/route.js:157:13)\n    at done (/Users/deb/Desktop/Project Folder/backend/node_modules/multer/lib/make-middleware.js:59:7)\n    at indicateDone (/Users/deb/Desktop/Project Folder/backend/node_modules/multer/lib/make-middleware.js:63:68)\n    at Multipart.<anonymous> (/Users/deb/Desktop/Project Folder/backend/node_modules/multer/lib/make-middleware.js:187:7)\n    at Multipart.emit (node:events:508:28)\n    at emitCloseNT (node:internal/streams/destroy:148:10)\n    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)","timestamp":"2025-10-27T18:12:09.705Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-27T18:12:53.586Z"},"timestamp":"2025-10-27T18:12:53.586Z"}
+{"identifier":"68ff7bcba66e5d0e28f659c8","inputType":"text","isGuest":false,"length":6,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-27T18:13:07.615Z"}
+{"_id":"68ffb633ebe6ca6382e3e5ff","identifier":"68ff7bcba66e5d0e28f659c8","isGuest":false,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-27T18:13:09.134Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-27T18:13:23.524Z"},"timestamp":"2025-10-27T18:13:23.524Z"}
+{"count":2,"level":"info","message":"History fetched from MongoDB","timestamp":"2025-10-27T18:13:23.602Z","userId":"68ff7bcba66e5d0e28f659c8"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T01:03:14.720Z"},"timestamp":"2025-10-28T01:03:14.721Z"}
+{"identifier":"68ff7bcba66e5d0e28f659c8","inputType":"text","isGuest":false,"length":6,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-28T01:03:24.106Z"}
+{"identifier":"68ff7bcba66e5d0e28f659c8","inputType":"text","isGuest":false,"level":"info","message":"Non-medical content detected","timestamp":"2025-10-28T01:03:24.122Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T01:04:05.991Z"},"timestamp":"2025-10-28T01:04:05.991Z"}
+{"identifier":"68ff7bcba66e5d0e28f659c8","inputType":"text","isGuest":false,"length":4,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-28T01:04:20.593Z"}
+{"identifier":"68ff7bcba66e5d0e28f659c8","inputType":"text","isGuest":false,"level":"info","message":"Non-medical content detected","timestamp":"2025-10-28T01:04:20.594Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T01:04:38.527Z"},"timestamp":"2025-10-28T01:04:38.528Z"}
+{"identifier":"68ff7bcba66e5d0e28f659c8","inputType":"text","isGuest":false,"length":34,"level":"info","message":"Text simplified successfully","timestamp":"2025-10-28T01:04:47.060Z"}
+{"_id":"690016af48dc4f1e0de7756c","identifier":"68ff7bcba66e5d0e28f659c8","isGuest":false,"level":"info","message":"Simplification saved to MongoDB","timestamp":"2025-10-28T01:04:48.506Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T01:05:12.367Z"},"timestamp":"2025-10-28T01:05:12.367Z"}
+{"count":1,"level":"info","message":"History fetched from MongoDB","timestamp":"2025-10-28T01:05:12.458Z","userId":"68ff7bcba66e5d0e28f659c8"}
+{"level":"info","message":{"endpoint":"/api/analytics","method":"GET","status":200,"timestamp":"2025-10-28T01:10:58.212Z"},"timestamp":"2025-10-28T01:10:58.213Z"}
+{"endpoint":"/api/analytics","level":"warn","message":"404 - Route not found","method":"GET","status":200,"timestamp":"2025-10-28T01:10:58.215Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T01:29:33.675Z"},"timestamp":"2025-10-28T01:29:33.676Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T01:29:41.629Z"},"timestamp":"2025-10-28T01:29:41.629Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T01:34:17.260Z"},"timestamp":"2025-10-28T01:34:17.261Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T01:34:17.382Z"},"timestamp":"2025-10-28T01:34:17.382Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T01:35:49.519Z"},"timestamp":"2025-10-28T01:35:49.521Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:45:40.122Z"},"timestamp":"2025-10-28T03:45:40.126Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:45:55.032Z"},"timestamp":"2025-10-28T03:45:55.033Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:46:17.685Z"},"timestamp":"2025-10-28T03:46:17.685Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:48:13.496Z"},"timestamp":"2025-10-28T03:48:13.496Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:49:28.473Z"},"timestamp":"2025-10-28T03:49:28.473Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:49:48.311Z"},"timestamp":"2025-10-28T03:49:48.311Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:51:50.733Z"},"timestamp":"2025-10-28T03:51:50.734Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:51:51.712Z"},"timestamp":"2025-10-28T03:51:51.712Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:51:53.716Z"},"timestamp":"2025-10-28T03:51:53.717Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:52:06.860Z"},"timestamp":"2025-10-28T03:52:06.860Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:52:21.380Z"},"timestamp":"2025-10-28T03:52:21.380Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:53:29.743Z"},"timestamp":"2025-10-28T03:53:29.744Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:53:35.518Z"},"timestamp":"2025-10-28T03:53:35.519Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:57:40.465Z"},"timestamp":"2025-10-28T03:57:40.466Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T03:58:29.390Z"},"timestamp":"2025-10-28T03:58:29.390Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T03:58:59.321Z"},"timestamp":"2025-10-28T03:58:59.321Z"}
+{"error":"Simplification validation failed: inputType: `pdf` is not a valid enum value for path `inputType`.","level":"warn","message":"MongoDB save failed, fallback to JSON","timestamp":"2025-10-28T03:59:26.921Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:00:43.722Z"},"timestamp":"2025-10-28T04:00:43.723Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:00:54.562Z"},"timestamp":"2025-10-28T04:00:54.562Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:04:00.747Z"},"timestamp":"2025-10-28T04:04:00.748Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:07:19.265Z"},"timestamp":"2025-10-28T04:07:19.266Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:07:21.692Z"},"timestamp":"2025-10-28T04:07:21.697Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T04:07:33.668Z"},"timestamp":"2025-10-28T04:07:33.669Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:08:29.253Z"},"timestamp":"2025-10-28T04:08:29.253Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:08:37.756Z"},"timestamp":"2025-10-28T04:08:37.756Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:08:58.505Z"},"timestamp":"2025-10-28T04:08:58.507Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:10:45.029Z"},"timestamp":"2025-10-28T04:10:45.029Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:11:08.951Z"},"timestamp":"2025-10-28T04:11:08.952Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:13:01.471Z"},"timestamp":"2025-10-28T04:13:01.471Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:14:10.638Z"},"timestamp":"2025-10-28T04:14:10.641Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:18:48.860Z"},"timestamp":"2025-10-28T04:18:48.861Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:19:16.674Z"},"timestamp":"2025-10-28T04:19:16.674Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:19:30.046Z"},"timestamp":"2025-10-28T04:19:30.046Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:20:56.351Z"},"timestamp":"2025-10-28T04:20:56.351Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:23:19.702Z"},"timestamp":"2025-10-28T04:23:19.702Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:24:08.396Z"},"timestamp":"2025-10-28T04:24:08.397Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:24:16.841Z"},"timestamp":"2025-10-28T04:24:16.841Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:24:17.760Z"},"timestamp":"2025-10-28T04:24:17.762Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:24:18.396Z"},"timestamp":"2025-10-28T04:24:18.396Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:26:57.759Z"},"timestamp":"2025-10-28T04:26:57.760Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:27:06.450Z"},"timestamp":"2025-10-28T04:27:06.451Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:27:36.352Z"},"timestamp":"2025-10-28T04:27:36.355Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:27:36.632Z"},"timestamp":"2025-10-28T04:27:36.632Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:27:48.333Z"},"timestamp":"2025-10-28T04:27:48.333Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:28:19.585Z"},"timestamp":"2025-10-28T04:28:19.587Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:29:01.788Z"},"timestamp":"2025-10-28T04:29:01.788Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:29:07.084Z"},"timestamp":"2025-10-28T04:29:07.084Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:29:28.922Z"},"timestamp":"2025-10-28T04:29:28.927Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:29:45.484Z"},"timestamp":"2025-10-28T04:29:45.484Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:31:08.713Z"},"timestamp":"2025-10-28T04:31:08.713Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:31:45.105Z"},"timestamp":"2025-10-28T04:31:45.106Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:32:37.992Z"},"timestamp":"2025-10-28T04:32:37.994Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:32:38.872Z"},"timestamp":"2025-10-28T04:32:38.872Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:34:51.856Z"},"timestamp":"2025-10-28T04:34:51.857Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:34:54.503Z"},"timestamp":"2025-10-28T04:34:54.504Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:35:07.849Z"},"timestamp":"2025-10-28T04:35:07.849Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:35:12.116Z"},"timestamp":"2025-10-28T04:35:12.117Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:35:12.985Z"},"timestamp":"2025-10-28T04:35:12.985Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:35:21.071Z"},"timestamp":"2025-10-28T04:35:21.071Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:36:34.918Z"},"timestamp":"2025-10-28T04:36:34.918Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T04:36:38.763Z"},"timestamp":"2025-10-28T04:36:38.767Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T05:20:08.105Z"},"timestamp":"2025-10-28T05:20:08.105Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:10:14.455Z"},"timestamp":"2025-10-28T06:10:14.456Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:10:18.935Z"},"timestamp":"2025-10-28T06:10:18.938Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:11:13.087Z"},"timestamp":"2025-10-28T06:11:13.087Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:15:12.033Z"},"timestamp":"2025-10-28T06:15:12.034Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:15:14.399Z"},"timestamp":"2025-10-28T06:15:14.400Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-28T06:15:17.791Z"},"timestamp":"2025-10-28T06:15:17.791Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-28T06:17:20.920Z"},"timestamp":"2025-10-28T06:17:20.920Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:17:23.580Z"},"timestamp":"2025-10-28T06:17:23.580Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:17:29.758Z"},"timestamp":"2025-10-28T06:17:29.758Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:18:19.116Z"},"timestamp":"2025-10-28T06:18:19.117Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:21:10.389Z"},"timestamp":"2025-10-28T06:21:10.392Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:23:42.499Z"},"timestamp":"2025-10-28T06:23:42.500Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:23:45.107Z"},"timestamp":"2025-10-28T06:23:45.107Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:23:46.489Z"},"timestamp":"2025-10-28T06:23:46.490Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:23:47.965Z"},"timestamp":"2025-10-28T06:23:47.965Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:23:48.726Z"},"timestamp":"2025-10-28T06:23:48.726Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:24:22.703Z"},"timestamp":"2025-10-28T06:24:22.704Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:25:14.846Z"},"timestamp":"2025-10-28T06:25:14.847Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:25:15.943Z"},"timestamp":"2025-10-28T06:25:15.943Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:25:23.292Z"},"timestamp":"2025-10-28T06:25:23.293Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T06:25:39.239Z"},"timestamp":"2025-10-28T06:25:39.239Z"}
+{"identifier":"68ff7bcba66e5d0e28f659c8","level":"info","message":"Non-medical content detected","timestamp":"2025-10-28T06:25:49.349Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:26:03.390Z"},"timestamp":"2025-10-28T06:26:03.391Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T06:26:53.549Z"},"timestamp":"2025-10-28T06:26:53.550Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:27:05.594Z"},"timestamp":"2025-10-28T06:27:05.595Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T06:29:30.742Z"},"timestamp":"2025-10-28T06:29:30.743Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:29:49.994Z"},"timestamp":"2025-10-28T06:29:49.994Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:30:39.408Z"},"timestamp":"2025-10-28T06:30:39.409Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:32:00.410Z"},"timestamp":"2025-10-28T06:32:00.410Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:32:18.509Z"},"timestamp":"2025-10-28T06:32:18.509Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:32:42.228Z"},"timestamp":"2025-10-28T06:32:42.229Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:33:30.073Z"},"timestamp":"2025-10-28T06:33:30.073Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:33:33.798Z"},"timestamp":"2025-10-28T06:33:33.802Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:36:33.467Z"},"timestamp":"2025-10-28T06:36:33.469Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:36:44.048Z"},"timestamp":"2025-10-28T06:36:44.048Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:36:45.137Z"},"timestamp":"2025-10-28T06:36:45.137Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:36:54.318Z"},"timestamp":"2025-10-28T06:36:54.319Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:36:58.026Z"},"timestamp":"2025-10-28T06:36:58.026Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:48:01.243Z"},"timestamp":"2025-10-28T06:48:01.245Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:48:23.279Z"},"timestamp":"2025-10-28T06:48:23.287Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:48:30.126Z"},"timestamp":"2025-10-28T06:48:30.127Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:49:15.428Z"},"timestamp":"2025-10-28T06:49:15.428Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:49:26.129Z"},"timestamp":"2025-10-28T06:49:26.129Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:49:34.558Z"},"timestamp":"2025-10-28T06:49:34.558Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:50:29.097Z"},"timestamp":"2025-10-28T06:50:29.097Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T06:52:23.564Z"},"timestamp":"2025-10-28T06:52:23.565Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T06:54:16.162Z"},"timestamp":"2025-10-28T06:54:16.163Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T06:55:24.287Z"},"timestamp":"2025-10-28T06:55:24.287Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:56:20.984Z"},"timestamp":"2025-10-28T06:56:20.985Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:57:27.874Z"},"timestamp":"2025-10-28T06:57:27.875Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:57:34.173Z"},"timestamp":"2025-10-28T06:57:34.175Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:57:40.682Z"},"timestamp":"2025-10-28T06:57:40.682Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:57:51.774Z"},"timestamp":"2025-10-28T06:57:51.774Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:58:20.438Z"},"timestamp":"2025-10-28T06:58:20.438Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:58:44.272Z"},"timestamp":"2025-10-28T06:58:44.272Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T06:58:54.330Z"},"timestamp":"2025-10-28T06:58:54.330Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:59:15.993Z"},"timestamp":"2025-10-28T06:59:15.993Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:59:44.642Z"},"timestamp":"2025-10-28T06:59:44.642Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:59:52.968Z"},"timestamp":"2025-10-28T06:59:52.968Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:59:53.982Z"},"timestamp":"2025-10-28T06:59:53.982Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T06:59:54.844Z"},"timestamp":"2025-10-28T06:59:54.844Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:59:56.390Z"},"timestamp":"2025-10-28T06:59:56.390Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T06:59:59.419Z"},"timestamp":"2025-10-28T06:59:59.419Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T07:00:00.527Z"},"timestamp":"2025-10-28T07:00:00.527Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T07:02:47.897Z"},"timestamp":"2025-10-28T07:02:47.898Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:18:31.356Z"},"timestamp":"2025-10-28T07:18:31.357Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:18:33.127Z"},"timestamp":"2025-10-28T07:18:33.127Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:18:33.851Z"},"timestamp":"2025-10-28T07:18:33.851Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T07:18:35.065Z"},"timestamp":"2025-10-28T07:18:35.065Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:18:36.197Z"},"timestamp":"2025-10-28T07:18:36.197Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:19:51.660Z"},"timestamp":"2025-10-28T07:19:51.660Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:19:52.612Z"},"timestamp":"2025-10-28T07:19:52.613Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:19:55.452Z"},"timestamp":"2025-10-28T07:19:55.453Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:19:55.499Z"},"timestamp":"2025-10-28T07:19:55.499Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:20:04.372Z"},"timestamp":"2025-10-28T07:20:04.372Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:20:20.103Z"},"timestamp":"2025-10-28T07:20:20.104Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T07:20:52.608Z"},"timestamp":"2025-10-28T07:20:52.608Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T07:20:57.640Z"},"timestamp":"2025-10-28T07:20:57.640Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T07:21:11.669Z"},"timestamp":"2025-10-28T07:21:11.669Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:48:46.646Z"},"timestamp":"2025-10-28T12:48:46.647Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T12:48:50.413Z"},"timestamp":"2025-10-28T12:48:50.413Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:48:54.913Z"},"timestamp":"2025-10-28T12:48:54.913Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:48:56.034Z"},"timestamp":"2025-10-28T12:48:56.035Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T12:49:00.192Z"},"timestamp":"2025-10-28T12:49:00.192Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:49:11.629Z"},"timestamp":"2025-10-28T12:49:11.629Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:49:16.928Z"},"timestamp":"2025-10-28T12:49:16.928Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:49:20.797Z"},"timestamp":"2025-10-28T12:49:20.798Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T12:51:46.110Z"},"timestamp":"2025-10-28T12:51:46.110Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:51:55.753Z"},"timestamp":"2025-10-28T12:51:55.753Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T12:51:58.421Z"},"timestamp":"2025-10-28T12:51:58.421Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:52:01.312Z"},"timestamp":"2025-10-28T12:52:01.312Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:52:06.130Z"},"timestamp":"2025-10-28T12:52:06.130Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:52:17.063Z"},"timestamp":"2025-10-28T12:52:17.063Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T12:54:33.527Z"},"timestamp":"2025-10-28T12:54:33.528Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T12:55:40.845Z"},"timestamp":"2025-10-28T12:55:40.845Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T12:55:45.717Z"},"timestamp":"2025-10-28T12:55:45.718Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:55:52.629Z"},"timestamp":"2025-10-28T12:55:52.630Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:55:55.279Z"},"timestamp":"2025-10-28T12:55:55.279Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:57:50.191Z"},"timestamp":"2025-10-28T12:57:50.193Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:58:06.719Z"},"timestamp":"2025-10-28T12:58:06.719Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:58:11.085Z"},"timestamp":"2025-10-28T12:58:11.085Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:58:12.453Z"},"timestamp":"2025-10-28T12:58:12.453Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:58:17.618Z"},"timestamp":"2025-10-28T12:58:17.618Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T12:58:28.644Z"},"timestamp":"2025-10-28T12:58:28.645Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T12:58:30.546Z"},"timestamp":"2025-10-28T12:58:30.546Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T13:00:47.717Z"},"timestamp":"2025-10-28T13:00:47.720Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:01:01.592Z"},"timestamp":"2025-10-28T13:01:01.593Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:01:05.426Z"},"timestamp":"2025-10-28T13:01:05.426Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:02:53.290Z"},"timestamp":"2025-10-28T13:02:53.290Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:03:18.682Z"},"timestamp":"2025-10-28T13:03:18.682Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:03:21.785Z"},"timestamp":"2025-10-28T13:03:21.785Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:04:41.553Z"},"timestamp":"2025-10-28T13:04:41.553Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T13:04:52.226Z"},"timestamp":"2025-10-28T13:04:52.226Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:05:19.920Z"},"timestamp":"2025-10-28T13:05:19.921Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:05:21.072Z"},"timestamp":"2025-10-28T13:05:21.072Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:05:41.223Z"},"timestamp":"2025-10-28T13:05:41.223Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-28T13:06:11.603Z"},"timestamp":"2025-10-28T13:06:11.603Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T13:06:20.521Z"},"timestamp":"2025-10-28T13:06:20.522Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-28T13:06:30.048Z"},"timestamp":"2025-10-28T13:06:30.048Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T13:06:36.777Z"},"timestamp":"2025-10-28T13:06:36.777Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-28T13:07:31.424Z"},"timestamp":"2025-10-28T13:07:31.425Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T13:07:37.205Z"},"timestamp":"2025-10-28T13:07:37.205Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-28T13:12:02.250Z"},"timestamp":"2025-10-28T13:12:02.250Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T13:12:08.980Z"},"timestamp":"2025-10-28T13:12:08.980Z"}
+{"level":"info","message":{"endpoint":"/api/users/logout","method":"POST","status":200,"timestamp":"2025-10-28T13:12:59.326Z"},"timestamp":"2025-10-28T13:12:59.326Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T13:15:48.240Z"},"timestamp":"2025-10-28T13:15:48.241Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T13:22:05.993Z"},"timestamp":"2025-10-28T13:22:06.004Z"}
+{"level":"info","message":{"endpoint":"/api/api/admin/stats","method":"GET","status":200,"timestamp":"2025-10-28T13:45:24.777Z"},"timestamp":"2025-10-28T13:45:24.783Z"}
+{"endpoint":"/api/api/admin/stats","level":"warn","message":"404 - Route not found","method":"GET","status":200,"timestamp":"2025-10-28T13:45:24.785Z"}
+{"level":"info","message":{"endpoint":"/api/api/admin/users","method":"GET","status":200,"timestamp":"2025-10-28T13:45:24.792Z"},"timestamp":"2025-10-28T13:45:24.792Z"}
+{"endpoint":"/api/api/admin/users","level":"warn","message":"404 - Route not found","method":"GET","status":200,"timestamp":"2025-10-28T13:45:24.793Z"}
+{"level":"info","message":{"endpoint":"/api/users/login","method":"POST","status":200,"timestamp":"2025-10-28T13:56:59.223Z"},"timestamp":"2025-10-28T13:56:59.223Z"}
+{"level":"info","message":{"endpoint":"/api/llm/simplify","method":"POST","status":200,"timestamp":"2025-10-28T13:57:08.050Z"},"timestamp":"2025-10-28T13:57:08.051Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:57:35.263Z"},"timestamp":"2025-10-28T13:57:35.263Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T13:57:50.653Z"},"timestamp":"2025-10-28T13:57:50.653Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T14:02:04.309Z"},"timestamp":"2025-10-28T14:02:04.310Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T14:02:06.138Z"},"timestamp":"2025-10-28T14:02:06.140Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T14:02:43.106Z"},"timestamp":"2025-10-28T14:02:43.107Z"}
+{"level":"info","message":{"endpoint":"/api/llm/history","method":"GET","status":200,"timestamp":"2025-10-28T14:03:42.224Z"},"timestamp":"2025-10-28T14:03:42.224Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T14:03:43.549Z"},"timestamp":"2025-10-28T14:03:43.549Z"}
+{"level":"info","message":{"endpoint":"/api/llm/report","method":"GET","status":200,"timestamp":"2025-10-28T14:03:47.016Z"},"timestamp":"2025-10-28T14:03:47.016Z"}
