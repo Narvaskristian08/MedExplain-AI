@@ -13,8 +13,9 @@ import { authenticateToken, authorizeRole } from "../../../middleware/auth.js";
 const router = Router();
 
 // Public routes
-// POST /api/users/register → Register user/admin
+// POST /api/users/registe r → Register user/admin
 router.post("/register", registerUser);
+
 
 // PATCH /api/users/verify → Personnel Verification
 router.patch("/verify", authenticateToken, authorizeRole(["admin"]), verifyUser);

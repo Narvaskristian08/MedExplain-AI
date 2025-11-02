@@ -168,6 +168,7 @@ export const getUserProfile = async (req, res) => {
   }
 };
 
+
 // Logout user
 export const logoutUser = async (req, res) => {
   try {

@@ -1,8 +1,9 @@
+// src/pages/SimplifyPage.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import UploadIcon from "../assets/upload.svg";
-import { apiService } from "../services/api";
+import api from "../services/api"; // ← CHANGED: Use api, not apiService
 import { FaSpinner, FaHistory } from "react-icons/fa";
 
 const SimplifyPage = ({ user, onLogout }) => {
@@ -56,78 +57,74 @@ const SimplifyPage = ({ user, onLogout }) => {
     setError("");
   };
 
-const handleSubmit = async (data, inputType) => {
-  // ---------- validation ----------
-  if (inputType === "text" && !data.trim()) {
-    setError("Please enter text to simplify.");
-    return;
-  }
-  if (inputType === "file" && !data) {
-    setError("Please upload a file to simplify.");
-    return;
-  }
-
-  setIsLoading(true);
-  setShowModal(true);
-
-  const token = user ? localStorage.getItem("token") : null;
-  const isGuest = !user;
-
-  console.log("Submitting:", {
-    mode: isGuest ? "GUEST" : "AUTHENTICATED",
-    token: token ? "present" : "none",
-    inputType,
-  });
-
-  try {
-    const formData = new FormData();
-    if (inputType === "text") {
-      formData.append("text", data);
-      formData.append("inputType", "text");
-    } else {
-      formData.append("file", data);
-      formData.append(
-        "inputType",
-        data.type.includes("pdf") ? "pdf" : "doc"
-      );
+  const handleSubmit = async (data, inputType) => {
+    // ---------- validation ----------
+    if (inputType === "text" && !data.trim()) {
+      setError("Please enter text to simplify.");
+      return;
+    }
+    if (inputType === "file" && !data) {
+      setError("Please upload a file to simplify.");
+      return;
     }
 
-    // ONLY add Authorization header when a token exists
-    const headers = {};
-    if (token) {
-      headers.Authorization = `Bearer ${token}`;
+    setIsLoading(true);
+    setShowModal(true);
+
+    const token = localStorage.getItem("token");
+    const isGuest = !token;
+
+    console.log("=== SUBMIT DEBUG ===");
+    console.log("Token exists:", !!token);
+    console.log("Token value:", token ? `${token.substring(0, 30)}...` : "none");
+    console.log("User state:", user);
+    console.log("Mode:", isGuest ? "GUEST" : "AUTHENTICATED");
+    console.log("Input type:", inputType);
+
+    try {
+      const formData = new FormData();
+      if (inputType === "text") {
+        formData.append("text", data);
+        formData.append("inputType", "text");
+      } else {
+        formData.append("file", data);
+        formData.append(
+          "inputType",
+          data.type.includes("pdf") ? "pdf" : "doc"
+        );
+      }
+
+      console.log("[Frontend] Sending request to /llm/simplify");
+
+      // ← CHANGED: Use api.post() → triggers interceptor
+      const response = await api.post("/llm/simplify", formData);
+
+      console.log("[Frontend] Response received:", response.data);
+      const simplifiedText = response.data.simplified;
+
+      navigate("/result", {
+        state: {
+          originalText: inputType === "text" ? data : data.name,
+          simplifiedText,
+        },
+      });
+    } catch (err) {
+      console.error("API Error:", err.response?.data || err.message);
+      const errorMsg =
+        err.response?.data?.error || err.message || "Request failed";
+      setError(`Error: ${errorMsg}`);
+
+      if (err.response?.status === 401 && token) {
+        setError("Session expired. Please log in again.");
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        onLogout?.();
+      }
+    } finally {
+      setIsLoading(false);
+      setShowModal(false);
     }
-
-    const response = await apiService.post(
-      "/llm/simplify",
-      formData,
-      { headers }
-    );
-
-    const simplifiedText = response.data.simplified;
-
-    navigate("/result", {
-      state: {
-        originalText: inputType === "text" ? data : data.name,
-        simplifiedText,
-      },
-    });
-  } catch (err) {
-    console.error("API Error:", err.response?.data || err.message);
-    const errorMsg =
-      err.response?.data?.error || err.message || "Request failed";
-    setError(`Error: ${errorMsg}`);
-
-    // If we get 401 while logged-in → force logout
-    if (err.response?.status === 401 && user) {
-      setError("Session expired. Please log in again.");
-      onLogout?.();
-    }
-  } finally {
-    setIsLoading(false);
-    setShowModal(false);
-  }
-};
+  };
 
   const handleTextSubmit = (e) => {
     e.preventDefault();
@@ -158,7 +155,10 @@ const handleSubmit = async (data, inputType) => {
             Simplify Medical Documents
           </h1>
           <p className="font-sans mt-4 text-xl text-gray-600">
-            {user ? "Simplify your medical notes securely with your account." : "Upload or paste medical notes to simplify—no login required!"}
+            {user 
+              ? `Logged in as ${user.name || user.email || user.id}` 
+              : "Upload or paste medical notes to simplify—no login required!"
+            }
           </p>
 
           {/* History Button */}

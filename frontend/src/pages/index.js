@@ -13,3 +13,4 @@ export {default as HistoryPage } from './HistoryPage';
 export {default as ErrorPage } from './ErrorPage';
 export {default as ReportPage } from './ReportPage';
 export {default as AdminDashboard } from './AdminDashboard';
+export {default as AdminLoginPage } from './AdminLoginPage';

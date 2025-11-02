@@ -1,84 +1,54 @@
+// src/services/api.js
 import axios from "axios";
 
-// Create axios instance with base configuration
+// Create axios instance
 const api = axios.create({
   baseURL: "http://localhost:4000/api",
-  // Remove default Content-Type to let axios handle it for FormData
 });
 
-// Request interceptor to add auth token
+// Request interceptor — adds token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
-    console.log("Request token:", token); // Debug log
+    console.log("Sending token:", token ? "YES" : "NO");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    // If data is FormData, let axios set Content-Type with boundary
+    // Let axios handle FormData boundary
     if (config.data instanceof FormData) {
-      delete config.headers["Content-Type"]; // Allow axios to set multipart boundary
+      delete config.headers["Content-Type"];
     } else if (!config.headers["Content-Type"]) {
-      config.headers["Content-Type"] = "application/json"; // Default for non-FormData
+      config.headers["Content-Type"] = "application/json";
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Response interceptor to handle errors
+// Response interceptor — handle 401
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (res) => res,
   (error) => {
     if (error.response?.status === 401 || error.response?.status === 403) {
-      console.log("Authentication error detected:", error.response.data);
-      // Clear storage
+      console.log("Auth error → clearing token");
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      // Dispatch custom event for React to handle navigation
-      window.dispatchEvent(new CustomEvent("authError", { detail: error.response.data }));
+      window.dispatchEvent(new CustomEvent("authError"));
     }
     return Promise.reject(error);
   }
 );
 
-// Auth API methods
+// Auth methods
 export const authAPI = {
-  login: async (email, password) => {
-    const response = await api.post("/users/login", { email, password });
-    return response.data;
-  },
-
-  register: async (userData) => {
-    const response = await api.post("/users/register", userData);
-    return response.data;
-  },
-
-  logout: async () => {
-    const response = await api.post("/users/logout");
-    return response.data;
-  },
-
-  getProfile: async () => {
-    const response = await api.get("/users/profile");
-    return response.data;
-  },
-
-  getUsers: async () => {
-    const response = await api.get("/users");
-    return response.data;
-  },
+  login: (email, password) =>
+    api.post("/users/login", { email, password }).then((r) => r.data),
+  register: (data) =>
+    api.post("/users/register", data).then((r) => r.data),
+  logout: () => api.post("/users/logout").then((r) => r.data),
+  getProfile: () => api.get("/users/profile").then((r) => r.data),
+  getUsers: () => api.get("/users").then((r) => r.data),
 };
 
-// Generic API methods
-export const apiService = {
-  get: (url) => api.get(url),
-  post: (url, data, config = {}) => api.post(url, data, config), // Allow custom config
-  put: (url, data, config = {}) => api.put(url, data, config),
-  delete: (url, config = {}) => api.delete(url, config),
-};
-
+// Export api directly
 export default api;

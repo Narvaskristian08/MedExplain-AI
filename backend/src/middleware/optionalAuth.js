@@ -1,22 +1,26 @@
 // middleware/optionalAuth.js
-import jwt from "jsonwebtoken";
+import { verifyToken, extractToken } from '../utils/jwt.js'; // ← USE THIS
 
 export const optionalAuth = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  const token = authHeader?.startsWith("Bearer ") ? authHeader.split(" ")[1] : null;
+  const token = extractToken(req); // ← USE extractToken
+
+  console.log("[optionalAuth] Token:", token ? "YES" : "NO");
 
   if (!token) {
-    // No token → guest mode
     req.user = null;
     return next();
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { id: decoded.id };
+    const decoded = verifyToken(token); // ← USE verifyToken() → SAME SECRET
+    req.user = { 
+      id: decoded.id || decoded._id,
+      role: decoded.role || "user"
+    };
+    console.log("[optionalAuth] Valid user:", req.user.id);
     next();
   } catch (err) {
-    // Invalid token → treat as guest
+    console.warn("[optionalAuth] Invalid token:", err.message);
     req.user = null;
     next();
   }

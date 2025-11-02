@@ -38,10 +38,6 @@ function extractFallbackTerms(text) {
   return [...terms];
 }
 
-function isLikelyMisunderstood(term) {
-  return term.length > 10 ? 1 : 0;
-}
-
 function hasUsageInstructions(term) {
   return /take|dose|daily|twice|three times|morning|night|with food|empty stomach|mg|tablet|capsule|ml|injection|as needed/i.test(term) ? 1 : 0;
 }
@@ -103,103 +99,137 @@ export const simplifyText = async (req, res) => {
   // -------------------------------
   try {
     const simplifyStart = Date.now();
-    const simplified = await simplifyMedicalText(inputText);
+    const result = await simplifyMedicalText(inputText);
     console.log(`Simplified in ${Date.now() - simplifyStart}ms`);
 
-    res.json({ simplified });
+    // Handle both old string format and new object format
+    let simplified, simpScore, bracketedTerms;
+    
+    if (typeof result === 'object' && result !== null) {
+      // New format: object with patientPlainText, terms, score
+      simplified = result.patientPlainText || "";
+      simpScore = result.score || 0;
+      bracketedTerms = result.terms || [];
+      
+      // Send response immediately
+      res.json({ 
+        simplified,
+        score: simpScore,
+        termsFound: bracketedTerms.length
+      });
+    } else {
+      // Old format: string
+      simplified = result || "";
+      
+      // Send response immediately
+      res.json({ simplified });
+      
+      // Calculate simpScore the old way
+      const originalLen = inputText.split(/\s+/).length;
+      const simplifiedLen = simplified.split(/\s+/).length;
+      simpScore = Math.min(10, Math.max(0, 10 * (1 - simplifiedLen / originalLen)));
+      
+      bracketedTerms = [];
+    }
 
-    if (simplified.trim() === "Its not medical related") {
+    // Check for non-medical content
+    if (simplified.includes("does not appear to be medical-related") || 
+        simplified.trim() === "Its not medical related") {
       logger.info("Non-medical content detected", { identifier });
+      if (req.file) await fs.unlink(req.file.path).catch(() => {});
       return;
     }
 
-    // -------------------------------
-    // Compute simpScore
-    // -------------------------------
-    const originalLen = inputText.split(/\s+/).length;
-    const simplifiedLen = simplified.split(/\s+/).length;
-    const simpScore = Math.min(10, Math.max(0, 10 * (1 - simplifiedLen / originalLen)));
-
-    console.log(
-      `simpScore computed: ${simpScore.toFixed(2)} (original ${originalLen} → simplified ${simplifiedLen})`
-    );
+    console.log(`simpScore: ${simpScore.toFixed(2)}`);
 
     // -------------------------------
-    // Save Simplification Record
+    // Save Simplification Record (async, after response sent)
     // -------------------------------
-    try {
-      const simplification = new Simplification({
-        userId: identifier,
-        isGuest,
-        inputType: effectiveInputType,
-        originalText: inputText,
-        simplifiedText: simplified,
-        simpScore,
-        createdAt: new Date(),
-      });
-      await simplification.save();
-    } catch (mongoErr) {
-      logger.warn("MongoDB save failed, fallback to JSON", { error: mongoErr.message });
-      let history = [];
+    setImmediate(async () => {
       try {
-        history = JSON.parse(await fs.readFile(historyFile, "utf8"));
-      } catch {
-        history = [];
-      }
-      history.push({
-        userId: identifier,
-        isGuest,
-        inputType: effectiveInputType,
-        originalText: inputText,
-        simplifiedText: simplified,
-        simpScore,
-        timestamp: new Date().toISOString(),
-      });
-      await fs.writeFile(historyFile, JSON.stringify(history, null, 2));
-    }
-
-    // -------------------------------
-    // Analytics Tracking (FILTERED: only medical terms)
-    // -------------------------------
-    try {
-      // Extract [[term]] from LLM output
-      const bracketed = new Set();
-      const bracketRE = /\[\[([^\]]+)\]\]/g;
-      let m;
-      while ((m = bracketRE.exec(simplified))) {
-        const term = m[1].trim().toLowerCase().replace(/[^a-z0-9-]/g, "");
-        if (term && !STOP_WORDS.has(term) && term.length > 2) bracketed.add(term);
-      }
-
-      // Fallback: high-value medical terms from original input
-      let finalTerms = [...bracketed];
-      if (finalTerms.length === 0) {
-        finalTerms = extractFallbackTerms(inputText);
-      }
-
-      for (const term of finalTerms) {
-        const existing = await Analytics.findOne({ term });
-
-        if (existing) {
-          existing.usagecount += 1;
-          existing.simpScore = simpScore;
-          existing.timestamp = new Date();
-          await existing.save();
-        } else {
-          await Analytics.create({
-            term,
-            simpScore,
-            misunderstood: isLikelyMisunderstood(term) ? 1 : 0,
-            usageInstr: hasUsageInstructions(term) ? 1 : 0,
-          });
+        const simplification = new Simplification({
+          userId: identifier,
+          isGuest,
+          inputType: effectiveInputType,
+          originalText: inputText,
+          simplifiedText: simplified,
+          simpScore,
+          createdAt: new Date(),
+        });
+        await simplification.save();
+      } catch (mongoErr) {
+        logger.warn("MongoDB save failed, fallback to JSON", { error: mongoErr.message });
+        let history = [];
+        try {
+          history = JSON.parse(await fs.readFile(historyFile, "utf8"));
+        } catch {
+          history = [];
         }
+        history.push({
+          userId: identifier,
+          isGuest,
+          inputType: effectiveInputType,
+          originalText: inputText,
+          simplifiedText: simplified,
+          simpScore,
+          timestamp: new Date().toISOString(),
+        });
+        await fs.writeFile(historyFile, JSON.stringify(history, null, 2));
       }
-      console.log(`Analytics updated (${finalTerms.length} medical terms saved)`);
-    } catch (analyticErr) {
-      logger.error("Analytics update failed", { error: analyticErr.message });
-    }
 
-    if (req.file) await fs.unlink(req.file.path).catch(() => {});
+      // -------------------------------
+      // Analytics Tracking
+      // -------------------------------
+      try {
+        // If we have bracketedTerms from new format, use them
+        let finalTerms = bracketedTerms;
+        
+        // Otherwise extract from simplified text
+        if (!finalTerms || finalTerms.length === 0) {
+          const bracketedSet = new Set();
+          const bracketRE = /\[\[([^\]]+)\]\]/g;
+          let m;
+          while ((m = bracketRE.exec(simplified))) {
+            const term = m[1].trim().toLowerCase().replace(/[^a-z0-9-]/g, "");
+            if (term && !STOP_WORDS.has(term) && term.length > 2) bracketedSet.add(term);
+          }
+          
+          finalTerms = [...bracketedSet];
+          
+          // Fallback to pattern detection
+          if (finalTerms.length === 0) {
+            finalTerms = extractFallbackTerms(inputText);
+          }
+        }
+
+        for (const term of finalTerms) {
+          const existing = await Analytics.findOne({ term });
+
+          if (existing) {
+            existing.usagecount += 1;
+            existing.simpScore = simpScore;
+            existing.timestamp = new Date();
+            existing.misunderstood += 1;
+            await existing.save();
+          } else {
+            await Analytics.create({
+              term,
+              simpScore,
+              usagecount: 1,
+              misunderstood: 1,
+              usageInstr: hasUsageInstructions(term) ? 1 : 0,
+              timestamp: new Date(),
+            });
+          }
+        }
+        console.log(`Analytics updated (${finalTerms.length} terms)`);
+      } catch (analyticErr) {
+        logger.error("Analytics update failed", { error: analyticErr.message });
+      }
+
+      if (req.file) await fs.unlink(req.file.path).catch(() => {});
+    });
+
   } catch (err) {
     logger.error("Simplification error", { error: err.message });
     if (req.file) await fs.unlink(req.file.path).catch(() => {});
@@ -213,21 +243,59 @@ export const simplifyText = async (req, res) => {
 // Get History
 // ======================================================
 export const getHistory = async (req, res) => {
-  console.log(`[Start] getHistory`);
   const userId = req.user?.id;
+  const isAdmin = req.user?.role === "admin";
 
   if (!userId) return res.status(401).json({ error: "Authentication required" });
 
   try {
-    const history = await Simplification.find({ userId }).sort({ createdAt: -1 });
-    res.json(history);
+    const query = isAdmin ? {} : { userId };
+    const history = await Simplification.find(query)
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .lean();
+
+    const activity = history.map(entry => {
+      const base = {
+        user: entry.isGuest ? `Guest (${entry.userId.slice(-6)})` : entry.userId,
+        action:
+          entry.inputType === "text" ? "Text Input" :
+          entry.inputType === "pdf" ? "PDF Simplified" :
+          entry.inputType === "doc" ? "DOCX Simplified" : "Simplified",
+        document: entry.simplifiedText.substring(0, 35) + (entry.simplifiedText.length > 35 ? "..." : ""),
+        time: new Date(entry.createdAt).toLocaleString("en-US", {
+          hour: "2-digit", minute: "2-digit", hour12: true, day: "numeric", month: "short"
+        }),
+      };
+
+      if (!isAdmin && entry.userId !== userId) return base;
+      return { ...base, originalText: entry.originalText, simplifiedText: entry.simplifiedText };
+    });
+
+    res.json(activity);
   } catch (err) {
     logger.warn("MongoDB fetch failed, fallback JSON", { error: err.message });
     try {
       const data = JSON.parse(await fs.readFile(historyFile, "utf8"));
-      const userHistory = data
-        .filter((entry) => entry.userId === userId)
-        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      const filtered = isAdmin ? data : data.filter(e => e.userId === userId);
+      const userHistory = filtered
+        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+        .slice(0, 10)
+        .map(entry => {
+          const base = {
+            user: entry.isGuest ? `Guest (${entry.userId.slice(-6)})` : entry.userId,
+            action:
+              entry.inputType === "text" ? "Text Input" :
+              entry.inputType === "pdf" ? "PDF Simplified" :
+              entry.inputType === "doc" ? "DOCX Simplified" : "Simplified",
+            document: entry.simplifiedText.substring(0, 35) + (entry.simplifiedText.length > 35 ? "..." : ""),
+            time: new Date(entry.timestamp).toLocaleString("en-US", {
+              hour: "2-digit", minute: "2-digit", hour12: true, day: "numeric", month: "short"
+            }),
+          };
+          if (!isAdmin && entry.userId !== userId) return base;
+          return { ...base, originalText: entry.originalText, simplifiedText: entry.simplifiedText };
+        });
       res.json(userHistory);
     } catch {
       res.json([]);
@@ -236,79 +304,83 @@ export const getHistory = async (req, res) => {
 };
 
 // ======================================================
-// Get Report (Analytics Dashboard) - WITH ALL FIELDS
+// Get Report (Analytics Dashboard)
 // ======================================================
 export const getReport = async (req, res) => {
   console.log("[Start] getReport");
 
   try {
-    const totalSimplifications = await Simplification.countDocuments();
-    const uniqueUsers = await Simplification.distinct("userId");
-    const totalUniqueUsers = uniqueUsers.length;
+    const totalQueries = await Simplification.countDocuments();
 
-    const lastWeek = new Date();
-    lastWeek.setDate(lastWeek.getDate() - 7);
-    const activeUsers = await Simplification.distinct("userId", {
-      createdAt: { $gte: lastWeek },
-    });
-    const activeUserCount = activeUsers.length;
-
-    const averageSimpScoreData = await Simplification.aggregate([
-      { $group: { _id: null, avgScore: { $avg: "$simpScore" } } },
-    ]);
-    const averageSimpScore = averageSimpScoreData[0]?.avgScore || 0;
-
-    // Get document type counts
-    const documentCounts = await Simplification.aggregate([
-      { $group: { _id: "$inputType", count: { $sum: 1 } } }
-    ]);
-    
-    const docCounts = {
-      pdf: documentCounts.find(d => d._id === 'pdf')?.count || 0,
-      docx: documentCounts.find(d => d._id === 'doc')?.count || 0,
-      text: documentCounts.find(d => d._id === 'text')?.count || 0,
-    };
-
-    // Get top misunderstood terms with ALL fields
-    const topMisunderstood = await Analytics.find()
-      .sort({ misunderstood: -1 })
-      .limit(20)
-      .select('term usagecount simpScore misunderstood usageInstr timestamp')
+    // Fetch all tracked terms
+    const allTerms = await Analytics.find()
+      .select("term usagecount simpScore misunderstood usageInstr timestamp")
+      .sort({ usagecount: -1 })
       .lean();
 
-    const recentSimplifications = await Simplification.find()
-      .sort({ createdAt: -1 })
-      .limit(20)
-      .lean();
+    const totalTerms = allTerms.length;
+    const misunderstoodCount = allTerms.reduce((a, t) => a + (t.misunderstood || 0), 0);
+    const instrCount = allTerms.reduce((a, t) => a + (t.usageInstr || 0), 0);
 
-    // Structure to match frontend expectations
-    const reportData = {
-      totalQueries: totalSimplifications,
-      activeUsers: activeUserCount,
-      summary: {
-        totalSimplifications,
-        totalUniqueUsers,
-        activeUserCount,
-        averageSimpScore: Number(averageSimpScore.toFixed(2)),
+    const topMisunderstood = allTerms
+      .sort((a, b) => b.misunderstood - a.misunderstood)
+      .slice(0, 10);
+
+    const docBreakdown = await Simplification.aggregate([
+      {
+        $group: { _id: "$inputType", count: { $sum: 1 } },
       },
-      documentCounts: docCounts,
-      topMisunderstood: topMisunderstood.map(t => ({ 
-        term: t.term,
-        usagecount: t.usagecount || 0,
-        simpScore: t.simpScore || 0,
-        misunderstood: t.misunderstood || 0,
-        usageInstr: t.usageInstr || 0,
-        timestamp: t.timestamp,
-      })),
-      recentSimplifications,
+      {
+        $project: {
+          _id: 0,
+          name: {
+            $switch: {
+              branches: [
+                { case: { $eq: ["$_id", "pdf"] }, then: "PDF" },
+                { case: { $eq: ["$_id", "doc"] }, then: "DOCX" },
+                { case: { $eq: ["$_id", "text"] }, then: "Text Input" },
+              ],
+              default: "Other",
+            },
+          },
+          value: "$count",
+        },
+      },
+    ]);
+
+    const docTypeBreakdown = [
+      { name: "PDF", value: 0 },
+      { name: "DOCX", value: 0 },
+      { name: "Text Input", value: 0 },
+    ];
+
+    docBreakdown.forEach(item => {
+      const match = docTypeBreakdown.find(d => d.name === item.name);
+      if (match) match.value = item.value;
+    });
+
+    // ✅ Combine everything
+    const report = {
+      totalQueries,
+      totalTerms,
+      misunderstoodCount,
+      instrCount,
+      allTerms,
+      topMisunderstood,
+      docTypeBreakdown,
     };
 
-    console.log("[getReport completed]");
-    console.log("Sending report with fields:", Object.keys(reportData.topMisunderstood[0] || {}));
+    console.log("[getReport] Success →", {
+      totalQueries,
+      totalTerms,
+      misunderstoodCount,
+      instrCount,
+      docTypes: docTypeBreakdown,
+    });
 
-    return res.status(200).json(reportData);
+    return res.json(report);
   } catch (err) {
     console.error("getReport error:", err);
-    return res.status(500).json({ error: "Failed to generate report", details: err.message });
+    return res.status(500).json({ error: "Failed to generate report" });
   }
 };

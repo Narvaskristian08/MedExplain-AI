@@ -1,266 +1,344 @@
+// ---------------------------------------------------------------
+// simplifyMedicalText.js   (FINAL: PLAIN ENGLISH ONLY FOR PATIENT)
+// ---------------------------------------------------------------
 import fetch from "node-fetch";
-import path from "path";
 import fs from "fs";
+import path from "path";
 import { fileURLToPath } from "url";
 import { saveTermToExcel, logAllMedicalTermsToExcel } from "../analytics/excel.js";
 import Analytics from "./models/analytics.model.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const excelFolderPath = path.join(path.resolve(process.cwd(), "kpi"), "dataanalytics");
+const excelFolderPath = path.join(process.cwd(), "kpi", "dataanalytics");
+fs.mkdirSync(excelFolderPath, { recursive: true });
 
-if (!fs.existsSync(excelFolderPath)) {
-  fs.mkdirSync(excelFolderPath, { recursive: true });
-  console.log("Created folder:", excelFolderPath);
+// ---------------------------------------------------------------
+// 0. NON-MEDICAL GUARD
+// ---------------------------------------------------------------
+const medicalKeywords = new Set([
+  "fever","fatigue","pain","cough","dyspnea","edema","swelling","tender","stiffness",
+  "nausea","vomiting","headache","dizziness","palpitation","arrhythmia","chestpain",
+  "hypertension","diabetes","asthma","copd","pneumonia","tuberculosis","stroke",
+  "myocardial","infarction","heart","failure","arthritis","rheumatoid","osteopenia",
+  "crp","esr","ana","rf","anti-ccp","cbc","plt","hgb","ecg","x-ray","echo",
+  "mg","ml","tablet","capsule","daily","weekly","methotrexate","prednisone","furosemide",
+  "losartan","salbutamol","omeprazole","atorvastatin","lisinopril","insulin","metformin",
+  "amoxicillin","ibuprofen","paracetamol","cephalexin","cellulitis","migraine","sumatriptan",
+  "blood pressure","heart rate","temperature","dose","prescription","diagnosis",
+  "infection","respiratory","tract","upper","lower","viral","bacterial","sinus","throat","nose",
+  "ear","skin","urinary","uti","lungs","bronchi","pharynx","larynx","tonsil"
+]);
+
+const medicalPhrases = [
+  "upper respiratory tract infection",
+  "lower respiratory tract infection",
+  "urinary tract infection",
+  "respiratory infection",
+  "sinus infection",
+  "ear infection",
+  "skin infection",
+  "viral infection",
+  "bacterial infection"
+];
+
+function looksMedical(txt) {
+  const lower = txt.toLowerCase();
+  let hits = [...medicalKeywords].filter(k => lower.includes(k)).length;
+  for (const phrase of medicalPhrases) {
+    if (lower.includes(phrase)) hits += 2;
+  }
+  const dosePattern = /\d+\s*(mg|ml|mmhg|bpm)/i.test(lower);
+  return hits >= 1 || dosePattern;
 }
 
-// Common medical term typos and corrections
+// ---------------------------------------------------------------
+// 1. Typos
+// ---------------------------------------------------------------
 const medicalTypos = {
-  "infraction": "infarction",
-  "mycardial": "myocardial",
-  "myocardal": "myocardial",
-  "diabetis": "diabetes",
-  "pnemonia": "pneumonia",
-  "asma": "asthma",
-  "bronchities": "bronchitis",
-  "hipertension": "hypertension",
+  infraction: "infarction",
+  mycardial: "myocardial",
+  myocardal: "myocardial",
+  diabetis: "diabetes",
+  pnemonia: "pneumonia",
+  asma: "asthma",
+  bronchities: "bronchitis",
+  hipertension: "hypertension",
+  SGRAPIN: "ANA",
+  pericardial: "periarticular",
+  LANAPositive: "ANA",
+  "NegativeRFNegativeNegativeAnti": "RF",
+  CCPPositiveNegativeCBCWBC: "Anti-CCP",
 };
 
-function correctMedicalTypos(text) {
-  let corrected = text;
-  Object.entries(medicalTypos).forEach(([typo, correct]) => {
-    const regex = new RegExp(`\\b${typo}\\b`, 'gi');
-    corrected = corrected.replace(regex, correct);
-  });
-  return corrected;
+function correctMedicalTypos(txt) {
+  let s = txt;
+  for (const [bad, good] of Object.entries(medicalTypos)) {
+    s = s.replace(new RegExp(`\\b${bad}\\b`, "gi"), good);
+  }
+  return s;
 }
 
-function isLikelyMisunderstood(term) {
-  const clean = term.replace(/[^a-z0-9]/gi, "");
-  return clean.length > 10 ? 1 : 0;
-}
-
-function hasUsageInstructions(text) {
-  return /take|dose|daily|twice|three times|morning|night|with food|empty stomach|mg|tablet|capsule|ml|injection|as needed/i.test(text);
-}
-
-function syllableCount(word) {
-  word = word.toLowerCase().replace(/[^a-z]/g, "");
-  if (word.length <= 3) return 1;
-  word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, "");
-  word = word.replace(/^y/, "");
-  return (word.match(/[aeiouy]{1,2}/g) || []).length || 1;
-}
-
-function calculateSimpScore(text, bracketedTerms = 0) {
-  const sentences = text.split(/[.!?]+/).filter(Boolean);
-  const words = text.split(/\s+/).filter(Boolean);
-  if (!words.length) return 0;
-
-  const totalSyllables = words.reduce((s, w) => s + syllableCount(w), 0);
-  const avgSyllables = totalSyllables / words.length;
-  const avgWordsPerSentence = words.length / (sentences.length || 1);
-  const fkGrade = 0.39 * avgWordsPerSentence + 11.8 * avgSyllables - 15.59;
-
-  let score = Math.max(0, 10 - fkGrade * 0.8);
-  score = Math.min(10, score);
-  score = Math.max(0, score - Math.min(3, bracketedTerms * 0.5));
-
-  const friendly = /(you|please|easy|simple|just|let|we|us|friend|take|with food|at bedtime)/gi;
-  const friendlyCount = (text.match(friendly) || []).length;
-  score = Math.min(10, score + Math.min(3, friendlyCount * 0.4));
-
-  return Math.round(score * 2) / 2;
-}
-
-function cleanLLMOutput(text) {
-  let cleaned = text.replace(/\s{2,}/g, " ").trim();
-  const medicalTerms = {
-    "short ness": "shortness",
-    "bron ch itis": "bronchitis",
-    "respir atory": "respiratory",
-    "rh on chi": "rhonchi",
-    "ery th ema": "erythema",
-    "ex ud ates": "exudates",
-    "par acet am ol": "paracetamol",
-    "di agn oses": "diagnoses",
-    "vir al": "viral",
-    "pneum onia": "pneumonia",
-    "infarction": "infarction",
-    "my oc ardial": "myocardial",
-    "hyper tension": "hypertension",
-    "tem perature": "temperature",
-    "di ar rhea": "diarrhea",
-  };
-  Object.keys(medicalTerms).forEach((key) => {
-    const regex = new RegExp(`\\b${key.replace(/\s+/g, "\\s+")}\\b`, "gi");
-    cleaned = cleaned.replace(regex, medicalTerms[key]);
-  });
-  cleaned = cleaned.replace(/\s+/g, " ");
-  return cleaned;
-}
-
-// Enhanced fallback term detection
-function extractFallbackTerms(text) {
-  const terms = new Set();
-  
-  // Comprehensive medical patterns
-  const patterns = [
-    // Symptoms
-    /\b(dry cough|wet cough|cough|fever|low-grade fever|fatigue|sore throat|chest pain|shortness of breath|difficulty breathing|wheezing|dizziness|nausea|vomiting|diarrhea|headache|body aches)\b/gi,
-    // Conditions
-    /\b(myocardial infarction|heart attack|stroke|hypertension|diabetes|asthma|bronchitis|pneumonia|tuberculosis|COVID-19|COPD|angina|arrhythmia)\b/gi,
-    // Medications
-    /\b(aspirin|paracetamol|ibuprofen|amoxicillin|metformin|insulin|lisinopril|atorvastatin|omeprazole|salbutamol)\b/gi,
-    // Dosages
-    /\b\d+\s*(mg|ml|tablet|capsule|dose|daily|twice daily|three times daily)\b/gi,
-    // Medical terms
-    /\b(sputum|edema|inflammation|infection|vital signs|blood pressure|heart rate|respiratory rate|temperature)\b/gi,
-  ];
-
-  patterns.forEach(pattern => {
-    let match;
-    while ((match = pattern.exec(text))) {
-      terms.add(match[0].toLowerCase());
+// ---------------------------------------------------------------
+// 2. Chunking
+// ---------------------------------------------------------------
+function chunkText(text, maxWords = 200) {
+  const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+  const chunks = [];
+  let cur = "", wc = 0;
+  for (const s of sentences) {
+    const sw = s.trim().split(/\s+/).filter(Boolean).length;
+    if (wc + sw > maxWords && cur) {
+      chunks.push(cur.trim());
+      cur = s; wc = sw;
+    } else {
+      cur += " " + s; wc += sw;
     }
-  });
-
-  return [...terms];
+  }
+  if (cur.trim()) chunks.push(cur.trim());
+  return chunks;
 }
 
-export async function simplifyMedicalText(text) {
+// ---------------------------------------------------------------
+// 3. LLM CALL
+// ---------------------------------------------------------------
+async function simplifyChunk(chunk) {
+  const system = `You are a medical simplification expert.
+RULES:
+1. Replace EVERY medical term with: [[Term]] (simple English meaning)
+2. Use SHORT, EASY words.
+3. Keep ALL facts.
+4. Output ONLY the simplified text.`;
+
+  const fewShot = `
+Input: Acute bronchitis with fever.
+Output: You have [[bronchitis]] (lung infection) with [[fever]] (high body temperature).
+
+Input: Take paracetamol 500 mg.
+Output: Take [[paracetamol]] (pain and fever medicine) 500 mg.
+
+Input: Rhonchi in right lower lobe.
+Output: Crackling sound [[rhonchi]] in lower right lung.`;
+
+  const prompt = `${system}\n${fewShot}\n\nSimplify:\n${chunk}\n\nOutput:`;
+
   try {
-    console.log("\n=== FULL INPUT DOCUMENT ===");
-    console.log(text);
-
-    // Correct common typos BEFORE processing
-    const correctedText = correctMedicalTypos(text);
-    console.log("\n=== CORRECTED TEXT ===");
-    console.log(correctedText);
-
-    await logAllMedicalTermsToExcel(correctedText, 0, excelFolderPath);
-    console.log("[Step 1] Logged all medical terms with placeholder score");
-
-    const systemPrompt = `
-You are MedExplain AI – a kind nurse explaining to an older patient.
-
-Your job:
-- Read the entire medical document below.
-- Rewrite it in simple, everyday English.
-- Replace EVERY medical term, drug name, dosage, diagnosis, and instruction with plain words and bracket the original term like [[original term]].
-- IMPORTANT: Even if the input has typos, recognize the medical intent and bracket the term. For example:
-  * "myocardial infraction" → "[[myocardial infarction]]" (correct spelling)
-  * "what is mycardial infraction" → "A [[myocardial infarction]] is..."
-- Keep the meaning 100% accurate.
-- Use short sentences.
-- Be warm and clear.
-- Do not add extra spaces within words.
-
-Examples:
-- Input: "Patient has dry cough"
-  Output: "The patient has a [[dry cough]] - a cough without mucus."
-
-- Input: "what is myocardial infraction" 
-  Output: "A [[myocardial infarction]] (heart attack) happens when blood flow to part of the heart is blocked."
-
-Return ONLY the simplified version with [[bracketed terms]]. No headings. No notes.
-- If it's not medical related, say "Its not medical related"
-
-Document:
-"""${correctedText}"""
-`.trim();
-
-    const fetchStart = Date.now();
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000);
-    const resp = await fetch("http://localhost:11434/api/chat", {
+    const res = await fetch("http://localhost:11434/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "deepseek-r1:1.5b",
-        messages: [{ role: "system", content: systemPrompt }],
+        model: "gemma2:2b",
+        prompt,
+        stream: false,
+        options: { temperature: 0.1, num_predict: 1500, top_p: 0.9, top_k: 40 },
       }),
-      signal: controller.signal,
     });
-    clearTimeout(timeoutId);
-    console.log(`Fetch completed in ${Date.now() - fetchStart}ms`);
 
-    if (!resp.ok) {
-      const errorText = await resp.text();
-      throw new Error(`HTTP error! Status: ${resp.status}, Body: ${errorText}`);
-    }
+    if (!res.ok) throw new Error(`LLM ${res.status}`);
+    const { response = "" } = await res.json();
+    let output = response.trim() || chunk;
 
-    const raw = await resp.text();
-    console.log("\n=== OLLAMA RAW ===");
-    console.log(raw);
+    // === FORCE BRACKETS IF MISSING ===
+    const forceMap = {
+      "bronchitis": "lung infection",
+      "fever": "high body temperature",
+      "paracetamol": "pain and fever medicine",
+      "rhonchi": "crackling lung sound",
+      "erythema": "redness",
+      "tuberculosis": "TB lung disease",
+      "respiratory": "breathing",
+      "diagnosis": "what the doctor thinks is wrong",
+      "assessment": "doctor's check",
+      "symptomatic": "to help symptoms",
+      "hydration": "drink water"
+    };
 
-    const lines = raw.split("\n").filter(Boolean);
-    let combined = "";
-    for (const line of lines) {
-      try {
-        const obj = JSON.parse(line.replace(/^data:\s*/, ""));
-        if (obj.message?.content) combined += obj.message.content;
-      } catch (e) {
-        console.error("Parse error:", e.message, "Line:", line);
+    for (const [term, plain] of Object.entries(forceMap)) {
+      const regex = new RegExp(`\\b${term}\\b`, "gi");
+      if (regex.test(output) && !output.includes(`[[${term}]]`)) {
+        output = output.replace(regex, `[[${term}]] (${plain})`);
       }
     }
-    combined = combined.trim();
-    if (!combined) throw new Error("Empty response from LLM");
 
-    console.log("\n=== SIMPLIFIED (with [[term]]) ===");
-    console.log(combined);
+    return output;
 
-    combined = cleanLLMOutput(combined);
-    console.log("\n=== CLEANED SIMPLIFIED ===");
-    console.log(combined);
-
-    const bracketed = new Set();
-    const re = /\[\[([^\]]+)\]\]/g;
-    let m;
-    while ((m = re.exec(combined))) bracketed.add(m[1].trim());
-    console.log("\n=== EXTRACTED BRACKETED TERMS ===");
-    console.log([...bracketed]);
-
-    // Enhanced fallback: use both bracketed terms AND fallback detection
-    let termsToSave = [...bracketed];
-    if (termsToSave.length === 0) {
-      console.log("[FALLBACK] No bracketed terms found, using pattern detection...");
-      termsToSave = extractFallbackTerms(correctedText);
-    }
-    
-    console.log("\n=== TERMS TO SAVE ===");
-    console.log(termsToSave);
-
-    const finalScore = calculateSimpScore(combined, termsToSave.length);
-    await logAllMedicalTermsToExcel(correctedText, finalScore, excelFolderPath);
-    console.log(`[Step 5] Updated all terms with final simpScore: ${finalScore}`);
-
-    const entries = termsToSave.map((term) => ({
-      term: term.toLowerCase(),
-      usagecount: 1,
-      simpScore: finalScore,
-      misunderstood: isLikelyMisunderstood(term),
-      usageInstr: hasUsageInstructions(term) ? 1 : 0,
-      timestamp: new Date(),
-    }));
-
-    if (entries.length > 0) {
-      await Analytics.insertMany(entries);
-      console.log(`[MongoDB] Saved ${entries.length} analytics entry(ies)`);
-      
-      await saveTermToExcel(entries, excelFolderPath);
-      console.log(`[Excel] Saved ${entries.length} analytics entry(ies)`);
-    } else {
-      console.log(`[MongoDB] No terms to save (non-medical or empty)`);
-    }
-
-    const clean = combined.replace(/\[\[|\]\]/g, "").trim();
-    console.log("\n=== FINAL PATIENT VERSION ===");
-    console.log(clean);
-    return clean;
-
-  } catch (err) {
-    console.error("ERROR in simplifyMedicalText:", err.message, err.stack);
-    throw new Error("Failed to simplify document: " + err.message);
+  } catch (e) {
+    console.warn("LLM failed:", e.message);
+    return chunk;
   }
+}
+
+// ---------------------------------------------------------------
+// 4. SHORTEN SENTENCES
+// ---------------------------------------------------------------
+function shortenSentences(text) {
+  const sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+  const result = [];
+  for (const s of sentences) {
+    const words = s.trim().split(/\s+/);
+    if (words.length <= 15) {
+      result.push(s.trim());
+      continue;
+    }
+    for (let i = 0; i < words.length; i += 13) {
+      const chunk = words.slice(i, i + 13).join(" ");
+      const end = (i + 13 < words.length) ? "." : (s.match(/[.!?]$/)?.[0] || ".");
+      result.push(chunk + end);
+    }
+  }
+  return result.join(" ").replace(/\s+/g, " ").trim();
+}
+
+// ---------------------------------------------------------------
+// 5. EXTRACT TERMS
+// ---------------------------------------------------------------
+function extractBracketed(text) {
+  const set = new Set();
+  const re = /\[\[([^[\]]+?)\]\]/g;
+  let m;
+  while ((m = re.exec(text))) {
+    const term = m[1].split("(")[0].trim();
+    if (term) set.add(term);
+  }
+  return [...set];
+}
+
+function fallbackTerms(text) {
+  const pats = [
+    /infection|respiratory|tract|upper|lower|viral|bacterial|sinus|throat|nose|ear|skin|uti/gi
+  ];
+  const set = new Set();
+  pats.forEach(p => {
+    let m;
+    while ((m = p.exec(text))) set.add(m[0].toLowerCase());
+  });
+  return [...set];
+}
+
+// ---------------------------------------------------------------
+// 6. Simplicity Score
+// ---------------------------------------------------------------
+function syllableCount(w) {
+  w = w.toLowerCase().replace(/[^a-z]/g, "");
+  if (w.length <= 3) return 1;
+  w = w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, "").replace(/^y/, "");
+  return (w.match(/[aeiouy]{1,2}/g) || []).length || 1;
+}
+
+function calculateSimpScore(text, termCount) {
+  const words = text.split(/\s+/).filter(Boolean);
+  const sentences = text.split(/[.!?]+/).filter(Boolean);
+  if (!words.length) return 0;
+  const avgSyl = words.reduce((s, w) => s + syllableCount(w), 0) / words.length;
+  const avgWPS = words.length / (sentences.length || 1);
+  const fk = 0.39 * avgWPS + 11.8 * avgSyl - 15.59;
+  let score = Math.max(0, 10 - fk * 0.7);
+  score = Math.min(10, score);
+  if (termCount > 8) score = Math.max(4, score - (termCount - 8) * 0.15);
+  return Math.round(score * 10) / 10;
+}
+
+// ---------------------------------------------------------------
+// 7. MAIN EXPORT – PATIENT GETS ONLY PLAIN ENGLISH
+// ---------------------------------------------------------------
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+export async function simplifyMedicalText(original) {
+  console.log("\n=== START SIMPLIFICATION ===");
+
+  if (!looksMedical(original)) {
+    return {
+      patientPlainText: "This text does not appear to be medical-related.",
+      simplifiedWithBrackets: "",
+      terms: [],
+      score: 0
+    };
+  }
+
+  const text = correctMedicalTypos(original);
+  await logAllMedicalTermsToExcel(text, 0, excelFolderPath);
+
+  const chunks = chunkText(text);
+  const simplified = [];
+
+  for (let i = 0; i < chunks.length; i++) {
+    console.log(`Chunk ${i + 1}/${chunks.length}...`);
+    const out = await simplifyChunk(chunks[i]);
+    simplified.push(out);
+    await new Promise(r => setTimeout(r, 250));
+  }
+
+  let combined = simplified.join(" ").replace(/\s+/g, " ").trim();
+  combined = shortenSentences(combined);
+
+  console.log("\n=== WITH PLAIN ENGLISH ===");
+  console.log(combined.slice(0, 600) + "...");
+
+  // === EXTRACT TERMS + MEANINGS ===
+  const termMeanings = new Map();
+  const bracketRE = /\[\[([^\]]+)\]\]\s*\(([^)]+)\)/g;
+  let match;
+  while ((match = bracketRE.exec(combined))) {
+    const term = match[1].trim();
+    const meaning = match[2].trim();
+    termMeanings.set(term.toLowerCase(), meaning);
+  }
+
+  // === FALLBACK: Extract terms if no brackets ===
+  let terms = [...termMeanings.keys()];
+  if (!terms.length) {
+    console.warn("[FALLBACK] Using pattern detection");
+    terms = fallbackTerms(text);
+  }
+
+  // === BUILD PATIENT VERSION: REPLACE TERMS WITH MEANINGS ONLY ===
+  let patientText = combined;
+  for (const [term, meaning] of termMeanings) {
+    const regex = new RegExp(`\\[\\[${escapeRegExp(term)}\\]\\]\\s*\\([^)]+\\)`, "gi");
+    patientText = patientText.replace(regex, meaning);
+  }
+
+  // Clean leftover brackets
+  patientText = patientText
+    .replace(/\[\[[^\]]+\]\]/g, "")
+    .replace(/\(\)/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  // Capitalize first letter
+  if (patientText) {
+    patientText = patientText.charAt(0).toUpperCase() + patientText.slice(1);
+  }
+
+  const finalScore = calculateSimpScore(patientText, terms.length);
+  await logAllMedicalTermsToExcel(text, finalScore, excelFolderPath);
+
+  // Analytics
+  const analytics = terms.map(t => ({
+    term: t.toLowerCase(),
+    usagecount: 1,
+    simpScore: finalScore,
+    misunderstood: t.length > 12 ? 1 : 0,
+    usageInstr: /take|dose|daily|mg|weekly/i.test(t) ? 1 : 0,
+    timestamp: new Date(),
+  }));
+
+  if (analytics.length) {
+    try { await Analytics.insertMany(analytics); } catch (e) { console.error("Mongo:", e); }
+    try { await saveTermToExcel(analytics, excelFolderPath); } catch (e) { console.error("Excel:", e); }
+    console.log(`[Mongo+Excel] ${analytics.length} terms saved`);
+  }
+
+  console.log("\n=== FINAL PATIENT VERSION (CLEAN) ===");
+  console.log(patientText);
+  console.log(`\nSimplicity Score: ${finalScore}/10`);
+
+  return {
+    simplifiedWithBrackets: combined,
+    patientPlainText: patientText,  // ← ONLY PLAIN ENGLISH
+    terms: terms,
+    score: finalScore
+  };
 }
